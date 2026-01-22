@@ -1,10 +1,16 @@
 #version 330 core
 
+// Input data
+in vec2 vUV;
+
 // Ouput data
 out vec3 color;
 
+// Uniforms
+uniform sampler2D diffuseTexture;
+
 void main(){
 
-        color =vec3(0.2, 0.2,0.4);
+        color = texture(diffuseTexture, vUV);
 
 }

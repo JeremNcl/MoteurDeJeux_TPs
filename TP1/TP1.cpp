@@ -29,9 +29,9 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 // camera
-glm::vec3 camera_position   = glm::vec3(0.0f, 0.0f,  3.0f);
-glm::vec3 camera_target = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 camera_up    = glm::vec3(0.0f, 1.0f,  0.0f);
+glm::vec3 camera_position   = glm::vec3(4.0f, 10.0f, 4.0f);
+glm::vec3 camera_target     = glm::vec3(4.0f, 0.0f, 4.0f);
+glm::vec3 camera_up         = glm::vec3(0.0f, 0.0f, -1.0f);
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
@@ -41,6 +41,50 @@ float lastFrame = 0.0f;
 float angle = 0.;
 float zoom = 1.;
 /*******************************************************************************/
+
+
+void initPlane(std::vector<vec3> &vertices, std::vector<unsigned short> &indices, std::vector<vec2> &uvs)
+{
+    int width = 16, height = 16;
+    float scale = 0.5;
+
+    vertices.clear();
+    indices.clear();
+    uvs.clear();
+
+    // Création des sommets et des uvs
+    for (int z = 0.; z < height; z++) {
+        for (int x = 0.; x < width; x++) {
+            vec3 v;
+            v.x = x*scale;
+            v.y = 0.;
+            v.z = z*scale; 
+            vertices.push_back(v);
+            
+            vec2 uv;
+            uv.x = x / float(width-1);
+            uv.y = z / float(height-1);
+            uvs.push_back(uv);
+        }
+    }
+
+    // Indexage des triangles
+    for (unsigned short j = 0; j < height; j++) {
+        for (unsigned short i = 0; i < width; i++) {
+            if (i+1 < width && j+1 < height) {
+                // Triangle 1
+                indices.push_back(i + j*width);       // TOP_LEFT
+                indices.push_back(i + (j+1)*width);   // BOTTOM_LEFT
+                indices.push_back(i+1 + j*width);     // TOP_RIGHT
+                // Triangle 2
+                indices.push_back(i+1 + j*width);     // TOP_RIGHT
+                indices.push_back(i + (j+1)*width);   // BOTTOM_LEFT
+                indices.push_back(i+1 + (j+1)*width); // BOTTOM_RIGHT
+            }
+        }
+    }
+}
+
 
 int main( void )
 {
@@ -106,18 +150,23 @@ int main( void )
 
     /*****************TODO***********************/
     // Get a handle for our "Model View Projection" matrices uniforms
+    glUseProgram(programID);
+    GLuint MVP = glGetUniformLocation(programID, "MVP");
 
     /****************************************/
     std::vector<unsigned short> indices; //Triangles concaténés dans une liste
-    std::vector<std::vector<unsigned short> > triangles;
+    //std::vector<std::vector<unsigned short> > triangles;
     std::vector<glm::vec3> indexed_vertices;
+    std::vector<glm::vec2> uvs;
 
-    //Chargement du fichier de maillage
-    std::string filename("chair.off");
-    loadOFF(filename, indexed_vertices, indices, triangles );
+    // //Chargement du fichier de maillage
+    // std::string filename("chair.off");
+    // loadOFF(filename, indexed_vertices, indices, triangles );
+
+    // Initialisation du plan
+    initPlane(indexed_vertices, indices, uvs);
 
     // Load it into a VBO
-
     GLuint vertexbuffer;
     glGenBuffers(1, &vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -128,6 +177,12 @@ int main( void )
     glGenBuffers(1, &elementbuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0] , GL_STATIC_DRAW);
+
+    // Buffer for the UVs
+    GLuint uvbuffer;
+    glGenBuffers(1, &uvbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0] , GL_STATIC_DRAW);
 
     // Get a handle for our "LightPosition" uniform
     glUseProgram(programID);
@@ -162,17 +217,30 @@ int main( void )
 
         /*****************TODO***********************/
         // Model matrix : an identity matrix (model will be at the origin) then change
+        glm::mat4 modelMat = glm::mat4(1.0f);
 
         // View matrix : camera/view transformation lookat() utiliser camera_position camera_target camera_up
+        glm::mat4 viewMat = glm::lookAt(
+            camera_position,
+            camera_target,
+            camera_up
+        );
 
         // Projection matrix : 45 Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
+        float aspectRatio = (float)SCR_WIDTH / (float)SCR_HEIGHT;
+        glm::mat4 projectionMat = glm::perspective(
+            glm::radians(45.0f),
+            aspectRatio,          
+            0.1f,
+            100.0f
+        );
 
         // Send our transformation to the currently bound shader,
         // in the "Model View Projection" to the shader uniforms
+        glm::mat4 MVPMat = projectionMat * viewMat * modelMat;
+        glUniformMatrix4fv(MVP, 1, GL_FALSE, &MVPMat[0][0]);
 
         /****************************************/
-
-
 
 
         // 1rst attribute buffer : vertices
@@ -185,10 +253,22 @@ int main( void )
                     GL_FALSE,           // normalized?
                     0,                  // stride
                     (void*)0            // array buffer offset
-                    );
+        );
 
         // Index buffer
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+
+        // 2nd attribute buffer : uvs
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+        glVertexAttribPointer(
+                    1,                  // attribute
+                    2,                  // size
+                    GL_FLOAT,           // type
+                    GL_FALSE,           // normalized?
+                    0,                  // stride
+                    (void*)0            // array buffer offset
+        );
 
         // Draw the triangles !
         glDrawElements(
