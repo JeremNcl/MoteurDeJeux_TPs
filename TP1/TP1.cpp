@@ -21,6 +21,7 @@ using namespace glm;
 #include <common/shader.hpp>
 #include <common/objloader.hpp>
 #include <common/vboindexer.hpp>
+#include <common/texture.hpp>
 
 void processInput(GLFWwindow *window);
 
@@ -124,7 +125,7 @@ int main( void )
     // Ensure we can capture the escape key being pressed below
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
     // Hide the mouse and enable unlimited mouvement
-    //  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    // glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // Set the mouse at the center of the screen
     glfwPollEvents();
@@ -139,14 +140,14 @@ int main( void )
     glDepthFunc(GL_LESS);
 
     // Cull triangles which normal is not towards the camera
-    //glEnable(GL_CULL_FACE);
+    // glEnable(GL_CULL_FACE);
 
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
 
     // Create and compile our GLSL program from the shaders
-    GLuint programID = LoadShaders( "vertex_shader.glsl", "fragment_shader.glsl" );
+    GLuint programID = LoadShaders("vertex_shader.glsl", "fragment_shader.glsl");
 
     /*****************TODO***********************/
     // Get a handle for our "Model View Projection" matrices uniforms
@@ -184,10 +185,13 @@ int main( void )
     glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
     glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0] , GL_STATIC_DRAW);
 
+    // Load texture
+    GLuint texture = loadBMP_custom("textures/grass.bmp");
+    GLuint textureID = glGetUniformLocation(programID, "diffuseTexture");
+
     // Get a handle for our "LightPosition" uniform
     glUseProgram(programID);
-    GLuint LightID = glGetUniformLocation(programID, "LightPosition_worldspace");
-
+    GLuint lightID = glGetUniformLocation(programID, "LightPosition_worldspace");
 
 
     // For speed computation
@@ -214,6 +218,10 @@ int main( void )
         // Use our shader
         glUseProgram(programID);
 
+        // Bind texture
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(textureID, 0);
 
         /*****************TODO***********************/
         // Model matrix : an identity matrix (model will be at the origin) then change
@@ -291,6 +299,7 @@ int main( void )
     // Cleanup VBO and shader
     glDeleteBuffers(1, &vertexbuffer);
     glDeleteBuffers(1, &elementbuffer);
+    glDeleteTextures(1, &texture);
     glDeleteProgram(programID);
     glDeleteVertexArrays(1, &VertexArrayID);
 

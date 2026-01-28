@@ -17,4 +17,3 @@ void main(){
         gl_Position = MVP * vec4(vertices_position_modelspace,1);
         vUV = uv;
 }
-
