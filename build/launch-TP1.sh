@@ -1,17 +1,17 @@
 #!/bin/sh
 bindir=$(pwd)
-cd /home/e20250002139/Documents/Moteur_de_jeux/TP1/HAI819I_TP1/TP1_code/TP1/
+cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/TP1/
 export 
 
 if test "x$1" = "x--debugger"; then
 	shift
-	if test "xYES" = "xYES"; then
+	if test "x" = "xYES"; then
 		echo "r  " > $bindir/gdbscript
 		echo "bt" >> $bindir/gdbscript
-		/usr/bin/gdb -batch -command=$bindir/gdbscript --return-child-result /home/e20250002139/Documents/Moteur_de_jeux/TP1/HAI819I_TP1/TP1_code/build/TP1 
+		GDB_COMMAND-NOTFOUND -batch -command=$bindir/gdbscript  USERFILE_COMMAND-NOTFOUND 
 	else
-		"/home/e20250002139/Documents/Moteur_de_jeux/TP1/HAI819I_TP1/TP1_code/build/TP1"  
+		"USERFILE_COMMAND-NOTFOUND"  
 	fi
 else
-	"/home/e20250002139/Documents/Moteur_de_jeux/TP1/HAI819I_TP1/TP1_code/build/TP1"  
+	"USERFILE_COMMAND-NOTFOUND"  
 fi

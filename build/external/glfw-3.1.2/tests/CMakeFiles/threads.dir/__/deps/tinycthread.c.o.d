@@ -1,7 +1,7 @@
 external/glfw-3.1.2/tests/CMakeFiles/threads.dir/__/deps/tinycthread.c.o: \
- /home/e20250002139/Documents/Moteur_de_jeux/TP1/HAI819I_TP1/TP1_code/external/glfw-3.1.2/deps/tinycthread.c \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/deps/tinycthread.c \
  /usr/include/stdc-predef.h \
- /home/e20250002139/Documents/Moteur_de_jeux/TP1/HAI819I_TP1/TP1_code/external/glfw-3.1.2/deps/tinycthread.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/deps/tinycthread.h \
  /usr/include/time.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -10,7 +10,7 @@ external/glfw-3.1.2/tests/CMakeFiles/threads.dir/__/deps/tinycthread.c.o: \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
@@ -30,6 +30,14 @@ external/glfw-3.1.2/tests/CMakeFiles/threads.dir/__/deps/tinycthread.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/linux/sched/types.h /usr/include/linux/types.h \
+ /usr/lib/linux/uapi/x86/asm/types.h /usr/include/asm-generic/types.h \
+ /usr/include/asm-generic/int-ll64.h \
+ /usr/lib/linux/uapi/x86/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h /usr/lib/linux/uapi/x86/asm/posix_types.h \
+ /usr/lib/linux/uapi/x86/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
@@ -87,6 +95,6 @@ external/glfw-3.1.2/tests/CMakeFiles/threads.dir/__/deps/tinycthread.c.o: \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/errno.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/lib/linux/uapi/x86/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h

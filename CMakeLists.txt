@@ -1,5 +1,5 @@
 # CMake entry point
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.5)
 project (Tutorials)
 
 find_package(OpenGL REQUIRED)
@@ -21,9 +21,9 @@ endif()
 add_subdirectory (external)
 
 # On Visual 2005 and above, this module can set the debug working directory
-cmake_policy(SET CMP0026 OLD)
+# cmake_policy(SET CMP0026 OLD)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/rpavlik-cmake-modules-fe2273")
-include(CreateLaunchers)
+# include(CreateLaunchers)
 include(MSVCMultipleProcessCompile) # /MP
 
 if(INCLUDE_DISTRIB)
@@ -75,7 +75,7 @@ target_link_libraries(TP1
 )
 # Xcode and Visual working directories
 set_target_properties(TP1 PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/TP1/")
-create_target_launcher(TP1 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/TP1/")
+# create_target_launcher(TP1 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/TP1/")
 
 
 
