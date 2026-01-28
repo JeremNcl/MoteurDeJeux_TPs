@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <vector>
 #include <iostream>
+#include <cmath>
+#include <random>
 
 // Include GLEW
 #include <GL/glew.h>
@@ -30,9 +32,9 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 // camera
-glm::vec3 camera_position   = glm::vec3(4.0f, 10.0f, 4.0f);
-glm::vec3 camera_target     = glm::vec3(4.0f, 0.0f, 4.0f);
-glm::vec3 camera_up         = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 camera_position   = glm::vec3(20.0f, 15.0f, 20.0f);
+glm::vec3 camera_target     = glm::vec3(7.5f, 0.0f, 7.5f);
+glm::vec3 camera_up         = glm::vec3(0.0f, 1.0f, 0.0f);
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
@@ -47,19 +49,24 @@ float zoom = 1.;
 void initPlane(std::vector<vec3> &vertices, std::vector<unsigned short> &indices, std::vector<vec2> &uvs)
 {
     int width = 16, height = 16;
-    float scale = 0.5;
+    float maxHeight = 2.0f;  // Hauteur maximale du relief
 
     vertices.clear();
     indices.clear();
     uvs.clear();
 
+    // Générateur aléatoire
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dis(0.0f, maxHeight);
+
     // Création des sommets et des uvs
     for (int z = 0.; z < height; z++) {
         for (int x = 0.; x < width; x++) {
             vec3 v;
-            v.x = x*scale;
-            v.y = 0.;
-            v.z = z*scale; 
+            v.x = x;
+            v.y = dis(gen);  // Hauteur aléatoire entre 0 et maxHeight
+            v.z = z;
             vertices.push_back(v);
             
             vec2 uv;
@@ -69,7 +76,7 @@ void initPlane(std::vector<vec3> &vertices, std::vector<unsigned short> &indices
         }
     }
 
-    // Indexage des triangles
+    // Indexation des triangles
     for (unsigned short j = 0; j < height; j++) {
         for (unsigned short i = 0; i < width; i++) {
             if (i+1 < width && j+1 < height) {
