@@ -24,22 +24,16 @@ using namespace glm;
 #include <common/objloader.hpp>
 #include <common/vboindexer.hpp>
 #include <common/texture.hpp>
+#include <common/heightmap_loader.hpp>
+#include <common/camera.hpp>
+#include <common/terrain.hpp>
 
-void processInput(GLFWwindow *window);
+void processInput(GLFWwindow *window, Camera& camera);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-
-// Terrain dimensions
-int terrain_width = 16;
-int terrain_height = 16;
-
-// camera
-glm::vec3 camera_position   = glm::vec3(20.0f, 15.0f, 20.0f);
-glm::vec3 camera_target     = glm::vec3(7.5f, 0.0f, 7.5f);
-glm::vec3 camera_up         = glm::vec3(0.0f, 1.0f, 0.0f);
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
@@ -49,202 +43,6 @@ float lastFrame = 0.0f;
 float angle = 0.;
 float zoom = 1.;
 /*******************************************************************************/
-
-// Configure la caméra pour voir tout le terrain en vue isométrique
-void setupCameraForTerrain(int width, int height)
-{
-    // Centre du terrain
-    float centerX = width / 2.0f;
-    float centerZ = height / 2.0f;
-    
-    // Distance de la caméra pour voir tout le terrain
-    // On utilise la plus grande dimension et on ajoute une marge
-    float maxDim = std::max(width, height);
-    float distance = maxDim * 1.2f;  // Distance augmentée pour voir tout le terrain
-    
-    // Position de la caméra en vue isométrique (45° en horizontal et en vertical)
-    camera_position = glm::vec3(
-        centerX + distance * 0.7f,  // Offset en X
-        distance * 0.6f,             // Hauteur augmentée
-        centerZ + distance * 0.7f    // Offset en Z
-    );
-    
-    // La caméra regarde le centre du terrain
-    camera_target = glm::vec3(centerX, 0.0f, centerZ);
-    
-    // Vecteur up standard
-    camera_up = glm::vec3(0.0f, 1.0f, 0.0f);
-    
-    printf("Camera configured for terrain %dx%d\n", width, height);
-    printf("Camera position: (%.1f, %.1f, %.1f)\n", camera_position.x, camera_position.y, camera_position.z);
-    printf("Camera target: (%.1f, %.1f, %.1f)\n", camera_target.x, camera_target.y, camera_target.z);
-}
-
-// Charge une heightmap depuis un fichier BMP
-// Retourne un vecteur 2D avec les hauteurs (0.0 à 1.0)
-std::vector<std::vector<float>> loadHeightmap(const char* filepath, int& width, int& height)
-{
-    printf("Loading heightmap: %s\n", filepath);
-    
-    unsigned char header[54];
-    FILE* file = fopen(filepath, "rb");
-    
-    if (!file) {
-        printf("Heightmap file not found: %s\n", filepath);
-        width = 0;
-        height = 0;
-        return std::vector<std::vector<float>>();
-    }
-    
-    // Lire l'en-tête BMP
-    if (fread(header, 1, 54, file) != 54) {
-        printf("Invalid BMP file\n");
-        fclose(file);
-        return std::vector<std::vector<float>>();
-    }
-    
-    // Vérifier la signature BMP
-    if (header[0] != 'B' || header[1] != 'M') {
-        printf("Not a BMP file\n");
-        fclose(file);
-        return std::vector<std::vector<float>>();
-    }
-    
-    // Extraire les dimensions
-    width = *(int*)&(header[0x12]);
-    height = *(int*)&(header[0x16]);
-    int dataPos = *(int*)&(header[0x0A]);
-    int imageSize = *(int*)&(header[0x22]);
-    int bpp = *(short*)&(header[0x1C]);  // Bits per pixel
-    
-    // Corrections pour les BMP malformés
-    if (imageSize == 0) imageSize = width * height * (bpp / 8);
-    if (dataPos == 0) dataPos = 54;
-    
-    printf("Heightmap size: %d x %d, %d bpp\n", width, height, bpp);
-    
-    // Lire les données d'image
-    unsigned char* data = new unsigned char[imageSize];
-    fseek(file, dataPos, SEEK_SET);
-    fread(data, 1, imageSize, file);
-    fclose(file);
-    
-    // Convertir les données en heightmap (normaliser entre 0 et 1)
-    std::vector<std::vector<float>> heightmap(height, std::vector<float>(width));
-    int bytesPerPixel = bpp / 8;
-    
-    // Stocker les dimensions globalement
-    terrain_width = width;
-    terrain_height = height;
-    
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            int pixelIndex = (y * width + x) * bytesPerPixel;
-            // Pour une image en niveaux de gris, prendre le premier canal
-            unsigned char pixelValue = data[pixelIndex];
-            // Normaliser entre 0 et 1
-            heightmap[y][x] = (float)pixelValue / 255.0f;
-        }
-    }
-    
-    delete[] data;
-    printf("Heightmap loaded successfully\n");
-    return heightmap;
-}
-
-void initPlane(std::vector<vec3> &vertices, std::vector<unsigned int> &indices, std::vector<vec2> &uvs, std::vector<vec3> &normals)
-{
-    int hmWidth, hmHeight;
-    std::vector<std::vector<float>> heightmap = loadHeightmap("heightmaps/heightmap-1024x1024.bmp", hmWidth, hmHeight);
-    
-    if (heightmap.empty()) {
-        printf("Failed to load heightmap, using flat plane\n");
-        hmWidth = 16;
-        hmHeight = 16;
-    }
-    
-    int width = hmWidth;
-    int height = hmHeight;
-    float maxHeight = 50.0f;  // Hauteur maximale du terrain
-
-    vertices.clear();
-    indices.clear();
-    uvs.clear();
-    normals.clear();
-
-    // Création des sommets et des uvs
-    for (int z = 0; z < height; z++) {
-        for (int x = 0; x < width; x++) {
-            vec3 v;
-            v.x = (float)x;
-            
-            // Utiliser la heightmap pour la hauteur
-            if (!heightmap.empty() && z < (int)heightmap.size() && x < (int)heightmap[z].size()) {
-                v.y = heightmap[z][x] * maxHeight;
-            } else {
-                v.y = 0.0f;
-            }
-            
-            v.z = (float)z;
-            vertices.push_back(v);
-            
-            vec2 uv;
-            uv.x = x / float(width - 1);
-            uv.y = z / float(height - 1);
-            uvs.push_back(uv);
-            
-            // Initialiser les normales à zéro (seront calculées après)
-            normals.push_back(vec3(0.0f, 0.0f, 0.0f));
-        }
-    }
-
-    // Indexation des triangles
-    for (unsigned int j = 0; j < height; j++) {
-        for (unsigned int i = 0; i < width; i++) {
-            if (i+1 < width && j+1 < height) {
-                // Triangle 1
-                indices.push_back(i + j*width);       // TOP_LEFT
-                indices.push_back(i + (j+1)*width);   // BOTTOM_LEFT
-                indices.push_back(i+1 + j*width);     // TOP_RIGHT
-                // Triangle 2
-                indices.push_back(i+1 + j*width);     // TOP_RIGHT
-                indices.push_back(i + (j+1)*width);   // BOTTOM_LEFT
-                indices.push_back(i+1 + (j+1)*width); // BOTTOM_RIGHT
-            }
-        }
-    }
-    
-    // Calcul des normales
-    // Pour chaque triangle, calculer la normale et l'ajouter aux normales des sommets
-    for (size_t i = 0; i < indices.size(); i += 3) {
-        unsigned int id0 = indices[i];
-        unsigned int id1 = indices[i + 1];
-        unsigned int id2 = indices[i + 2];
-        
-        vec3 v0 = vertices[id0];
-        vec3 v1 = vertices[id1];
-        vec3 v2 = vertices[id2];
-        
-        // Calculer les vecteurs des arêtes du triangle
-        vec3 edge1 = v1 - v0;
-        vec3 edge2 = v2 - v0;
-        
-        // Normale du triangle (produit vectoriel)
-        vec3 triangleNormal = glm::normalize(glm::cross(edge1, edge2));
-        
-        // Ajouter cette normale aux trois sommets du triangle
-        normals[id0] += triangleNormal;
-        normals[id1] += triangleNormal;
-        normals[id2] += triangleNormal;
-    }
-    
-    // Normaliser toutes les normales des sommets
-    for (size_t i = 0; i < normals.size(); i++) {
-        normals[i] = glm::normalize(normals[i]);
-    }
-    
-    printf("Normals calculated for %zu vertices\n", normals.size());
-}
 
 
 int main( void )
@@ -328,11 +126,17 @@ int main( void )
     // std::string filename("chair.off");
     // loadOFF(filename, indexed_vertices, indices, triangles );
 
-    // Initialisation du plan
-    initPlane(indexed_vertices, indices, uvs, normals);
+    // Créer et initialiser le terrain
+    Terrain terrain;
+    terrain.loadHeightmap("heightmaps/heightmap_1024.bmp", 50.0f);
+    terrain.generateMesh(indexed_vertices, indices, uvs, normals);
     
-    // Configure la caméra automatiquement pour voir tout le terrain
-    setupCameraForTerrain(terrain_width, terrain_height);
+    // Configurer la caméra avec la vue optimale du terrain
+    Camera camera;
+    CameraSetup cameraSetup = terrain.getOptimalIsometricView();
+    camera.initialize(cameraSetup.position, cameraSetup.target, cameraSetup.up, cameraSetup.speed);
+    camera.setMode(FIXED_CAMERA, window);
+    printf("Mode initial: FIXED_CAMERA - Appuyez sur C pour passer en mode libre\n");
 
     // Load it into a VBO
     GLuint vertexbuffer;
@@ -382,7 +186,7 @@ int main( void )
 
         // input
         // -----
-        processInput(window);
+        processInput(window, camera);
 
 
         // Clear the screen
@@ -397,24 +201,15 @@ int main( void )
         glUniform1i(textureID, 0);
 
         /*****************TODO***********************/
-        // Model matrix : an identity matrix (model will be at the origin) then change
+        // Mettre à jour la caméra (gestion inputs + calcul matrices)
+        camera.update(window, deltaTime);
+        
+        // Model matrix : an identity matrix (model will be at the origin)
         glm::mat4 modelMat = glm::mat4(1.0f);
 
-        // View matrix : camera/view transformation lookat() utiliser camera_position camera_target camera_up
-        glm::mat4 viewMat = glm::lookAt(
-            camera_position,
-            camera_target,
-            camera_up
-        );
-
-        // Projection matrix : 45 Field of View, 4:3 ratio, display range : 0.1 unit <-> 5000 units
-        float aspectRatio = (float)SCR_WIDTH / (float)SCR_HEIGHT;
-        glm::mat4 projectionMat = glm::perspective(
-            glm::radians(45.0f),
-            aspectRatio,          
-            0.1f,
-            5000.0f
-        );
+        // Récupérer les matrices de vue et projection de la caméra
+        glm::mat4 viewMat = camera.getViewMatrix();
+        glm::mat4 projectionMat = camera.getProjectionMatrix();
 
         // Send our transformation to the currently bound shader,
         // in the "Model View Projection" to the shader uniforms
@@ -499,20 +294,26 @@ int main( void )
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow *window)
+void processInput(GLFWwindow *window, Camera& camera)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
-    //Camera zoom in and out
-    float cameraSpeed = 2.5 * deltaTime;
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera_position += cameraSpeed * camera_target;
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera_position -= cameraSpeed * camera_target;
-
-    //TODO add translations
-
+    // Changement de mode caméra avec la touche C
+    static bool cKeyWasPressed = false;
+    if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS && !cKeyWasPressed) {
+        cKeyWasPressed = true;
+        if (camera.getMode() == FIXED_CAMERA) {
+            camera.setMode(FREE_CAMERA, window);
+            printf("Mode: FREE_CAMERA - Utilisez WASD pour vous déplacer et la souris pour regarder\n");
+        } else {
+            camera.setMode(FIXED_CAMERA, window);
+            printf("Mode: FIXED_CAMERA - Vue isométrique fixe\n");
+        }
+    }
+    if (glfwGetKey(window, GLFW_KEY_C) == GLFW_RELEASE) {
+        cKeyWasPressed = false;
+    }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

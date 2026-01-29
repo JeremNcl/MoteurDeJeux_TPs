@@ -536,29 +536,53 @@ TP1/TP1.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/TP1/TP1.cpp.s
 .PHONY : TP1/TP1.cpp.s
 
-common/controls.o: common/controls.cpp.o
-.PHONY : common/controls.o
+common/camera.o: common/camera.cpp.o
+.PHONY : common/camera.o
 
 # target to build an object file
-common/controls.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/controls.cpp.o
-.PHONY : common/controls.cpp.o
+common/camera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/camera.cpp.o
+.PHONY : common/camera.cpp.o
 
-common/controls.i: common/controls.cpp.i
-.PHONY : common/controls.i
+common/camera.i: common/camera.cpp.i
+.PHONY : common/camera.i
 
 # target to preprocess a source file
-common/controls.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/controls.cpp.i
-.PHONY : common/controls.cpp.i
+common/camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/camera.cpp.i
+.PHONY : common/camera.cpp.i
 
-common/controls.s: common/controls.cpp.s
-.PHONY : common/controls.s
+common/camera.s: common/camera.cpp.s
+.PHONY : common/camera.s
 
 # target to generate assembly for a file
-common/controls.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/controls.cpp.s
-.PHONY : common/controls.cpp.s
+common/camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/camera.cpp.s
+.PHONY : common/camera.cpp.s
+
+common/heightmap_loader.o: common/heightmap_loader.cpp.o
+.PHONY : common/heightmap_loader.o
+
+# target to build an object file
+common/heightmap_loader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o
+.PHONY : common/heightmap_loader.cpp.o
+
+common/heightmap_loader.i: common/heightmap_loader.cpp.i
+.PHONY : common/heightmap_loader.i
+
+# target to preprocess a source file
+common/heightmap_loader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/heightmap_loader.cpp.i
+.PHONY : common/heightmap_loader.cpp.i
+
+common/heightmap_loader.s: common/heightmap_loader.cpp.s
+.PHONY : common/heightmap_loader.s
+
+# target to generate assembly for a file
+common/heightmap_loader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/heightmap_loader.cpp.s
+.PHONY : common/heightmap_loader.cpp.s
 
 common/objloader.o: common/objloader.cpp.o
 .PHONY : common/objloader.o
@@ -607,6 +631,30 @@ common/shader.s: common/shader.cpp.s
 common/shader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/shader.cpp.s
 .PHONY : common/shader.cpp.s
+
+common/terrain.o: common/terrain.cpp.o
+.PHONY : common/terrain.o
+
+# target to build an object file
+common/terrain.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/terrain.cpp.o
+.PHONY : common/terrain.cpp.o
+
+common/terrain.i: common/terrain.cpp.i
+.PHONY : common/terrain.i
+
+# target to preprocess a source file
+common/terrain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/terrain.cpp.i
+.PHONY : common/terrain.cpp.i
+
+common/terrain.s: common/terrain.cpp.s
+.PHONY : common/terrain.s
+
+# target to generate assembly for a file
+common/terrain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TP1.dir/build.make CMakeFiles/TP1.dir/common/terrain.cpp.s
+.PHONY : common/terrain.cpp.s
 
 common/texture.o: common/texture.cpp.o
 .PHONY : common/texture.o
@@ -698,15 +746,21 @@ help:
 	@echo "... TP1/TP1.o"
 	@echo "... TP1/TP1.i"
 	@echo "... TP1/TP1.s"
-	@echo "... common/controls.o"
-	@echo "... common/controls.i"
-	@echo "... common/controls.s"
+	@echo "... common/camera.o"
+	@echo "... common/camera.i"
+	@echo "... common/camera.s"
+	@echo "... common/heightmap_loader.o"
+	@echo "... common/heightmap_loader.i"
+	@echo "... common/heightmap_loader.s"
 	@echo "... common/objloader.o"
 	@echo "... common/objloader.i"
 	@echo "... common/objloader.s"
 	@echo "... common/shader.o"
 	@echo "... common/shader.i"
 	@echo "... common/shader.s"
+	@echo "... common/terrain.o"
+	@echo "... common/terrain.i"
+	@echo "... common/terrain.s"
 	@echo "... common/texture.o"
 	@echo "... common/texture.i"
 	@echo "... common/texture.s"

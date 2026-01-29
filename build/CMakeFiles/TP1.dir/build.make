@@ -100,24 +100,38 @@ CMakeFiles/TP1.dir/common/shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TP1.dir/common/shader.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/shader.cpp -o CMakeFiles/TP1.dir/common/shader.cpp.s
 
-CMakeFiles/TP1.dir/common/controls.cpp.o: CMakeFiles/TP1.dir/flags.make
-CMakeFiles/TP1.dir/common/controls.cpp.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/controls.cpp
-CMakeFiles/TP1.dir/common/controls.cpp.o: CMakeFiles/TP1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TP1.dir/common/controls.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TP1.dir/common/controls.cpp.o -MF CMakeFiles/TP1.dir/common/controls.cpp.o.d -o CMakeFiles/TP1.dir/common/controls.cpp.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/controls.cpp
+CMakeFiles/TP1.dir/common/camera.cpp.o: CMakeFiles/TP1.dir/flags.make
+CMakeFiles/TP1.dir/common/camera.cpp.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/camera.cpp
+CMakeFiles/TP1.dir/common/camera.cpp.o: CMakeFiles/TP1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TP1.dir/common/camera.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TP1.dir/common/camera.cpp.o -MF CMakeFiles/TP1.dir/common/camera.cpp.o.d -o CMakeFiles/TP1.dir/common/camera.cpp.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/camera.cpp
 
-CMakeFiles/TP1.dir/common/controls.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TP1.dir/common/controls.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/controls.cpp > CMakeFiles/TP1.dir/common/controls.cpp.i
+CMakeFiles/TP1.dir/common/camera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TP1.dir/common/camera.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/camera.cpp > CMakeFiles/TP1.dir/common/camera.cpp.i
 
-CMakeFiles/TP1.dir/common/controls.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TP1.dir/common/controls.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/controls.cpp -o CMakeFiles/TP1.dir/common/controls.cpp.s
+CMakeFiles/TP1.dir/common/camera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TP1.dir/common/camera.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/camera.cpp -o CMakeFiles/TP1.dir/common/camera.cpp.s
+
+CMakeFiles/TP1.dir/common/terrain.cpp.o: CMakeFiles/TP1.dir/flags.make
+CMakeFiles/TP1.dir/common/terrain.cpp.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/terrain.cpp
+CMakeFiles/TP1.dir/common/terrain.cpp.o: CMakeFiles/TP1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TP1.dir/common/terrain.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TP1.dir/common/terrain.cpp.o -MF CMakeFiles/TP1.dir/common/terrain.cpp.o.d -o CMakeFiles/TP1.dir/common/terrain.cpp.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/terrain.cpp
+
+CMakeFiles/TP1.dir/common/terrain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TP1.dir/common/terrain.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/terrain.cpp > CMakeFiles/TP1.dir/common/terrain.cpp.i
+
+CMakeFiles/TP1.dir/common/terrain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TP1.dir/common/terrain.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/terrain.cpp -o CMakeFiles/TP1.dir/common/terrain.cpp.s
 
 CMakeFiles/TP1.dir/common/texture.cpp.o: CMakeFiles/TP1.dir/flags.make
 CMakeFiles/TP1.dir/common/texture.cpp.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/texture.cpp
 CMakeFiles/TP1.dir/common/texture.cpp.o: CMakeFiles/TP1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TP1.dir/common/texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TP1.dir/common/texture.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TP1.dir/common/texture.cpp.o -MF CMakeFiles/TP1.dir/common/texture.cpp.o.d -o CMakeFiles/TP1.dir/common/texture.cpp.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/texture.cpp
 
 CMakeFiles/TP1.dir/common/texture.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/TP1.dir/common/texture.cpp.s: cmake_force
 CMakeFiles/TP1.dir/common/objloader.cpp.o: CMakeFiles/TP1.dir/flags.make
 CMakeFiles/TP1.dir/common/objloader.cpp.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/objloader.cpp
 CMakeFiles/TP1.dir/common/objloader.cpp.o: CMakeFiles/TP1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TP1.dir/common/objloader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TP1.dir/common/objloader.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TP1.dir/common/objloader.cpp.o -MF CMakeFiles/TP1.dir/common/objloader.cpp.o.d -o CMakeFiles/TP1.dir/common/objloader.cpp.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/objloader.cpp
 
 CMakeFiles/TP1.dir/common/objloader.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/TP1.dir/common/objloader.cpp.s: cmake_force
 CMakeFiles/TP1.dir/common/vboindexer.cpp.o: CMakeFiles/TP1.dir/flags.make
 CMakeFiles/TP1.dir/common/vboindexer.cpp.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/vboindexer.cpp
 CMakeFiles/TP1.dir/common/vboindexer.cpp.o: CMakeFiles/TP1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TP1.dir/common/vboindexer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TP1.dir/common/vboindexer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TP1.dir/common/vboindexer.cpp.o -MF CMakeFiles/TP1.dir/common/vboindexer.cpp.o.d -o CMakeFiles/TP1.dir/common/vboindexer.cpp.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/vboindexer.cpp
 
 CMakeFiles/TP1.dir/common/vboindexer.cpp.i: cmake_force
@@ -156,24 +170,42 @@ CMakeFiles/TP1.dir/common/vboindexer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TP1.dir/common/vboindexer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/vboindexer.cpp -o CMakeFiles/TP1.dir/common/vboindexer.cpp.s
 
+CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o: CMakeFiles/TP1.dir/flags.make
+CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/heightmap_loader.cpp
+CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o: CMakeFiles/TP1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o -MF CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o.d -o CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/heightmap_loader.cpp
+
+CMakeFiles/TP1.dir/common/heightmap_loader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TP1.dir/common/heightmap_loader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/heightmap_loader.cpp > CMakeFiles/TP1.dir/common/heightmap_loader.cpp.i
+
+CMakeFiles/TP1.dir/common/heightmap_loader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TP1.dir/common/heightmap_loader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/heightmap_loader.cpp -o CMakeFiles/TP1.dir/common/heightmap_loader.cpp.s
+
 # Object files for target TP1
 TP1_OBJECTS = \
 "CMakeFiles/TP1.dir/TP1/TP1.cpp.o" \
 "CMakeFiles/TP1.dir/common/shader.cpp.o" \
-"CMakeFiles/TP1.dir/common/controls.cpp.o" \
+"CMakeFiles/TP1.dir/common/camera.cpp.o" \
+"CMakeFiles/TP1.dir/common/terrain.cpp.o" \
 "CMakeFiles/TP1.dir/common/texture.cpp.o" \
 "CMakeFiles/TP1.dir/common/objloader.cpp.o" \
-"CMakeFiles/TP1.dir/common/vboindexer.cpp.o"
+"CMakeFiles/TP1.dir/common/vboindexer.cpp.o" \
+"CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o"
 
 # External object files for target TP1
 TP1_EXTERNAL_OBJECTS =
 
 TP1: CMakeFiles/TP1.dir/TP1/TP1.cpp.o
 TP1: CMakeFiles/TP1.dir/common/shader.cpp.o
-TP1: CMakeFiles/TP1.dir/common/controls.cpp.o
+TP1: CMakeFiles/TP1.dir/common/camera.cpp.o
+TP1: CMakeFiles/TP1.dir/common/terrain.cpp.o
 TP1: CMakeFiles/TP1.dir/common/texture.cpp.o
 TP1: CMakeFiles/TP1.dir/common/objloader.cpp.o
 TP1: CMakeFiles/TP1.dir/common/vboindexer.cpp.o
+TP1: CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o
 TP1: CMakeFiles/TP1.dir/build.make
 TP1: CMakeFiles/TP1.dir/compiler_depend.ts
 TP1: /usr/lib/x86_64-linux-gnu/libGL.so
@@ -197,7 +229,7 @@ TP1: /usr/lib/x86_64-linux-gnu/libXcursor.so
 TP1: /usr/lib/x86_64-linux-gnu/libGL.so
 TP1: /usr/lib/x86_64-linux-gnu/libGLU.so
 TP1: CMakeFiles/TP1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable TP1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable TP1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TP1.dir/link.txt --verbose=$(VERBOSE)
 	/usr/local/bin/cmake -E copy /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/./TP1 /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/TP1/
 

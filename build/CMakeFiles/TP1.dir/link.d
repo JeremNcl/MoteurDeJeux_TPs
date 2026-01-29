@@ -4,10 +4,12 @@ TP1: \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/TP1.dir/TP1/TP1.cpp.o \
   CMakeFiles/TP1.dir/common/shader.cpp.o \
-  CMakeFiles/TP1.dir/common/controls.cpp.o \
+  CMakeFiles/TP1.dir/common/camera.cpp.o \
+  CMakeFiles/TP1.dir/common/terrain.cpp.o \
   CMakeFiles/TP1.dir/common/texture.cpp.o \
   CMakeFiles/TP1.dir/common/objloader.cpp.o \
   CMakeFiles/TP1.dir/common/vboindexer.cpp.o \
+  CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o \
   /usr/lib/x86_64-linux-gnu/libGL.so \
   /usr/lib/x86_64-linux-gnu/libGLU.so \
   external/glfw-3.1.2/src/libglfw3.a \
@@ -85,13 +87,17 @@ CMakeFiles/TP1.dir/TP1/TP1.cpp.o:
 
 CMakeFiles/TP1.dir/common/shader.cpp.o:
 
-CMakeFiles/TP1.dir/common/controls.cpp.o:
+CMakeFiles/TP1.dir/common/camera.cpp.o:
+
+CMakeFiles/TP1.dir/common/terrain.cpp.o:
 
 CMakeFiles/TP1.dir/common/texture.cpp.o:
 
 CMakeFiles/TP1.dir/common/objloader.cpp.o:
 
 CMakeFiles/TP1.dir/common/vboindexer.cpp.o:
+
+CMakeFiles/TP1.dir/common/heightmap_loader.cpp.o:
 
 /usr/lib/x86_64-linux-gnu/libGL.so:
 

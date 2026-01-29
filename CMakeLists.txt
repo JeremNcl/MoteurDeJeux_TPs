@@ -58,14 +58,18 @@ add_executable(TP1
         TP1/TP1.cpp
 	common/shader.cpp
 	common/shader.hpp
-	common/controls.cpp
-	common/controls.hpp
+	common/camera.cpp
+	common/camera.hpp
+	common/terrain.cpp
+	common/terrain.hpp
 	common/texture.cpp
 	common/texture.hpp
 	common/objloader.cpp
 	common/objloader.hpp
 	common/vboindexer.cpp
 	common/vboindexer.hpp
+	common/heightmap_loader.cpp
+	common/heightmap_loader.hpp
 	
         TP1/vertex_shader.glsl
         TP1/fragment_shader.glsl
