@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1
+CMAKE_SOURCE_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build
+CMAKE_BINARY_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build
 
 # Include any dependencies generated for this target.
 include external/glfw-3.1.2/tests/CMakeFiles/title.dir/depend.make
@@ -73,18 +73,18 @@ external/glfw-3.1.2/tests/CMakeFiles/title.dir/codegen:
 .PHONY : external/glfw-3.1.2/tests/CMakeFiles/title.dir/codegen
 
 external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.o: external/glfw-3.1.2/tests/CMakeFiles/title.dir/flags.make
-external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/tests/title.c
+external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/tests/title.c
 external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.o: external/glfw-3.1.2/tests/CMakeFiles/title.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.o"
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external/glfw-3.1.2/tests && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.o -MF CMakeFiles/title.dir/title.c.o.d -o CMakeFiles/title.dir/title.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/tests/title.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.o"
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external/glfw-3.1.2/tests && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.o -MF CMakeFiles/title.dir/title.c.o.d -o CMakeFiles/title.dir/title.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/tests/title.c
 
 external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/title.dir/title.c.i"
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external/glfw-3.1.2/tests && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/tests/title.c > CMakeFiles/title.dir/title.c.i
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external/glfw-3.1.2/tests && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/tests/title.c > CMakeFiles/title.dir/title.c.i
 
 external/glfw-3.1.2/tests/CMakeFiles/title.dir/title.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/title.dir/title.c.s"
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external/glfw-3.1.2/tests && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/tests/title.c -o CMakeFiles/title.dir/title.c.s
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external/glfw-3.1.2/tests && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/tests/title.c -o CMakeFiles/title.dir/title.c.s
 
 # Object files for target title
 title_OBJECTS = \
@@ -106,18 +106,18 @@ external/glfw-3.1.2/tests/title: /usr/lib/x86_64-linux-gnu/libXi.so
 external/glfw-3.1.2/tests/title: /usr/lib/x86_64-linux-gnu/libXcursor.so
 external/glfw-3.1.2/tests/title: /usr/lib/x86_64-linux-gnu/libGL.so
 external/glfw-3.1.2/tests/title: external/glfw-3.1.2/tests/CMakeFiles/title.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable title"
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external/glfw-3.1.2/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/title.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable title"
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external/glfw-3.1.2/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/title.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 external/glfw-3.1.2/tests/CMakeFiles/title.dir/build: external/glfw-3.1.2/tests/title
 .PHONY : external/glfw-3.1.2/tests/CMakeFiles/title.dir/build
 
 external/glfw-3.1.2/tests/CMakeFiles/title.dir/clean:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external/glfw-3.1.2/tests && $(CMAKE_COMMAND) -P CMakeFiles/title.dir/cmake_clean.cmake
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external/glfw-3.1.2/tests && $(CMAKE_COMMAND) -P CMakeFiles/title.dir/cmake_clean.cmake
 .PHONY : external/glfw-3.1.2/tests/CMakeFiles/title.dir/clean
 
 external/glfw-3.1.2/tests/CMakeFiles/title.dir/depend:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1 /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/tests /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external/glfw-3.1.2/tests /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external/glfw-3.1.2/tests/CMakeFiles/title.dir/DependInfo.cmake "--color=$(COLOR)" title
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2 /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/tests /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external/glfw-3.1.2/tests /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external/glfw-3.1.2/tests/CMakeFiles/title.dir/DependInfo.cmake "--color=$(COLOR)" title
 .PHONY : external/glfw-3.1.2/tests/CMakeFiles/title.dir/depend
 

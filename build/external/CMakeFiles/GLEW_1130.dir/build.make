@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1
+CMAKE_SOURCE_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build
+CMAKE_BINARY_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build
 
 # Include any dependencies generated for this target.
 include external/CMakeFiles/GLEW_1130.dir/depend.make
@@ -73,18 +73,18 @@ external/CMakeFiles/GLEW_1130.dir/codegen:
 .PHONY : external/CMakeFiles/GLEW_1130.dir/codegen
 
 external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o: external/CMakeFiles/GLEW_1130.dir/flags.make
-external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glew-1.13.0/src/glew.c
+external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o: /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glew-1.13.0/src/glew.c
 external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o: external/CMakeFiles/GLEW_1130.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o"
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o -MF CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o.d -o CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glew-1.13.0/src/glew.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o"
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o -MF CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o.d -o CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glew-1.13.0/src/glew.c
 
 external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.i"
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glew-1.13.0/src/glew.c > CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.i
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glew-1.13.0/src/glew.c > CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.i
 
 external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.s"
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glew-1.13.0/src/glew.c -o CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.s
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glew-1.13.0/src/glew.c -o CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.s
 
 # Object files for target GLEW_1130
 GLEW_1130_OBJECTS = \
@@ -96,19 +96,19 @@ GLEW_1130_EXTERNAL_OBJECTS =
 external/libGLEW_1130.a: external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o
 external/libGLEW_1130.a: external/CMakeFiles/GLEW_1130.dir/build.make
 external/libGLEW_1130.a: external/CMakeFiles/GLEW_1130.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libGLEW_1130.a"
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external && $(CMAKE_COMMAND) -P CMakeFiles/GLEW_1130.dir/cmake_clean_target.cmake
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GLEW_1130.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libGLEW_1130.a"
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external && $(CMAKE_COMMAND) -P CMakeFiles/GLEW_1130.dir/cmake_clean_target.cmake
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GLEW_1130.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 external/CMakeFiles/GLEW_1130.dir/build: external/libGLEW_1130.a
 .PHONY : external/CMakeFiles/GLEW_1130.dir/build
 
 external/CMakeFiles/GLEW_1130.dir/clean:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external && $(CMAKE_COMMAND) -P CMakeFiles/GLEW_1130.dir/cmake_clean.cmake
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external && $(CMAKE_COMMAND) -P CMakeFiles/GLEW_1130.dir/cmake_clean.cmake
 .PHONY : external/CMakeFiles/GLEW_1130.dir/clean
 
 external/CMakeFiles/GLEW_1130.dir/depend:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1 /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external/CMakeFiles/GLEW_1130.dir/DependInfo.cmake "--color=$(COLOR)" GLEW_1130
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2 /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external/CMakeFiles/GLEW_1130.dir/DependInfo.cmake "--color=$(COLOR)" GLEW_1130
 .PHONY : external/CMakeFiles/GLEW_1130.dir/depend
 

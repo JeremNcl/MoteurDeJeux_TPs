@@ -1,5 +1,5 @@
 external/glfw-3.1.2/examples/CMakeFiles/gears.dir/gears.c.o: \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/examples/gears.c \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/examples/gears.c \
  /usr/include/stdc-predef.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -60,9 +60,9 @@ external/glfw-3.1.2/examples/CMakeFiles/gears.dir/gears.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/strings.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/include/GLFW/glfw3.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/include/GLFW/glfw3.h \
  /usr/include/GL/gl.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/deps/GL/glext.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/deps/GL/glext.h \
  /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \

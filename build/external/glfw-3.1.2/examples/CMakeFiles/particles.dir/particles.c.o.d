@@ -1,5 +1,5 @@
 external/glfw-3.1.2/examples/CMakeFiles/particles.dir/particles.c.o: \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/examples/particles.c \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/examples/particles.c \
  /usr/include/stdc-predef.h /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -63,7 +63,7 @@ external/glfw-3.1.2/examples/CMakeFiles/particles.dir/particles.c.o: \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/deps/tinycthread.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/deps/tinycthread.h \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/sched.h \
  /usr/include/linux/sched/types.h /usr/include/linux/types.h \
@@ -79,11 +79,11 @@ external/glfw-3.1.2/examples/CMakeFiles/particles.dir/particles.c.o: \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/deps/getopt.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/deps/linmath.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/include/GLFW/glfw3.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/deps/getopt.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/deps/linmath.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/include/GLFW/glfw3.h \
  /usr/include/GL/gl.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/deps/GL/glext.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/deps/GL/glext.h \
  /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \

@@ -25,6 +25,12 @@ public:
                       std::vector<glm::vec2>& uvs,
                       std::vector<glm::vec3>& normals);
     
+    // Gestion de la résolution (LOD)
+    void setResolution(float step);  // step = 0.5 (détail maximum), 1, 2, 4, etc.
+    float getResolution() const { return resolution; }
+    float getMinResolution() const { return 0.25f; }  // Résolution minimale (1/4)
+    float getMaxResolution() const { return 1.0f; }   // Résolution maximale
+    
     // Getters
     int getWidth() const { return width; }
     int getHeight() const { return height; }
@@ -37,6 +43,7 @@ private:
     int width;
     int height;
     float maxHeight;
+    float resolution;  // Pas de sous-échantillonnage (0.5 = sur-échantillonnage x2, 1 = normal, 2 = /2, 4 = /4, etc.)
     std::vector<std::vector<float>> heightmap;
     
     // Méthode privée pour calculer les normales

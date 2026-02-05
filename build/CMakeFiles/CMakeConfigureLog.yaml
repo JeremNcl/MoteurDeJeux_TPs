@@ -225,7 +225,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
       
       The C compiler identification is GNU, found in:
-        /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/4.2.1/CompilerIdC/a.out
+        /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/4.2.1/CompilerIdC/a.out
       
   -
     kind: "find-v1"
@@ -968,7 +968,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
       The CXX compiler identification is GNU, found in:
-        /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/4.2.1/CompilerIdCXX/a.out
+        /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/4.2.1/CompilerIdCXX/a.out
       
   -
     kind: "find-v1"
@@ -1099,8 +1099,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-jnRNFZ"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-jnRNFZ"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-e7v0Pw"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-e7v0Pw"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -1108,13 +1108,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-jnRNFZ'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-e7v0Pw'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d5c4f/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_d5c4f.dir/build.make CMakeFiles/cmTC_d5c4f.dir/build
-        gmake[1]: Entering directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-jnRNFZ'
-        Building C object CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o
-        /usr/bin/cc   -v -o CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake-4.2/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_637f6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_637f6.dir/build.make CMakeFiles/cmTC_637f6.dir/build
+        gmake[1]: Entering directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-e7v0Pw'
+        Building C object CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake-4.2/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -1124,8 +1124,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 14.2.0 (Debian 14.2.0-19) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d5c4f.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/14/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/local/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_d5c4f.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -o /tmp/ccIoGpv4.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_637f6.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/14/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/local/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_637f6.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -o /tmp/cc8jqoUA.s
         GNU C17 (Debian 14.2.0-19) version 14.2.0 (x86_64-linux-gnu)
         	compiled by GNU C version 14.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.27-GMP
         
@@ -1143,14 +1143,14 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: 0051dfc1fa4e89ba97760da93f2546f3
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d5c4f.dir/'
-         as -v --64 -o CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o /tmp/ccIoGpv4.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_637f6.dir/'
+         as -v --64 -o CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o /tmp/cc8jqoUA.s
         GNU assembler version 2.44 (x86_64-linux-gnu) using BFD version (GNU Binutils for Debian) 2.44
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.'
-        Linking C executable cmTC_d5c4f
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d5c4f.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_637f6
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_637f6.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper
@@ -1163,14 +1163,14 @@ events:
         gcc version 14.2.0 (Debian 14.2.0-19) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d5c4f' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d5c4f.'
-         /usr/libexec/gcc/x86_64-linux-gnu/14/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqtfVFX.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_d5c4f /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_637f6' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_637f6.'
+         /usr/libexec/gcc/x86_64-linux-gnu/14/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccawWCJl.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_637f6 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o
         collect2 version 14.2.0
-        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqtfVFX.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_d5c4f /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o
+        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccawWCJl.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_637f6 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o
         GNU ld (GNU Binutils for Debian) 2.44
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d5c4f' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d5c4f.'
-        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o -o cmTC_d5c4f
-        gmake[1]: Leaving directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-jnRNFZ'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_637f6' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_637f6.'
+        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o -o cmTC_637f6
+        gmake[1]: Leaving directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-e7v0Pw'
         
       exitCode: 0
   -
@@ -1205,13 +1205,13 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-jnRNFZ']
+        ignore line: [Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-e7v0Pw']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d5c4f/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_d5c4f.dir/build.make CMakeFiles/cmTC_d5c4f.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-jnRNFZ']
-        ignore line: [Building C object CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake-4.2/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_637f6/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_637f6.dir/build.make CMakeFiles/cmTC_637f6.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-e7v0Pw']
+        ignore line: [Building C object CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake-4.2/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -1221,8 +1221,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 14.2.0 (Debian 14.2.0-19) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d5c4f.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/14/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/local/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_d5c4f.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -o /tmp/ccIoGpv4.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_637f6.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/14/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/local/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_637f6.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -o /tmp/cc8jqoUA.s]
         ignore line: [GNU C17 (Debian 14.2.0-19) version 14.2.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 14.2.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.27-GMP]
         ignore line: []
@@ -1240,14 +1240,14 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 0051dfc1fa4e89ba97760da93f2546f3]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d5c4f.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o /tmp/ccIoGpv4.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_637f6.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o /tmp/cc8jqoUA.s]
         ignore line: [GNU assembler version 2.44 (x86_64-linux-gnu) using BFD version (GNU Binutils for Debian) 2.44]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_d5c4f]
-        ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d5c4f.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_637f6]
+        ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_637f6.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper]
@@ -1260,13 +1260,13 @@ events:
         ignore line: [gcc version 14.2.0 (Debian 14.2.0-19) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d5c4f' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d5c4f.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/14/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqtfVFX.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_d5c4f /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_637f6' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_637f6.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/14/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccawWCJl.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_637f6 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/14/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccqtfVFX.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccawWCJl.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -1282,7 +1282,7 @@ events:
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-pie] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_d5c4f] ==> ignore
+          arg [cmTC_637f6] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o]
@@ -1295,7 +1295,7 @@ events:
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/14/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/14/../../..]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
           arg [--push-state] ==> ignore
           arg [--as-needed] ==> ignore
@@ -1310,7 +1310,7 @@ events:
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
         ignore line: [collect2 version 14.2.0]
-        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqtfVFX.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_d5c4f /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_d5c4f.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccawWCJl.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_637f6 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_637f6.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
         linker tool for 'C': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
@@ -1348,8 +1348,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-giAn2Y"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-giAn2Y"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-U5iZ6C"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-U5iZ6C"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
@@ -1358,13 +1358,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-giAn2Y'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-U5iZ6C'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d53ae/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_d53ae.dir/build.make CMakeFiles/cmTC_d53ae.dir/build
-        gmake[1]: Entering directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-giAn2Y'
-        Building CXX object CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -v -o CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_75da1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_75da1.dir/build.make CMakeFiles/cmTC_75da1.dir/build
+        gmake[1]: Entering directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-U5iZ6C'
+        Building CXX object CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -1374,8 +1374,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 14.2.0 (Debian 14.2.0-19) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d53ae.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/local/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_d53ae.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -o /tmp/ccRhepKW.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_75da1.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/local/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_75da1.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -o /tmp/cc85MZc0.s
         GNU C++17 (Debian 14.2.0-19) version 14.2.0 (x86_64-linux-gnu)
         	compiled by GNU C version 14.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.27-GMP
         
@@ -1397,14 +1397,14 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: a0e1d70a4b6c50c7ed1b3d36dfd3f9a4
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d53ae.dir/'
-         as -v --64 -o CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccRhepKW.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_75da1.dir/'
+         as -v --64 -o CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc85MZc0.s
         GNU assembler version 2.44 (x86_64-linux-gnu) using BFD version (GNU Binutils for Debian) 2.44
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_d53ae
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d53ae.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_75da1
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_75da1.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper
@@ -1417,14 +1417,14 @@ events:
         gcc version 14.2.0 (Debian 14.2.0-19) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d53ae' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d53ae.'
-         /usr/libexec/gcc/x86_64-linux-gnu/14/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqZbqql.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_d53ae /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_75da1' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_75da1.'
+         /usr/libexec/gcc/x86_64-linux-gnu/14/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwweprc.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_75da1 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o
         collect2 version 14.2.0
-        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqZbqql.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_d53ae /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o
+        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwweprc.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_75da1 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o
         GNU ld (GNU Binutils for Debian) 2.44
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d53ae' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d53ae.'
-        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_d53ae
-        gmake[1]: Leaving directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-giAn2Y'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_75da1' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_75da1.'
+        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_75da1
+        gmake[1]: Leaving directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-U5iZ6C'
         
       exitCode: 0
   -
@@ -1465,13 +1465,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-giAn2Y']
+        ignore line: [Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-U5iZ6C']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d53ae/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_d53ae.dir/build.make CMakeFiles/cmTC_d53ae.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-giAn2Y']
-        ignore line: [Building CXX object CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_75da1/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_75da1.dir/build.make CMakeFiles/cmTC_75da1.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-U5iZ6C']
+        ignore line: [Building CXX object CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -1481,8 +1481,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 14.2.0 (Debian 14.2.0-19) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d53ae.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/local/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_d53ae.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -o /tmp/ccRhepKW.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_75da1.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/local/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_75da1.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -o /tmp/cc85MZc0.s]
         ignore line: [GNU C++17 (Debian 14.2.0-19) version 14.2.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 14.2.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.27-GMP]
         ignore line: []
@@ -1504,14 +1504,14 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: a0e1d70a4b6c50c7ed1b3d36dfd3f9a4]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d53ae.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccRhepKW.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_75da1.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc85MZc0.s]
         ignore line: [GNU assembler version 2.44 (x86_64-linux-gnu) using BFD version (GNU Binutils for Debian) 2.44]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_d53ae]
-        ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d53ae.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_75da1]
+        ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_75da1.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper]
@@ -1524,13 +1524,13 @@ events:
         ignore line: [gcc version 14.2.0 (Debian 14.2.0-19) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d53ae' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d53ae.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/14/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqZbqql.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_d53ae /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_75da1' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_75da1.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/14/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwweprc.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_75da1 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/14/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccqZbqql.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccwweprc.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -1546,7 +1546,7 @@ events:
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-pie] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_d53ae] ==> ignore
+          arg [cmTC_75da1] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o]
@@ -1559,7 +1559,7 @@ events:
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/14/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/14/../../..]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -1570,7 +1570,7 @@ events:
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
         ignore line: [collect2 version 14.2.0]
-        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqZbqql.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_d53ae /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_d53ae.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwweprc.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_75da1 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/14 -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/14/../../.. -v CMakeFiles/cmTC_75da1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o]
         linker tool for 'CXX': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
@@ -3048,10 +3048,6 @@ events:
         - "/opt"
       CMAKE_SYSTEM_LIBRARY_PATH:
         - "/usr/lib/X11"
-...
-
----
-events:
   -
     kind: "try_compile-v1"
     backtrace:
@@ -3063,27 +3059,27 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-gWCAHw"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-gWCAHw"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-PXecgA"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-PXecgA"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/CMake/modules"
+      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-gWCAHw'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-PXecgA'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_7ab47/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_7ab47.dir/build.make CMakeFiles/cmTC_7ab47.dir/build
-        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-gWCAHw »
-        Building C object CMakeFiles/cmTC_7ab47.dir/src.c.o
-        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_7ab47.dir/src.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-gWCAHw/src.c
-        Linking C executable cmTC_7ab47
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ab47.dir/link.txt --verbose=1
-        /usr/bin/cc CMakeFiles/cmTC_7ab47.dir/src.c.o -o cmTC_7ab47
-        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-gWCAHw »
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ccaf3/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ccaf3.dir/build.make CMakeFiles/cmTC_ccaf3.dir/build
+        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-PXecgA »
+        Building C object CMakeFiles/cmTC_ccaf3.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_ccaf3.dir/src.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-PXecgA/src.c
+        Linking C executable cmTC_ccaf3
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ccaf3.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_ccaf3.dir/src.c.o -o cmTC_ccaf3
+        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-PXecgA »
         
       exitCode: 0
   -
@@ -18401,27 +18397,27 @@ events:
     checks:
       - "Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-q1gARE"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-q1gARE"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-hMZQm1"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-hMZQm1"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/CMake/modules"
+      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/CMake/modules"
     buildResult:
       variable: "X11_LIB_X11_SOLO"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-q1gARE'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-hMZQm1'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_55d02/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_55d02.dir/build.make CMakeFiles/cmTC_55d02.dir/build
-        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-q1gARE »
-        Building C object CMakeFiles/cmTC_55d02.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay -o CMakeFiles/cmTC_55d02.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-q1gARE/CheckFunctionExists.c
-        Linking C executable cmTC_55d02
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_55d02.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=XOpenDisplay CMakeFiles/cmTC_55d02.dir/CheckFunctionExists.c.o -o cmTC_55d02  /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so
-        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-q1gARE »
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6214c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_6214c.dir/build.make CMakeFiles/cmTC_6214c.dir/build
+        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-hMZQm1 »
+        Building C object CMakeFiles/cmTC_6214c.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay -o CMakeFiles/cmTC_6214c.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-hMZQm1/CheckFunctionExists.c
+        Linking C executable cmTC_6214c
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6214c.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=XOpenDisplay CMakeFiles/cmTC_6214c.dir/CheckFunctionExists.c.o -o cmTC_6214c  /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so
+        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-hMZQm1 »
         
       exitCode: 0
   -
@@ -18433,27 +18429,27 @@ events:
     checks:
       - "Looking for gethostbyname"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-nQvnmw"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-nQvnmw"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-5jjKcE"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-5jjKcE"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/CMake/modules"
+      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_GETHOSTBYNAME"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-nQvnmw'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-5jjKcE'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_136b3/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_136b3.dir/build.make CMakeFiles/cmTC_136b3.dir/build
-        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-nQvnmw »
-        Building C object CMakeFiles/cmTC_136b3.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname -o CMakeFiles/cmTC_136b3.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-nQvnmw/CheckFunctionExists.c
-        Linking C executable cmTC_136b3
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_136b3.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=gethostbyname CMakeFiles/cmTC_136b3.dir/CheckFunctionExists.c.o -o cmTC_136b3
-        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-nQvnmw »
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9e304/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9e304.dir/build.make CMakeFiles/cmTC_9e304.dir/build
+        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-5jjKcE »
+        Building C object CMakeFiles/cmTC_9e304.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname -o CMakeFiles/cmTC_9e304.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-5jjKcE/CheckFunctionExists.c
+        Linking C executable cmTC_9e304
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9e304.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=gethostbyname CMakeFiles/cmTC_9e304.dir/CheckFunctionExists.c.o -o cmTC_9e304
+        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-5jjKcE »
         
       exitCode: 0
   -
@@ -18465,27 +18461,27 @@ events:
     checks:
       - "Looking for connect"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cfA12y"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cfA12y"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-lDK6IE"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-lDK6IE"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/CMake/modules"
+      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_CONNECT"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cfA12y'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-lDK6IE'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a1e1d/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_a1e1d.dir/build.make CMakeFiles/cmTC_a1e1d.dir/build
-        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cfA12y »
-        Building C object CMakeFiles/cmTC_a1e1d.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect -o CMakeFiles/cmTC_a1e1d.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cfA12y/CheckFunctionExists.c
-        Linking C executable cmTC_a1e1d
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a1e1d.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=connect CMakeFiles/cmTC_a1e1d.dir/CheckFunctionExists.c.o -o cmTC_a1e1d
-        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cfA12y »
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9052a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9052a.dir/build.make CMakeFiles/cmTC_9052a.dir/build
+        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-lDK6IE »
+        Building C object CMakeFiles/cmTC_9052a.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect -o CMakeFiles/cmTC_9052a.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-lDK6IE/CheckFunctionExists.c
+        Linking C executable cmTC_9052a
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9052a.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=connect CMakeFiles/cmTC_9052a.dir/CheckFunctionExists.c.o -o cmTC_9052a
+        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-lDK6IE »
         
       exitCode: 0
   -
@@ -18497,27 +18493,27 @@ events:
     checks:
       - "Looking for remove"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-LKTv6a"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-LKTv6a"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-UdZzWv"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-UdZzWv"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/CMake/modules"
+      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_REMOVE"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-LKTv6a'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-UdZzWv'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4766a/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_4766a.dir/build.make CMakeFiles/cmTC_4766a.dir/build
-        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-LKTv6a »
-        Building C object CMakeFiles/cmTC_4766a.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove -o CMakeFiles/cmTC_4766a.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-LKTv6a/CheckFunctionExists.c
-        Linking C executable cmTC_4766a
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4766a.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=remove CMakeFiles/cmTC_4766a.dir/CheckFunctionExists.c.o -o cmTC_4766a
-        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-LKTv6a »
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_7d9b1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_7d9b1.dir/build.make CMakeFiles/cmTC_7d9b1.dir/build
+        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-UdZzWv »
+        Building C object CMakeFiles/cmTC_7d9b1.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove -o CMakeFiles/cmTC_7d9b1.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-UdZzWv/CheckFunctionExists.c
+        Linking C executable cmTC_7d9b1
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7d9b1.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=remove CMakeFiles/cmTC_7d9b1.dir/CheckFunctionExists.c.o -o cmTC_7d9b1
+        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-UdZzWv »
         
       exitCode: 0
   -
@@ -18529,27 +18525,27 @@ events:
     checks:
       - "Looking for shmat"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cz9Yrq"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cz9Yrq"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-3SbQcX"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-3SbQcX"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/CMake/modules"
+      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_SHMAT"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cz9Yrq'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-3SbQcX'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_be961/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_be961.dir/build.make CMakeFiles/cmTC_be961.dir/build
-        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cz9Yrq »
-        Building C object CMakeFiles/cmTC_be961.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat -o CMakeFiles/cmTC_be961.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cz9Yrq/CheckFunctionExists.c
-        Linking C executable cmTC_be961
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_be961.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=shmat CMakeFiles/cmTC_be961.dir/CheckFunctionExists.c.o -o cmTC_be961
-        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-cz9Yrq »
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_15a5d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_15a5d.dir/build.make CMakeFiles/cmTC_15a5d.dir/build
+        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-3SbQcX »
+        Building C object CMakeFiles/cmTC_15a5d.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat -o CMakeFiles/cmTC_15a5d.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-3SbQcX/CheckFunctionExists.c
+        Linking C executable cmTC_15a5d
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_15a5d.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=shmat CMakeFiles/cmTC_15a5d.dir/CheckFunctionExists.c.o -o cmTC_15a5d
+        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-3SbQcX »
         
       exitCode: 0
   -
@@ -18561,247 +18557,27 @@ events:
     checks:
       - "Looking for IceConnectionNumber in ICE"
     directories:
-      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-KImSzZ"
-      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-KImSzZ"
+      source: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-b4505t"
+      binary: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-b4505t"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/CMake/modules"
+      CMAKE_MODULE_PATH: "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/CMake/modules"
     buildResult:
       variable: "CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER"
       cached: true
       stdout: |
-        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-KImSzZ'
+        Change Dir: '/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-b4505t'
         
-        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_df526/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_df526.dir/build.make CMakeFiles/cmTC_df526.dir/build
-        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-KImSzZ »
-        Building C object CMakeFiles/cmTC_df526.dir/CheckFunctionExists.c.o
-        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber -o CMakeFiles/cmTC_df526.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-KImSzZ/CheckFunctionExists.c
-        Linking C executable cmTC_df526
-        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df526.dir/link.txt --verbose=1
-        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=IceConnectionNumber CMakeFiles/cmTC_df526.dir/CheckFunctionExists.c.o -o cmTC_df526  -lICE
-        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles/CMakeScratch/TryCompile-KImSzZ »
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_abb90/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_abb90.dir/build.make CMakeFiles/cmTC_abb90.dir/build
+        gmake[1] : on entre dans le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-b4505t »
+        Building C object CMakeFiles/cmTC_abb90.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber -o CMakeFiles/cmTC_abb90.dir/CheckFunctionExists.c.o -c /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-b4505t/CheckFunctionExists.c
+        Linking C executable cmTC_abb90
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_abb90.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=IceConnectionNumber CMakeFiles/cmTC_abb90.dir/CheckFunctionExists.c.o -o cmTC_abb90  -lICE
+        gmake[1] : on quitte le répertoire « /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles/CMakeScratch/TryCompile-b4505t »
         
       exitCode: 0
-  -
-    kind: "find-v1"
-    backtrace:
-      - "external/rpavlik-cmake-modules-fe2273/FindGDB.cmake:29 (find_program)"
-      - "external/rpavlik-cmake-modules-fe2273/CreateLaunchers.cmake:93 (find_package)"
-      - "external/rpavlik-cmake-modules-fe2273/CreateLaunchers.cmake:290 (_launcher_system_settings)"
-      - "CMakeLists.txt:78 (create_target_launcher)"
-    mode: "program"
-    variable: "GDB_COMMAND"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "gdb"
-    candidate_directories:
-      - "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/bin/"
-      - "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/libexec/"
-      - "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/"
-      - "/home/jerem/miniconda3/bin/bin/"
-      - "/home/jerem/miniconda3/bin/libexec/"
-      - "/home/jerem/miniconda3/bin/"
-      - "/home/jerem/miniconda3/condabin/bin/"
-      - "/home/jerem/miniconda3/condabin/libexec/"
-      - "/home/jerem/miniconda3/condabin/"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/bin/"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/libexec/"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/bin/"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/libexec/"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/usr/local/bin/bin/"
-      - "/usr/local/bin/libexec/"
-      - "/usr/local/bin/"
-      - "/usr/bin/bin/"
-      - "/usr/bin/libexec/"
-      - "/usr/bin/"
-      - "/bin/bin/"
-      - "/bin/libexec/"
-      - "/bin/"
-      - "/usr/local/games/bin/"
-      - "/usr/local/games/libexec/"
-      - "/usr/local/games/"
-      - "/usr/games/bin/"
-      - "/usr/games/libexec/"
-      - "/usr/games/"
-      - "/snap/bin/bin/"
-      - "/snap/bin/libexec/"
-      - "/snap/bin/"
-      - "/usr/sbin/bin/"
-      - "/usr/sbin/libexec/"
-      - "/usr/sbin/"
-      - "/usr/local/bin/bin/"
-      - "/usr/local/bin/libexec/"
-      - "/usr/local/bin/"
-      - "/usr/local/sbin/bin/"
-      - "/usr/local/sbin/libexec/"
-      - "/usr/local/sbin/"
-      - "/usr/local/bin/"
-      - "/usr/local/libexec/"
-      - "/usr/local/"
-      - "/usr/bin/bin/"
-      - "/usr/bin/libexec/"
-      - "/usr/bin/"
-      - "/usr/sbin/bin/"
-      - "/usr/sbin/libexec/"
-      - "/usr/sbin/"
-      - "/usr/bin/"
-      - "/usr/libexec/"
-      - "/usr/"
-      - "/bin/bin/"
-      - "/bin/libexec/"
-      - "/bin/"
-      - "/sbin/bin/"
-      - "/sbin/libexec/"
-      - "/sbin/"
-      - "/usr/X11R6/bin/bin/"
-      - "/usr/X11R6/bin/libexec/"
-      - "/usr/X11R6/bin/"
-      - "/usr/X11R6/sbin/bin/"
-      - "/usr/X11R6/sbin/libexec/"
-      - "/usr/X11R6/sbin/"
-      - "/usr/X11R6/bin/"
-      - "/usr/X11R6/libexec/"
-      - "/usr/X11R6/"
-      - "/usr/pkg/bin/bin/"
-      - "/usr/pkg/bin/libexec/"
-      - "/usr/pkg/bin/"
-      - "/usr/pkg/sbin/bin/"
-      - "/usr/pkg/sbin/libexec/"
-      - "/usr/pkg/sbin/"
-      - "/usr/pkg/bin/"
-      - "/usr/pkg/libexec/"
-      - "/usr/pkg/"
-      - "/opt/bin/bin/"
-      - "/opt/bin/libexec/"
-      - "/opt/bin/"
-      - "/opt/sbin/bin/"
-      - "/opt/sbin/libexec/"
-      - "/opt/sbin/"
-      - "/opt/bin/"
-      - "/opt/libexec/"
-      - "/opt/"
-    searched_directories:
-      - "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/bin/gdb"
-      - "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/libexec/gdb"
-      - "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/gdb"
-      - "/home/jerem/miniconda3/bin/bin/gdb"
-      - "/home/jerem/miniconda3/bin/libexec/gdb"
-      - "/home/jerem/miniconda3/bin/gdb"
-      - "/home/jerem/miniconda3/condabin/bin/gdb"
-      - "/home/jerem/miniconda3/condabin/libexec/gdb"
-      - "/home/jerem/miniconda3/condabin/gdb"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/bin/gdb"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/libexec/gdb"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gdb"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/bin/gdb"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/libexec/gdb"
-      - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gdb"
-      - "/usr/local/bin/bin/gdb"
-      - "/usr/local/bin/libexec/gdb"
-      - "/usr/local/bin/gdb"
-      - "/usr/bin/bin/gdb"
-      - "/usr/bin/libexec/gdb"
-      - "/usr/bin/gdb"
-      - "/bin/bin/gdb"
-      - "/bin/libexec/gdb"
-      - "/bin/gdb"
-      - "/usr/local/games/bin/gdb"
-      - "/usr/local/games/libexec/gdb"
-      - "/usr/local/games/gdb"
-      - "/usr/games/bin/gdb"
-      - "/usr/games/libexec/gdb"
-      - "/usr/games/gdb"
-      - "/snap/bin/bin/gdb"
-      - "/snap/bin/libexec/gdb"
-      - "/snap/bin/gdb"
-      - "/usr/sbin/bin/gdb"
-      - "/usr/sbin/libexec/gdb"
-      - "/usr/sbin/gdb"
-      - "/usr/local/bin/bin/gdb"
-      - "/usr/local/bin/libexec/gdb"
-      - "/usr/local/bin/gdb"
-      - "/usr/local/sbin/bin/gdb"
-      - "/usr/local/sbin/libexec/gdb"
-      - "/usr/local/sbin/gdb"
-      - "/usr/local/bin/gdb"
-      - "/usr/local/libexec/gdb"
-      - "/usr/local/gdb"
-      - "/usr/bin/bin/gdb"
-      - "/usr/bin/libexec/gdb"
-      - "/usr/bin/gdb"
-      - "/usr/sbin/bin/gdb"
-      - "/usr/sbin/libexec/gdb"
-      - "/usr/sbin/gdb"
-      - "/usr/bin/gdb"
-      - "/usr/libexec/gdb"
-      - "/usr/gdb"
-      - "/bin/bin/gdb"
-      - "/bin/libexec/gdb"
-      - "/bin/gdb"
-      - "/sbin/bin/gdb"
-      - "/sbin/libexec/gdb"
-      - "/sbin/gdb"
-      - "/usr/X11R6/bin/bin/gdb"
-      - "/usr/X11R6/bin/libexec/gdb"
-      - "/usr/X11R6/bin/gdb"
-      - "/usr/X11R6/sbin/bin/gdb"
-      - "/usr/X11R6/sbin/libexec/gdb"
-      - "/usr/X11R6/sbin/gdb"
-      - "/usr/X11R6/bin/gdb"
-      - "/usr/X11R6/libexec/gdb"
-      - "/usr/X11R6/gdb"
-      - "/usr/pkg/bin/bin/gdb"
-      - "/usr/pkg/bin/libexec/gdb"
-      - "/usr/pkg/bin/gdb"
-      - "/usr/pkg/sbin/bin/gdb"
-      - "/usr/pkg/sbin/libexec/gdb"
-      - "/usr/pkg/sbin/gdb"
-      - "/usr/pkg/bin/gdb"
-      - "/usr/pkg/libexec/gdb"
-      - "/usr/pkg/gdb"
-      - "/opt/bin/bin/gdb"
-      - "/opt/bin/libexec/gdb"
-      - "/opt/bin/gdb"
-      - "/opt/sbin/bin/gdb"
-      - "/opt/sbin/libexec/gdb"
-      - "/opt/sbin/gdb"
-      - "/opt/bin/gdb"
-      - "/opt/libexec/gdb"
-      - "/opt/gdb"
-    found: false
-    search_context:
-      ENV{PATH}:
-        - "/home/jerem/miniconda3/bin"
-        - "/home/jerem/miniconda3/condabin"
-        - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/jerem/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/games"
-        - "/usr/games"
-        - "/snap/bin"
-        - "/usr/sbin"
-      CMAKE_INSTALL_PREFIX: "/usr/local"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "/usr/local"
-        - "/usr"
-        - "/"
-        - "/usr/local"
-        - "/usr/local"
-        - "/usr/X11R6"
-        - "/usr/pkg"
-        - "/opt"
 ...

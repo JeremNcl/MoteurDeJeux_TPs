@@ -1,5 +1,5 @@
 CMakeFiles/TP1.dir/common/shader.cpp.o: \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/shader.cpp \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/common/shader.cpp \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -177,9 +177,9 @@ CMakeFiles/TP1.dir/common/shader.cpp.o: \
  /usr/include/c++/14/pstl/execution_defs.h /usr/include/c++/14/sstream \
  /usr/include/c++/14/bits/sstream.tcc /usr/include/c++/14/stdlib.h \
  /usr/include/string.h /usr/include/strings.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glew-1.13.0/include/GL/glew.h \
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glew-1.13.0/include/GL/glew.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h /usr/include/GL/glu.h \
  /usr/include/GL/gl.h \
- /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/common/shader.hpp
+ /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/common/shader.hpp

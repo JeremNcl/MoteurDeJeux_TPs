@@ -157,17 +157,5 @@ std::vector<std::vector<float>> loadHeightmap(const char* filepath, int& width, 
     }
     delete[] data;
     
-    // Debug: afficher quelques valeurs
-    printf("Heightmap loaded successfully. Sample values:\n");
-    int mid = width > 256 ? 256 : width / 2;
-    printf("  [0][0] = %.3f, [0][%d] = %.3f, [0][width-1] = %.3f\n", 
-           heightmap[0][0], mid, heightmap[0][mid], heightmap[0][width-1]);
-    if (height > 256) {
-        printf("  [256][0] = %.3f, [256][%d] = %.3f, [256][width-1] = %.3f\n",
-               heightmap[256][0], mid, heightmap[256][mid], heightmap[256][width-1]);
-    }
-    printf("  [height-1][0] = %.3f, [height-1][%d] = %.3f, [height-1][width-1] = %.3f\n", 
-           heightmap[height-1][0], mid, heightmap[height-1][mid], heightmap[height-1][width-1]);
-    
     return heightmap;
 }

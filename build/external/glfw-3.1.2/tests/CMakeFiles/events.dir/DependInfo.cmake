@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/deps/getopt.c" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/__/deps/getopt.c.o" "gcc" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/__/deps/getopt.c.o.d"
-  "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/external/glfw-3.1.2/tests/events.c" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/events.c.o" "gcc" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/events.c.o.d"
+  "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/deps/getopt.c" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/__/deps/getopt.c.o" "gcc" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/__/deps/getopt.c.o.d"
+  "/home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/external/glfw-3.1.2/tests/events.c" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/events.c.o" "gcc" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/events.c.o.d"
   "" "external/glfw-3.1.2/tests/events" "gcc" "external/glfw-3.1.2/tests/CMakeFiles/events.dir/link.d"
   )
 

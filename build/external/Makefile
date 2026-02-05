@@ -57,10 +57,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1
+CMAKE_SOURCE_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build
+CMAKE_BINARY_DIR = /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/external//CMakeFiles/progress.marks
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build/CMakeFiles 0
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/external//CMakeFiles/progress.marks
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/clean
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +148,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/preinstall
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/preinstall
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 external/CMakeFiles/GLEW_1130.dir/rule:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/CMakeFiles/GLEW_1130.dir/rule
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/CMakeFiles/GLEW_1130.dir/rule
 .PHONY : external/CMakeFiles/GLEW_1130.dir/rule
 
 # Convenience name for target.
@@ -172,7 +172,7 @@ GLEW_1130: external/CMakeFiles/GLEW_1130.dir/rule
 
 # fast build rule for target.
 GLEW_1130/fast:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f external/CMakeFiles/GLEW_1130.dir/build.make external/CMakeFiles/GLEW_1130.dir/build
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f external/CMakeFiles/GLEW_1130.dir/build.make external/CMakeFiles/GLEW_1130.dir/build
 .PHONY : GLEW_1130/fast
 
 glew-1.13.0/src/glew.o: glew-1.13.0/src/glew.c.o
@@ -180,7 +180,7 @@ glew-1.13.0/src/glew.o: glew-1.13.0/src/glew.c.o
 
 # target to build an object file
 glew-1.13.0/src/glew.c.o:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f external/CMakeFiles/GLEW_1130.dir/build.make external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f external/CMakeFiles/GLEW_1130.dir/build.make external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.o
 .PHONY : glew-1.13.0/src/glew.c.o
 
 glew-1.13.0/src/glew.i: glew-1.13.0/src/glew.c.i
@@ -188,7 +188,7 @@ glew-1.13.0/src/glew.i: glew-1.13.0/src/glew.c.i
 
 # target to preprocess a source file
 glew-1.13.0/src/glew.c.i:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f external/CMakeFiles/GLEW_1130.dir/build.make external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.i
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f external/CMakeFiles/GLEW_1130.dir/build.make external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.i
 .PHONY : glew-1.13.0/src/glew.c.i
 
 glew-1.13.0/src/glew.s: glew-1.13.0/src/glew.c.s
@@ -196,7 +196,7 @@ glew-1.13.0/src/glew.s: glew-1.13.0/src/glew.c.s
 
 # target to generate assembly for a file
 glew-1.13.0/src/glew.c.s:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(MAKE) $(MAKESILENT) -f external/CMakeFiles/GLEW_1130.dir/build.make external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.s
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(MAKE) $(MAKESILENT) -f external/CMakeFiles/GLEW_1130.dir/build.make external/CMakeFiles/GLEW_1130.dir/glew-1.13.0/src/glew.c.s
 .PHONY : glew-1.13.0/src/glew.c.s
 
 # Help Target
@@ -226,6 +226,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1/HAI819I_TP1/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/jerem/Documents/M1_IMAGINE_2025-2026/Semestre8/Moteur_De_Jeux/TP1-TP2/HAI819I_TP1-2/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

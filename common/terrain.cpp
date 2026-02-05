@@ -4,8 +4,49 @@
 #include <algorithm>
 #include <cstdio>
 
+namespace {
+int nextPowerOfTwoPlusOne(int value) {
+    int pow2 = 1;
+    while (pow2 + 1 < value) {
+        pow2 *= 2;
+    }
+    return pow2 + 1;
+}
+
+float sampleHeightBilinear(const std::vector<std::vector<float>>& hm, int hmWidth, int hmHeight, float x, float z) {
+    if (hm.empty() || hmWidth <= 0 || hmHeight <= 0) {
+        return 0.0f;
+    }
+
+    if (x < 0.0f) x = 0.0f;
+    if (z < 0.0f) z = 0.0f;
+    if (x > hmWidth - 1) x = float(hmWidth - 1);
+    if (z > hmHeight - 1) z = float(hmHeight - 1);
+
+    int x0 = int(x);
+    int z0 = int(z);
+    int x1 = x0 + 1;
+    int z1 = z0 + 1;
+
+    if (x1 >= hmWidth) x1 = hmWidth - 1;
+    if (z1 >= hmHeight) z1 = hmHeight - 1;
+
+    float fx = x - x0;
+    float fz = z - z0;
+
+    float h00 = (z0 < (int)hm.size() && x0 < (int)hm[z0].size()) ? hm[z0][x0] : 0.0f;
+    float h10 = (z0 < (int)hm.size() && x1 < (int)hm[z0].size()) ? hm[z0][x1] : 0.0f;
+    float h01 = (z1 < (int)hm.size() && x0 < (int)hm[z1].size()) ? hm[z1][x0] : 0.0f;
+    float h11 = (z1 < (int)hm.size() && x1 < (int)hm[z1].size()) ? hm[z1][x1] : 0.0f;
+
+    float h0 = h00 * (1.0f - fx) + h10 * fx;
+    float h1 = h01 * (1.0f - fx) + h11 * fx;
+    return h0 * (1.0f - fz) + h1 * fz;
+}
+}
+
 Terrain::Terrain() 
-    : width(16), height(16), maxHeight(50.0f) {}
+    : width(16), height(16), maxHeight(50.0f), resolution(1.0f) {}
 
 bool Terrain::loadHeightmap(const std::string& filepath, float maxHeight) {
     this->maxHeight = maxHeight;
@@ -23,6 +64,26 @@ bool Terrain::loadHeightmap(const std::string& filepath, float maxHeight) {
     width = hmWidth;
     height = hmHeight;
     printf("Heightmap loaded: %dx%d\n", width, height);
+
+    int targetSize = nextPowerOfTwoPlusOne(std::max(width, height));
+    if (targetSize != width || targetSize != height) {
+        std::vector<std::vector<float>> resized(targetSize, std::vector<float>(targetSize, 0.0f));
+        float scaleX = (width - 1) / float(targetSize - 1);
+        float scaleZ = (height - 1) / float(targetSize - 1);
+
+        for (int z = 0; z < targetSize; ++z) {
+            float srcZ = z * scaleZ;
+            for (int x = 0; x < targetSize; ++x) {
+                float srcX = x * scaleX;
+                resized[z][x] = sampleHeightBilinear(heightmap, width, height, srcX, srcZ);
+            }
+        }
+
+        heightmap.swap(resized);
+        width = targetSize;
+        height = targetSize;
+        printf("Heightmap resized to: %dx%d (2^n + 1)\n", width, height);
+    }
     return true;
 }
 
@@ -31,6 +92,31 @@ void Terrain::generateFlatPlane(int w, int h) {
     height = h;
     heightmap.clear();
     printf("Generated flat plane: %dx%d\n", width, height);
+}
+
+void Terrain::setResolution(float step) {
+    // Contraindre aux puissances de 2 : 0.25, 0.5, 1, 2, 4, 8, 16, ...
+    float minStep = 0.25f;
+    float maxStep = (width - 1) / 4.0f;  // Au minimum 4 quads par dimension
+    
+    // Snap à la puissance de 2 la plus proche
+    if (step < minStep) step = minStep;
+    if (step > maxStep) step = maxStep;
+    
+    // Trouver la puissance de 2 la plus proche
+    float logStep = std::log2(step);
+    float rounded = std::round(logStep);
+    step = std::pow(2.0f, rounded);
+    
+    // Re-vérifier les bornes après snap
+    if (step < minStep) step = minStep;
+    if (step > maxStep) step = maxStep;
+    
+    resolution = step;
+    int effectiveWidth = (int)std::round((width - 1) / resolution) + 1;
+    int effectiveHeight = (int)std::round((height - 1) / resolution) + 1;
+    printf("Résolution changée: step = %.2f (taille effective: %dx%d)\n", 
+           resolution, effectiveWidth, effectiveHeight);
 }
 
 void Terrain::generateMesh(std::vector<glm::vec3>& vertices, 
@@ -42,20 +128,24 @@ void Terrain::generateMesh(std::vector<glm::vec3>& vertices,
     uvs.clear();
     normals.clear();
 
-    // Création des sommets et des uvs
-    for (int z = 0; z < height; z++) {
-        for (int x = 0; x < width; x++) {
+    // Calcul de la taille effective du mesh
+    int actualWidth = (int)std::round((width - 1) / resolution) + 1;
+    int actualHeight = (int)std::round((height - 1) / resolution) + 1;
+
+    // Création des sommets et des uvs avec résolution adaptée
+    for (int j = 0; j < actualHeight; ++j) {
+        float z = j * resolution;
+        if (z > height - 1) z = float(height - 1);
+        for (int i = 0; i < actualWidth; ++i) {
+            float x = i * resolution;
+            if (x > width - 1) x = float(width - 1);
             glm::vec3 v;
-            v.x = (float)x;
+            v.x = x;
             
-            // Utiliser la heightmap pour la hauteur
-            if (!heightmap.empty() && z < (int)heightmap.size() && x < (int)heightmap[z].size()) {
-                v.y = heightmap[z][x] * maxHeight;
-            } else {
-                v.y = 0.0f;
-            }
+            // Interpoler la hauteur en fonction de la résolution
+            v.y = sampleHeightBilinear(heightmap, width, height, x, z) * maxHeight;
             
-            v.z = (float)z;
+            v.z = z;
             vertices.push_back(v);
             
             glm::vec2 uv;
@@ -69,25 +159,30 @@ void Terrain::generateMesh(std::vector<glm::vec3>& vertices,
     }
 
     // Indexation des triangles
-    for (unsigned int j = 0; j < (unsigned int)height; j++) {
-        for (unsigned int i = 0; i < (unsigned int)width; i++) {
-            if (i+1 < (unsigned int)width && j+1 < (unsigned int)height) {
-                // Triangle 1
-                indices.push_back(i + j*width);       // TOP_LEFT
-                indices.push_back(i + (j+1)*width);   // BOTTOM_LEFT
-                indices.push_back(i+1 + j*width);     // TOP_RIGHT
-                // Triangle 2
-                indices.push_back(i+1 + j*width);     // TOP_RIGHT
-                indices.push_back(i + (j+1)*width);   // BOTTOM_LEFT
-                indices.push_back(i+1 + (j+1)*width); // BOTTOM_RIGHT
-            }
+    for (int j = 0; j < actualHeight - 1; j++) {
+        for (int i = 0; i < actualWidth - 1; i++) {
+            unsigned int topLeft = i + j * actualWidth;
+            unsigned int topRight = (i + 1) + j * actualWidth;
+            unsigned int bottomLeft = i + (j + 1) * actualWidth;
+            unsigned int bottomRight = (i + 1) + (j + 1) * actualWidth;
+            
+            // Triangle 1
+            indices.push_back(topLeft);
+            indices.push_back(bottomLeft);
+            indices.push_back(topRight);
+            
+            // Triangle 2
+            indices.push_back(topRight);
+            indices.push_back(bottomLeft);
+            indices.push_back(bottomRight);
         }
     }
     
     // Calculer les normales
     calculateNormals(vertices, indices, normals);
     
-    printf("Mesh generated: %zu vertices, %zu indices\n", vertices.size(), indices.size());
+    printf("Mesh generated: %zu vertices, %zu indices (resolution step: %.2f)\n", 
+           vertices.size(), indices.size(), resolution);
 }
 
 void Terrain::calculateNormals(const std::vector<glm::vec3>& vertices,
