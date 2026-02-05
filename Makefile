@@ -19,8 +19,8 @@ all: build run
 clean:
 	cd build && make clean
 
-# Nettoie tout (rebuild complet)
+# Nettoie tout (pour export/rebuild complet)
 distclean:
-	rm -rf build/* && cd build && cmake ..
+	rm -rf build/*
 
 .DEFAULT_GOAL := all
