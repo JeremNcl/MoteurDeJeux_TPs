@@ -40,14 +40,14 @@ Compile le projet et exécute le programme directement.
 - **Équivalent à** : `make build && make run`
 
 ### `make clean`
-- **Description** : Supprime les fichiers objet et exécutables
-- **Quand l'utiliser** : Pour nettoyer avant un build complet
+- **Description** : Supprime les fichiers objet et exécutables (conserve la configuration CMake)
+- **Quand l'utiliser** : Pour nettoyer avant un build complet sans reconfigurer
 - **Commande équivalente** : `cd build && make clean`
 
 ### `make distclean`
-- **Description** : Nettoie tout et reconfigure CMake
-- **Quand l'utiliser** : Pour un "rebuild" complet depuis zéro
-- **Commande équivalente** : `rm -rf build/* && cd build && cmake ..`
+- **Description** : Supprime tout le contenu du dossier `build/`
+- **Quand l'utiliser** : Pour préparer le projet à une exportation ou un rebuild complet depuis zéro
+- **Commande équivalente** : `rm -rf build/*`
 
 ---
 
@@ -73,6 +73,34 @@ HAI819I_TP1/
 
 ---
 
+## Contrôles de l'application
+
+### Général
+- **ESC** : Quitter l'application
+
+### Modes de caméra
+- **C** : Basculer entre les modes caméra (Fixe → Libre → Orbitale → Libre → ...)
+- **F** : Retour direct au mode caméra fixe
+
+### Mode Caméra Libre
+- **Z** : Avancer
+- **S** : Reculer
+- **Q** : Déplacement à gauche
+- **D** : Déplacement à droite
+- **Espace** : Monter
+- **Shift gauche** : Descendre
+- **Souris** : Orientation de la vue
+
+### Mode Caméra Orbitale
+- **Flèche Haut** : Augmenter la vitesse de rotation
+- **Flèche Bas** : Diminuer la vitesse de rotation
+
+### Modification du terrain
+- **+** (ou **+** pavé numérique) : Augmenter la résolution du terrain (mesh plus détaillé)
+- **-** (ou **-** pavé numérique) : Diminuer la résolution du terrain (mesh moins détaillé)
+
+---
+
 ## Workflow de développement typique
 
 **Premier démarrage :**
@@ -92,10 +120,11 @@ make build        # Recompile
 make run          # Exécute
 ```
 
-**Avant de commit (recommandé) :**
+**Avant de commit ou exporter le projet :**
 ```bash
-make distclean    # Nettoie tout
-make all          # Build complet depuis zéro
+make distclean    # Nettoie tout (supprime build/)
+make configure    # Reconfigure
+make all          # Build complet et test
 ```
 
 ---
