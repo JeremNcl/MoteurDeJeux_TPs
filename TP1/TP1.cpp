@@ -138,8 +138,8 @@ int main( void )
     Camera camera;
     CameraSetup cameraSetup = terrain.getOptimalIsometricView();
     camera.initialize(cameraSetup.position, cameraSetup.target, cameraSetup.up, cameraSetup.speed);
-    camera.setMode(FIXED_CAMERA, window);
-    printf("Mode initial: FIXED_CAMERA - Appuyez sur C pour passer en mode libre\n");
+    camera.setMode(ORBIT_CAMERA, window);
+    printf("Mode initial: ORBIT_CAMERA - Appuyez sur C pour passer en mode libre\n");
 
     // Load it into a VBO
     GLuint vertexbuffer;
@@ -337,6 +337,29 @@ void processInput(GLFWwindow *window, Camera& camera, Terrain& terrain,
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
+    // Retour à la caméra fixe (touche F)
+    static bool fKeyWasPressed = false;
+    if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS && !fKeyWasPressed) {
+        fKeyWasPressed = true;
+        camera.setMode(FIXED_CAMERA, window);
+        printf("Mode: FIXED_CAMERA - Vue isométrique fixe\n");
+    }
+    if (glfwGetKey(window, GLFW_KEY_F) == GLFW_RELEASE) {
+        fKeyWasPressed = false;
+    }
+
+    // Ajuster la vitesse de la caméra orbitale (touches UP/DOWN)
+    if (camera.getMode() == ORBIT_CAMERA) {
+        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+            float newSpeed = camera.getOrbitSpeed() + 2.0f * deltaTime;
+            camera.setOrbitSpeed(newSpeed);
+        }
+        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+            float newSpeed = camera.getOrbitSpeed() - 2.0f * deltaTime;
+            camera.setOrbitSpeed(newSpeed);
+        }
+    }
+
     // Changement de mode caméra avec la touche C
     static bool cKeyWasPressed = false;
     if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS && !cKeyWasPressed) {
@@ -344,17 +367,17 @@ void processInput(GLFWwindow *window, Camera& camera, Terrain& terrain,
         if (camera.getMode() == FIXED_CAMERA) {
             camera.setMode(FREE_CAMERA, window);
             printf("Mode: FREE_CAMERA - Utilisez WASD pour vous déplacer et la souris pour regarder\n");
-        } else {
-            camera.setMode(FIXED_CAMERA, window);
-            printf("Mode: FIXED_CAMERA - Vue isométrique fixe\n");
+        } else if (camera.getMode() == FREE_CAMERA) {
+            camera.setMode(ORBIT_CAMERA, window);
+            printf("Mode: ORBIT_CAMERA - Rotation automatique autour du terrain\n");
+        } else if (camera.getMode() == ORBIT_CAMERA) {
+            camera.setMode(FREE_CAMERA, window);
+            printf("Mode: FREE_CAMERA - Utilisez WASD pour vous déplacer et la souris pour regarder\n");
         }
     }
     if (glfwGetKey(window, GLFW_KEY_C) == GLFW_RELEASE) {
         cKeyWasPressed = false;
     }
-
-    // TODO : vérifier la réduction de la résolution du terrain
-    //          permettre l'augmentation de la résolution du terrain
     
     // Augmenter la résolution (touches + ou KP_ADD)
     static bool plusKeyWasPressed = false;

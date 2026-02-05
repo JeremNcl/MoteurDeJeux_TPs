@@ -32,6 +32,8 @@ public:
     void setSpeed(float speed) { freeSpeed = speed; }
     void setMouseSpeed(float speed) { freeMouseSpeed = speed; }
     void setFOV(float fov) { fieldOfView = fov; }
+    void setOrbitSpeed(float speed);
+    float getOrbitSpeed() const { return orbitSpeed; }
     
 private:
     // Matrices
@@ -55,6 +57,13 @@ private:
     float freeVerticalAngle;
     float freeSpeed;
     float freeMouseSpeed;
+
+    // Caméra orbitale
+    glm::vec3 orbitCenter;
+    float orbitRadius;
+    float orbitAngle;
+    float orbitSpeed;
+    float orbitHeightOffset;
     
     // Méthodes privées pour chaque mode
     void updateFixedCamera();

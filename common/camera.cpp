@@ -18,7 +18,12 @@ Camera::Camera()
       fixedPosition(glm::vec3(0, 0, 5)),
       fixedTarget(glm::vec3(0, 0, 0)),
       fixedUp(glm::vec3(0, 1, 0)),
-      freePosition(glm::vec3(0, 10, 20))
+    freePosition(glm::vec3(0, 10, 20)),
+    orbitCenter(glm::vec3(0, 0, 0)),
+    orbitRadius(5.0f),
+    orbitAngle(0.0f),
+    orbitSpeed(0.5f),
+    orbitHeightOffset(0.0f)
 {
     // Initialiser les matrices avec des valeurs par défaut
     projectionMatrix = glm::perspective(glm::radians(fieldOfView), 4.0f / 3.0f, 0.1f, 5000.0f);
@@ -43,9 +48,17 @@ void Camera::initialize(glm::vec3 position, glm::vec3 target, glm::vec3 up, floa
     
     // Angle vertical (pitch) - rotation verticale
     freeVerticalAngle = asin(direction.y);
+
+    // Initialiser la caméra orbitale à partir de la position fixe
+    orbitCenter = target;
+    orbitHeightOffset = position.y - target.y;
+    orbitRadius = glm::length(glm::vec2(position.x - target.x, position.z - target.z));
+    if (orbitRadius < 0.001f) orbitRadius = 1.0f;
+    orbitAngle = atan2(position.z - target.z, position.x - target.x);
 }
 
 void Camera::setMode(CameraMode mode, GLFWwindow* window) {
+    CameraMode previousMode = currentMode;
     currentMode = mode;
     
     // Configurer le curseur selon le mode
@@ -57,6 +70,21 @@ void Camera::setMode(CameraMode mode, GLFWwindow* window) {
         // Désactiver le mode souris pour les autres modes
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
+
+    if (mode == ORBIT_CAMERA) {
+        glm::vec3 sourcePos = (previousMode == FREE_CAMERA) ? freePosition : fixedPosition;
+        orbitCenter = fixedTarget;
+        orbitHeightOffset = sourcePos.y - fixedTarget.y;
+        orbitRadius = glm::length(glm::vec2(sourcePos.x - fixedTarget.x, sourcePos.z - fixedTarget.z));
+        if (orbitRadius < 0.001f) orbitRadius = 1.0f;
+        orbitAngle = atan2(sourcePos.z - fixedTarget.z, sourcePos.x - fixedTarget.x);
+    }
+}
+
+void Camera::setOrbitSpeed(float speed) {
+    if (speed < 0.0f) speed = 0.0f;
+    if (speed > 5.0f) speed = 5.0f;
+    orbitSpeed = speed;
 }
 
 void Camera::update(GLFWwindow* window, float deltaTime) {
@@ -152,7 +180,19 @@ void Camera::updateFreeCamera(GLFWwindow* window, float deltaTime) {
 }
 
 void Camera::updateOrbitCamera(GLFWwindow* window, float deltaTime) {
-    // Pour l'instant, utiliser le mode fixe
-    // À implémenter : rotation orbitale autour d'un point central
-    updateFixedCamera();
+    (void)window;
+
+    orbitAngle += orbitSpeed * deltaTime;
+
+    glm::vec3 orbitPosition(
+        orbitCenter.x + cos(orbitAngle) * orbitRadius,
+        orbitCenter.y + orbitHeightOffset,
+        orbitCenter.z + sin(orbitAngle) * orbitRadius
+    );
+
+    // Projection matrix
+    projectionMatrix = glm::perspective(glm::radians(fieldOfView), 4.0f / 3.0f, 0.1f, 5000.0f);
+
+    // View matrix
+    viewMatrix = glm::lookAt(orbitPosition, orbitCenter, fixedUp);
 }
