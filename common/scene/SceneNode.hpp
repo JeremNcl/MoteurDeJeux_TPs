@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <glm/glm.hpp>
+#include "transform.hpp"
 
 /**
  * Classe de base pour tous les nœuds du graphe de scène
@@ -15,10 +16,9 @@ public:
     SceneNode(const std::string& name = "Node");
     virtual ~SceneNode();
     
-    // TODO
     // // === Accès au Transform ===
-    // Transform& getTransform() { return transform; }
-    // const Transform& getTransform() const { return transform; }
+    Transform& getTransform() { return transform; }
+    const Transform& getTransform() const { return transform; }
     
     // === Gestion de la hiérarchie ===
     void addChild(std::shared_ptr<SceneNode> child);
@@ -41,11 +41,10 @@ public:
 protected:
     std::string name;
     bool isActive;
-    
-    // TODO
-    // // Transform encapsulé
-    // Transform transform;
-    
+
+    // Transform encapsulé
+    Transform transform;
+
     // Hiérarchie
     SceneNode* parent;
     std::vector<std::shared_ptr<SceneNode>> children;

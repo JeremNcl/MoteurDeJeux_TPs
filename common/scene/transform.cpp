@@ -174,3 +174,26 @@ void Transform::translate(const glm::vec3& _t)
 {
     t += _t;
 }
+
+glm::mat4 Transform::getWorldMatrix() const
+{
+    // 1. Création de la matrice locale (4x4)
+    // On part d'une matrice identité
+    glm::mat4 localMatrix = glm::mat4(1.0f);
+
+    // Appliquer la Translation
+    localMatrix = glm::translate(localMatrix, t);
+
+    // Appliquer la Rotation (Conversion de mat3 à mat4)
+    localMatrix = localMatrix * glm::mat4(r);
+
+    // Appliquer le Scale
+    localMatrix = glm::scale(localMatrix, s);
+
+    // 2. Récursion : si on a un parent, on multiplie par sa World Matrix
+    if (parent != nullptr) {
+        return parent->getWorldMatrix() * localMatrix;
+    }
+
+    return localMatrix;
+}

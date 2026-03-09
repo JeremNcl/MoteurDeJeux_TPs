@@ -33,8 +33,8 @@ void MeshNode::draw(const glm::mat4& viewProjection) {
     
     // Calculer la matrice MVP
     // TODO
-    // glm::mat4 model = transform.getWorldMatrix();
-    // glm::mat4 MVP = viewProjection * model;
+    glm::mat4 model = transform.getWorldMatrix();
+    glm::mat4 MVP = viewProjection * model;
     
     // Envoyer la matrice MVP au shader
     GLuint mvpID = glGetUniformLocation(shaderProgram, "MVP");

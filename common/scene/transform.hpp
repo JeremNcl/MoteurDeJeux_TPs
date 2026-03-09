@@ -23,6 +23,8 @@ class Transform {
         glm::mat3 getWorldRotation() const;
         glm::vec3 getWorldTranslation() const;
 
+        glm::mat4 getWorldMatrix() const;
+
         const Transform* getParent() const { return parent; }
         Transform* getParent() { return parent; }
     
