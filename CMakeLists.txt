@@ -80,6 +80,8 @@ add_executable(TP1
 	common/terrain/TerrainNode.hpp
 	common/scene/SceneGraph.cpp
 	common/scene/SceneGraph.hpp
+	common/scene/transform.cpp
+	common/scene/transform.hpp
 	
         TP1/vertex_shader.glsl
         TP1/fragment_shader.glsl

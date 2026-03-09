@@ -38,17 +38,18 @@ void TerrainNode::draw(const glm::mat4& viewProjection) {
     glUseProgram(mesh->shaderProgram);
     
     // Calculer les matrices
-    glm::mat4 model = transform.getWorldMatrix();
-    glm::mat4 MVP = viewProjection * model;
+    // TODO
+    // glm::mat4 model = transform.getWorldMatrix();
+    // glm::mat4 MVP = viewProjection * model;
     
     // Envoyer la matrice MVP
     GLuint mvpID = glGetUniformLocation(mesh->shaderProgram, "MVP");
-    glUniformMatrix4fv(mvpID, 1, GL_FALSE, &MVP[0][0]);
+    // glUniformMatrix4fv(mvpID, 1, GL_FALSE, &MVP[0][0]);
     
     // Envoyer la matrice Model (pour l'éclairage)
     GLuint modelID = glGetUniformLocation(mesh->shaderProgram, "M");
     if (modelID != (GLuint)-1) {
-        glUniformMatrix4fv(modelID, 1, GL_FALSE, &model[0][0]);
+        // glUniformMatrix4fv(modelID, 1, GL_FALSE, &model[0][0]);
     }
     
     // Binder les textures multi-couches
