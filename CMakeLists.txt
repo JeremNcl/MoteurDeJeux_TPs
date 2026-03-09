@@ -62,8 +62,8 @@ add_executable(TP1
 	common/scene/camera.hpp
 	common/terrain/terrain.cpp
 	common/terrain/terrain.hpp
-	common/render/texture.cpp
-	common/render/texture.hpp
+	common/io/textureLoader.cpp
+	common/io/textureLoader.hpp
 	common/io/objloader.cpp
 	common/io/objloader.hpp
 	common/vboindexer.cpp

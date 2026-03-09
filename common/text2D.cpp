@@ -8,7 +8,7 @@
 using namespace glm;
 
 #include "render/shader.hpp"
-#include "render/texture.hpp"
+#include "io/textureLoader.hpp"
 
 #include "text2D.hpp"
 

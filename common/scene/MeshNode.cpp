@@ -49,9 +49,25 @@ void MeshNode::draw(const glm::mat4& viewProjection) {
     if (texture != 0) {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
+
         GLuint textureID = glGetUniformLocation(shaderProgram, "textureSampler");
         if (textureID != (GLuint)-1) {
             glUniform1i(textureID, 0);
+        }
+
+        GLuint textureLowID = glGetUniformLocation(shaderProgram, "texture_low");
+        if (textureLowID != (GLuint)-1) {
+            glUniform1i(textureLowID, 0);
+        }
+
+        GLuint textureMidID = glGetUniformLocation(shaderProgram, "texture_mid");
+        if (textureMidID != (GLuint)-1) {
+            glUniform1i(textureMidID, 0);
+        }
+
+        GLuint textureHighID = glGetUniformLocation(shaderProgram, "texture_high");
+        if (textureHighID != (GLuint)-1) {
+            glUniform1i(textureHighID, 0);
         }
     }
     

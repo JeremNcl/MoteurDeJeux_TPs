@@ -21,6 +21,7 @@ GLFWwindow* window;
 using namespace glm;
 
 #include <common/render/shader.hpp>
+#include <common/io/textureLoader.hpp>
 #include <common/scene/camera.hpp>
 #include <common/scene/SceneGraph.hpp>
 #include <common/scene/MeshNode.hpp>
@@ -123,10 +124,14 @@ int main( void )
     
     // === CONSTRUCTION DU GRAPHE DE SCÈNE ===
     SceneGraph sceneGraph;
+
+    // Charger une texture pour la sphère
+    GLuint grassTexture = loadBMP_custom("textures/grass.bmp");
     
     // === SPHÈRE ===
     auto sphereNode = MeshNode::loadFromOFF("meshes/sphere.off", programID, "Sphere", true);
     if (sphereNode) {
+        sphereNode->setTexture(grassTexture);
         sphereNode->getTransform().setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
         sphereNode->getTransform().setUniformScale(1.0f);
         sceneGraph.getRoot()->addChild(sphereNode);
@@ -181,6 +186,7 @@ int main( void )
 
     // Cleanup
     MeshNode::clearMeshCache();
+    glDeleteTextures(1, &grassTexture);
     glDeleteProgram(programID);
     glDeleteVertexArrays(1, &VertexArrayID);
 
