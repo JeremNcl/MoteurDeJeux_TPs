@@ -60,16 +60,28 @@ add_executable(TP1
 	common/shader.hpp
 	common/camera.cpp
 	common/camera.hpp
-	common/terrain.cpp
-	common/terrain.hpp
+	common/terrain/terrain.cpp
+	common/terrain/terrain.hpp
 	common/texture.cpp
 	common/texture.hpp
-	common/objloader.cpp
-	common/objloader.hpp
+	common/io/objloader.cpp
+	common/io/objloader.hpp
 	common/vboindexer.cpp
 	common/vboindexer.hpp
-	common/heightmap_loader.cpp
-	common/heightmap_loader.hpp
+	common/terrain/heightmap_loader.cpp
+	common/terrain/heightmap_loader.hpp
+	common/scene/Transform.cpp
+	common/scene/Transform.hpp
+	common/scene/SceneNode.cpp
+	common/scene/SceneNode.hpp
+	common/render/Mesh.cpp
+	common/render/Mesh.hpp
+	common/scene/MeshNode.cpp
+	common/scene/MeshNode.hpp
+	common/terrain/TerrainNode.cpp
+	common/terrain/TerrainNode.hpp
+	common/scene/SceneGraph.cpp
+	common/scene/SceneGraph.hpp
 	
         TP1/vertex_shader.glsl
         TP1/fragment_shader.glsl

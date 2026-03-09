@@ -21,17 +21,11 @@ GLFWwindow* window;
 using namespace glm;
 
 #include <common/shader.hpp>
-#include <common/objloader.hpp>
-#include <common/vboindexer.hpp>
-#include <common/texture.hpp>
-#include <common/heightmap_loader.hpp>
 #include <common/camera.hpp>
-#include <common/terrain.hpp>
+#include <common/scene/SceneGraph.hpp>
+#include <common/scene/MeshNode.hpp>
 
-void processInput(GLFWwindow *window, Camera& camera, Terrain& terrain, 
-                  std::vector<glm::vec3>& vertices, std::vector<unsigned int>& indices,
-                  std::vector<glm::vec2>& uvs, std::vector<glm::vec3>& normals,
-                  GLuint vertexbuffer, GLuint elementbuffer, GLuint uvbuffer, GLuint normalbuffer);
+void processInput(GLFWwindow *window, Camera& camera);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 // settings
@@ -113,77 +107,35 @@ int main( void )
     // Create and compile our GLSL program from the shaders
     GLuint programID = LoadShaders("vertex_shader.glsl", "fragment_shader.glsl");
 
-    /*****************TODO***********************/
-    // Get a handle for our "Model View Projection" matrices uniforms
+    // Handle MVP matrix uniform
     glUseProgram(programID);
     GLuint MVP = glGetUniformLocation(programID, "MVP");
-
-    /****************************************/
-    std::vector<unsigned int> indices; //Triangles concaténés dans une liste
-    //std::vector<std::vector<unsigned int> > triangles;
-    std::vector<glm::vec3> indexed_vertices;
-    std::vector<glm::vec2> uvs;
-    std::vector<glm::vec3> normals;
-
-    // //Chargement du fichier de maillage
-    // std::string filename("chair.off");
-    // loadOFF(filename, indexed_vertices, indices, triangles );
-
-    // Créer et initialiser le terrain
-    Terrain terrain;
-    terrain.loadHeightmap("heightmaps/heightmap_mountain.bmp", 100.0f);
-    terrain.generateMesh(indexed_vertices, indices, uvs, normals);
     
-    // Configurer la caméra avec la vue optimale du terrain
+    // Configurer la caméra simple
     Camera camera;
-    CameraSetup cameraSetup = terrain.getOptimalIsometricView();
-    camera.initialize(cameraSetup.position, cameraSetup.target, cameraSetup.up, cameraSetup.speed);
-    camera.setMode(ORBIT_CAMERA, window);
-    printf("Mode initial: ORBIT_CAMERA - Appuyez sur C pour passer en mode libre\n");
-
-    // Load it into a VBO
-    GLuint vertexbuffer;
-    glGenBuffers(1, &vertexbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-    glBufferData(GL_ARRAY_BUFFER, indexed_vertices.size() * sizeof(glm::vec3), &indexed_vertices[0], GL_STATIC_DRAW);
-
-    // Generate a buffer for the indices as well
-    GLuint elementbuffer;
-    glGenBuffers(1, &elementbuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0] , GL_STATIC_DRAW);
-
-    // Buffer for the UVs
-    GLuint uvbuffer;
-    glGenBuffers(1, &uvbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0] , GL_STATIC_DRAW);
-
-    // Buffer for the normals
-    GLuint normalbuffer;
-    glGenBuffers(1, &normalbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-    glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
-
-    // Charger les textures pour différentes hauteurs
-    GLuint texture_low = loadBMP_custom("textures/grass.bmp");      // Herbe (bas)
-    GLuint texture_mid = loadBMP_custom("textures/rock.bmp");      // Roche (milieu) - à remplacer
-    GLuint texture_high = loadBMP_custom("textures/snowrocks.bmp");     // Neige (haut) - à remplacer
+    camera.initialize(
+        glm::vec3(0.0f, 2.0f, 4.0f),      // position
+        glm::vec3(0.0f, 0.0f, 0.0f),      // target (regard vers la sphère)
+        glm::vec3(0.0f, 1.0f, 0.0f),      // up
+        5.0f                               // speed
+    );
+    camera.setMode(FIXED_CAMERA, window);
     
-    // Get uniform locations
-    GLuint textureLowID = glGetUniformLocation(programID, "texture_low");
-    GLuint textureMidID = glGetUniformLocation(programID, "texture_mid");
-    GLuint textureHighID = glGetUniformLocation(programID, "texture_high");
+    // === CONSTRUCTION DU GRAPHE DE SCÈNE ===
+    SceneGraph sceneGraph;
     
-    // Paramètres de hauteur pour le blending (ajuster selon votre terrain)
-    GLuint heightLowID = glGetUniformLocation(programID, "height_low");
-    GLuint heightMidID = glGetUniformLocation(programID, "height_mid");
-    GLuint blendRangeID = glGetUniformLocation(programID, "blend_range");
+    // === SPHÈRE ===
+    auto sphereNode = MeshNode::loadFromOFF("meshes/sphere.off", programID, "Sphere", true);
+    if (sphereNode) {
+        sphereNode->getTransform().setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+        sphereNode->getTransform().setUniformScale(1.0f);
+        sceneGraph.getRoot()->addChild(sphereNode);
+    } else {
+        printf("ERREUR: Impossible de charger sphere.off\n");
+        return -1;
+    }
     
-    float maxTerrainHeight = 100.0f;  // Doit correspondre à la hauteur max du terrain
-    float height_low_value = maxTerrainHeight * 0.40f;   // 40% de la hauteur
-    float height_mid_value = maxTerrainHeight * 0.80f;   // 80% de la hauteur
-    float blend_range_value = maxTerrainHeight * 0.1f;   // 10% de transition
+    printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
 
     // Get a handle for our "LightPosition" uniform
     glUseProgram(programID);
@@ -203,105 +155,21 @@ int main( void )
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        // input
-        // -----
-        processInput(window, camera, terrain, indexed_vertices, indices, uvs, normals,
-                     vertexbuffer, elementbuffer, uvbuffer, normalbuffer);
-
+        // Inputs
+        processInput(window, camera); // terrainNode.get()
 
         // Clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Use our shader
-        glUseProgram(programID);
-
-        // Bind textures à différentes unités de texture
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture_low);
-        glUniform1i(textureLowID, 0);
-        
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, texture_mid);
-        glUniform1i(textureMidID, 1);
-        
-        glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, texture_high);
-        glUniform1i(textureHighID, 2);
-        
-        // Envoyer les paramètres de hauteur
-        glUniform1f(heightLowID, height_low_value);
-        glUniform1f(heightMidID, height_mid_value);
-        glUniform1f(blendRangeID, blend_range_value);
-
-        /*****************TODO***********************/
-        // Mettre à jour la caméra (gestion inputs + calcul matrices)
+        // Mettre à jour la caméra
         camera.update(window, deltaTime);
         
-        // Model matrix : an identity matrix (model will be at the origin)
-        glm::mat4 modelMat = glm::mat4(1.0f);
-
-        // Récupérer les matrices de vue et projection de la caméra
-        glm::mat4 viewMat = camera.getViewMatrix();
-        glm::mat4 projectionMat = camera.getProjectionMatrix();
-
-        // Send our transformation to the currently bound shader,
-        // in the "Model View Projection" to the shader uniforms
-        glm::mat4 MVPMat = projectionMat * viewMat * modelMat;
-        glUniformMatrix4fv(MVP, 1, GL_FALSE, &MVPMat[0][0]);
-
-        /****************************************/
-
-
-        // 1rst attribute buffer : vertices
-        glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glVertexAttribPointer(
-                    0,                  // attribute
-                    3,                  // size
-                    GL_FLOAT,           // type
-                    GL_FALSE,           // normalized?
-                    0,                  // stride
-                    (void*)0            // array buffer offset
-        );
-
-        // Index buffer
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-
-        // 2nd attribute buffer : uvs
-        glEnableVertexAttribArray(1);
-        glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-        glVertexAttribPointer(
-                    1,                  // attribute
-                    2,                  // size
-                    GL_FLOAT,           // type
-                    GL_FALSE,           // normalized?
-                    0,                  // stride
-                    (void*)0            // array buffer offset
-        );
-
-        // 3rd attribute buffer : normals
-        glEnableVertexAttribArray(2);
-        glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-        glVertexAttribPointer(
-                    2,                  // attribute
-                    3,                  // size
-                    GL_FLOAT,           // type
-                    GL_FALSE,           // normalized?
-                    0,                  // stride
-                    (void*)0            // array buffer offset
-        );
-
-        // Draw the triangles !
-        glDrawElements(
-                    GL_TRIANGLES,      // mode
-                    indices.size(),    // count
-                    GL_UNSIGNED_INT,   // type
-                    (void*)0           // element array buffer offset
-                    );
-
-        glDisableVertexAttribArray(0);
-        glDisableVertexAttribArray(1);
-        glDisableVertexAttribArray(2);
+        // Calculer la matrice View-Projection
+        glm::mat4 viewProjection = camera.getProjectionMatrix() * camera.getViewMatrix();
+        
+        // Mettre à jour et dessiner toute la scène via le graphe de scène
+        sceneGraph.update(deltaTime);
+        sceneGraph.draw(viewProjection);
 
         // Swap buffers
         glfwSwapBuffers(window);
@@ -311,12 +179,8 @@ int main( void )
     while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
            glfwWindowShouldClose(window) == 0 );
 
-    // Cleanup VBO and shader
-    glDeleteBuffers(1, &vertexbuffer);
-    glDeleteBuffers(1, &elementbuffer);
-    glDeleteTextures(1, &texture_low);
-    glDeleteTextures(1, &texture_mid);
-    glDeleteTextures(1, &texture_high);
+    // Cleanup
+    MeshNode::clearMeshCache();
     glDeleteProgram(programID);
     glDeleteVertexArrays(1, &VertexArrayID);
 
@@ -327,13 +191,10 @@ int main( void )
 }
 
 
-// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow *window, Camera& camera, Terrain& terrain,
-                  std::vector<glm::vec3>& vertices, std::vector<unsigned int>& indices,
-                  std::vector<glm::vec2>& uvs, std::vector<glm::vec3>& normals,
-                  GLuint vertexbuffer, GLuint elementbuffer, GLuint uvbuffer, GLuint normalbuffer)
+// Gestion des inputs
+void processInput(GLFWwindow *window, Camera& camera)
 {
+    // Fermer la fenêtre (touche ESC)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
@@ -379,69 +240,38 @@ void processInput(GLFWwindow *window, Camera& camera, Terrain& terrain,
         cKeyWasPressed = false;
     }
     
-    // Augmenter la résolution (touches + ou KP_ADD)
-    static bool plusKeyWasPressed = false;
-    if ((glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_PRESS || 
-         glfwGetKey(window, GLFW_KEY_KP_ADD) == GLFW_PRESS) && !plusKeyWasPressed) {
-        plusKeyWasPressed = true;
-        float currentRes = terrain.getResolution();
-        float newRes = currentRes / 2.0f;
-        terrain.setResolution(newRes);
-        
-        // Regénérer le mesh
-        terrain.generateMesh(vertices, indices, uvs, normals);
-        
-        // Mettre à jour les buffers OpenGL
-        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-        
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
-        
-        glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-        glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
-        
-        glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-        glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
-    }
-    if (glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_RELEASE && 
-        glfwGetKey(window, GLFW_KEY_KP_ADD) == GLFW_RELEASE) {
-        plusKeyWasPressed = false;
-    }
+    // // Augmenter la résolution (touches + ou KP_ADD)
+    // static bool plusKeyWasPressed = false;
+    // if ((glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_PRESS || 
+    //      glfwGetKey(window, GLFW_KEY_KP_ADD) == GLFW_PRESS) && !plusKeyWasPressed) {
+    //     plusKeyWasPressed = true;
+    //     float currentRes = terrainNode->getTerrain().getResolution();
+    //     float newRes = currentRes / 2.0f;
+    //     terrainNode->getTerrain().setResolution(newRes);
+    //     terrainNode->regenerateMesh();
+    // }
+    // if (glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_RELEASE && 
+    //     glfwGetKey(window, GLFW_KEY_KP_ADD) == GLFW_RELEASE) {
+    //     plusKeyWasPressed = false;
+    // }
     
-    // Diminuer la résolution (touches - ou KP_SUBTRACT)
-    static bool minusKeyWasPressed = false;
-    if ((glfwGetKey(window, GLFW_KEY_MINUS) == GLFW_PRESS || 
-         glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS) && !minusKeyWasPressed) {
-        minusKeyWasPressed = true;
-        float currentRes = terrain.getResolution();
-        float newRes = currentRes * 2.0f;
-        terrain.setResolution(newRes);
-        
-        // Regénérer le mesh
-        terrain.generateMesh(vertices, indices, uvs, normals);
-        
-        // Mettre à jour les buffers OpenGL
-        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-        
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
-        
-        glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-        glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
-        
-        glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-        glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
-    }
-    if (glfwGetKey(window, GLFW_KEY_MINUS) == GLFW_RELEASE && 
-        glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_RELEASE) {
-        minusKeyWasPressed = false;
-    }
+    // // Diminuer la résolution (touches - ou KP_SUBTRACT)
+    // static bool minusKeyWasPressed = false;
+    // if ((glfwGetKey(window, GLFW_KEY_MINUS) == GLFW_PRESS || 
+    //      glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS) && !minusKeyWasPressed) {
+    //     minusKeyWasPressed = true;
+    //     float currentRes = terrainNode->getTerrain().getResolution();
+    //     float newRes = currentRes * 2.0f;
+    //     terrainNode->getTerrain().setResolution(newRes);
+    //     terrainNode->regenerateMesh();
+    // }
+    // if (glfwGetKey(window, GLFW_KEY_MINUS) == GLFW_RELEASE && 
+    //     glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_RELEASE) {
+    //     minusKeyWasPressed = false;
+    // }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     // make sure the viewport matches the new window dimensions; note that width and
