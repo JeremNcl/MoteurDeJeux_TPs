@@ -27,6 +27,23 @@ glm::vec3 Transform::getWorldScale() const
     return parent->getWorldScale() * s;
 }
 
+Transform::~Transform()
+{
+    if(parent != nullptr)
+    {
+        auto& pChildren = parent->children;
+        pChildren.erase(std::remove(pChildren.begin(), pChildren.end(), this), pChildren.end());
+    }
+
+    for (Transform* child : children) {
+        if (child != nullptr) {
+            child->parent = nullptr;
+        }
+    }
+
+    children.clear();
+}
+
 //TODO : C'est une rotation dégueux pour tester, passer après par euler où quat
 glm::mat3 Transform::getWorldRotation() const
 {
@@ -57,18 +74,62 @@ glm::vec3 Transform::getWorldTranslation() const
 
 void Transform::setParent(Transform* _parent)
 {
-    if (parent == nullptr) parent->removeChild(this);
+    if (parent != nullptr) parent->removeChild(this);
 
     parent = _parent;
 
     if (parent != nullptr) parent-> addChild(this);
+
+    //SI PROBLEME AU CHANGEMENT DE PARENT
+    /* // 1. Éviter l'auto-parentage ou le parentage redondant
+    if (_newParent == this || _newParent == parent) return;
+
+    // 2. Maintenir la position mondiale (World Persistence)
+    // On récupère nos transformations actuelles dans le monde
+    glm::vec3 worldPos = getWorldTranslation();
+    glm::mat3 worldRot = getWorldRotation();
+    glm::vec3 worldScale = getWorldScale();
+
+    // 3. Détachement de l'ancien parent
+    if (parent != nullptr) {
+        // Suppression manuelle pour éviter les boucles infinies
+        auto& children = parent->children;
+        children.erase(std::remove(children.begin(), children.end(), this), children.end());
+    }
+
+    // 4. Attribution du nouveau parent
+    parent = _newParent;
+
+    if (parent != nullptr) {
+        // On ajoute cet objet aux enfants du nouveau parent
+        parent->children.push_back(this);
+
+        // On recalcule nos propriétés LOCALES pour que, multipliées par celles 
+        // du nouveau parent, elles redonnent nos anciennes propriétés MONDIALES.
+        
+        // Inverse de la rotation du parent * notre rotation mondiale
+        r = glm::inverse(parent->getWorldRotation()) * worldRot;
+        
+        // Notre translation mondiale relative au repère du parent
+        // On soustrait la position du parent et on annule sa rotation/scale
+        glm::vec3 relativePos = worldPos - parent->getWorldTranslation();
+        t = glm::inverse(parent->getWorldRotation()) * (relativePos / parent->getWorldScale());
+        
+        // Scale relatif
+        s = worldScale / parent->getWorldScale();
+    } else {
+        // Si on devient une racine (parent nul), le local devient le mondial
+        t = worldPos;
+        r = worldRot;
+        s = worldScale;
+    } */
 }
 
 void Transform::addChild(Transform* _child)
 {
     if (_child == nullptr || _child == this) return;
 
-    for (Transform c : children)
+    for (Transform* c : children)
     {
       if (c == _child) return;
     }
@@ -80,11 +141,11 @@ void Transform::addChild(Transform* _child)
 
 void Transform::removeChild(Transform* _child){
 
-    auto it = std::remove(children.begin(), children.end(), child);
+    auto it = std::remove(children.begin(), children.end(), _child);
     
     if (it != children.end()) {
         children.erase(it, children.end());
-        child->parent = nullptr;
+        _child->parent = nullptr;
     }
 
 }
