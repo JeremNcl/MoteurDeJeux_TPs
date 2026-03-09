@@ -1,7 +1,6 @@
 #ifndef SCENENODE_HPP
 #define SCENENODE_HPP
 
-#include "Transform.hpp"
 #include <vector>
 #include <memory>
 #include <string>
@@ -16,9 +15,10 @@ public:
     SceneNode(const std::string& name = "Node");
     virtual ~SceneNode();
     
-    // === Accès au Transform ===
-    Transform& getTransform() { return transform; }
-    const Transform& getTransform() const { return transform; }
+    // TODO
+    // // === Accès au Transform ===
+    // Transform& getTransform() { return transform; }
+    // const Transform& getTransform() const { return transform; }
     
     // === Gestion de la hiérarchie ===
     void addChild(std::shared_ptr<SceneNode> child);
@@ -42,8 +42,9 @@ protected:
     std::string name;
     bool isActive;
     
-    // Transform encapsulé
-    Transform transform;
+    // TODO
+    // // Transform encapsulé
+    // Transform transform;
     
     // Hiérarchie
     SceneNode* parent;

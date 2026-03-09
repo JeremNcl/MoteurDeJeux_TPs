@@ -132,8 +132,8 @@ int main( void )
     auto sphereNode = MeshNode::loadFromOFF("meshes/sphere.off", programID, "Sphere", true);
     if (sphereNode) {
         sphereNode->setTexture(grassTexture);
-        sphereNode->getTransform().setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-        sphereNode->getTransform().setUniformScale(1.0f);
+        // sphereNode->getTransform().setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+        // sphereNode->getTransform().setUniformScale(1.0f);
         sceneGraph.getRoot()->addChild(sphereNode);
     } else {
         printf("ERREUR: Impossible de charger sphere.off\n");

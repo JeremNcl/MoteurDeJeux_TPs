@@ -70,8 +70,6 @@ add_executable(TP1
 	common/vboindexer.hpp
 	common/terrain/heightmap_loader.cpp
 	common/terrain/heightmap_loader.hpp
-	common/scene/Transform.cpp
-	common/scene/Transform.hpp
 	common/scene/SceneNode.cpp
 	common/scene/SceneNode.hpp
 	common/render/Mesh.cpp
