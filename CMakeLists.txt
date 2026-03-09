@@ -56,14 +56,14 @@ add_definitions(
 # TP1
 add_executable(TP1
         TP1/TP1.cpp
-	common/shader.cpp
-	common/shader.hpp
-	common/camera.cpp
-	common/camera.hpp
+	common/render/shader.cpp
+	common/render/shader.hpp
+	common/scene/camera.cpp
+	common/scene/camera.hpp
 	common/terrain/terrain.cpp
 	common/terrain/terrain.hpp
-	common/texture.cpp
-	common/texture.hpp
+	common/render/texture.cpp
+	common/render/texture.hpp
 	common/io/objloader.cpp
 	common/io/objloader.hpp
 	common/vboindexer.cpp
@@ -108,4 +108,3 @@ add_custom_command(
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
 endif (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
-

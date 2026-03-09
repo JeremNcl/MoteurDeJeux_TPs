@@ -20,8 +20,8 @@ GLFWwindow* window;
 
 using namespace glm;
 
-#include <common/shader.hpp>
-#include <common/camera.hpp>
+#include <common/render/shader.hpp>
+#include <common/scene/camera.hpp>
 #include <common/scene/SceneGraph.hpp>
 #include <common/scene/MeshNode.hpp>
 
