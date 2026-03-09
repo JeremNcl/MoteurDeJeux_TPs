@@ -11,6 +11,7 @@ class Transform {
         Transform(Transform* parent = nullptr);
         Transform(const glm::vec3& _s, const glm::mat3& _r, const glm::vec3& _t, Transform* _parent = nullptr);
         Transform(const Transform& _transform, Transform* _parent = nullptr);
+        ~Transform();
 
         //Getter
 
