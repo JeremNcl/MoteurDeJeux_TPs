@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/euler_angles.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -139,6 +141,31 @@ void Transform::markWorldMatrixDirty() {
     }
 }
 
+// === Setters ===
+void Transform::setScale(const glm::vec3& _s) { 
+    s = _s;
+    markWorldMatrixDirty();
+}
+
+void Transform::setRotation(const glm::mat3& _r) {
+    r = _r;
+    markWorldMatrixDirty();
+}
+
+void Transform::setRotation(const glm::quat& q) {
+    r = glm::mat3_cast(q);
+    markWorldMatrixDirty();
+}
+
+void Transform::setRotation(const glm::vec3& eulerAngles) {
+    r = glm::mat3(glm::yawPitchRoll(eulerAngles.x, eulerAngles.y, eulerAngles.z));
+    markWorldMatrixDirty();
+}
+
+void Transform::setTranslation(const glm::vec3& _t) {
+    t = _t; markWorldMatrixDirty();
+}
+
 // === Utilitaires ===
 bool Transform::isAncestorOf(const Transform* _other) const {
     if (!_other) return false;
@@ -158,6 +185,17 @@ void Transform::scale(const glm::vec3& _s) {
 
 void Transform::rotate(const glm::mat3& _r) {
     r = _r * r;
+    markWorldMatrixDirty();
+}
+
+void Transform::rotate(const glm::quat& q) {
+    r = glm::mat3_cast(q) * r;
+    markWorldMatrixDirty();
+}
+
+void Transform::rotate(const glm::vec3& eulerAngles) {
+    glm::mat3 rot = glm::mat3(glm::yawPitchRoll(eulerAngles.x, eulerAngles.y, eulerAngles.z));
+    r = rot * r;
     markWorldMatrixDirty();
 }
 

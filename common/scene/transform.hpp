@@ -2,6 +2,8 @@
 #define TRANSFORM_HPP
 
 #include <glm/glm.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/euler_angles.hpp>
 
 #include <vector>
 #include <memory>
@@ -44,9 +46,11 @@ public:
     std::vector<std::shared_ptr<Transform>> getAllChildren() const { return children; }
 
     // === Setters ===
-    void setScale(const glm::vec3& _s) { s = _s; markWorldMatrixDirty(); }
-    void setRotation(const glm::mat3& _r) { r = _r; markWorldMatrixDirty(); }
-    void setTranslation(const glm::vec3& _t) { t = _t; markWorldMatrixDirty(); }
+    void setScale(const glm::vec3& _s);
+    void setRotation(const glm::mat3& _r);
+    void setRotation(const glm::quat& q);
+    void setRotation(const glm::vec3& eulerAngles);
+    void setTranslation(const glm::vec3& _t);
 
     // === Gestion hiérarchie ===
     void addChild(const std::shared_ptr<Transform>& _child);
@@ -62,6 +66,8 @@ public:
     // === Transformations locales ===
     void scale(const glm::vec3& _s);
     void rotate(const glm::mat3& _r);
+    void rotate(const glm::quat& q); // surcharge quaternion
+    void rotate(const glm::vec3& eulerAngles); // surcharge angles d'Euler (radians)
     void translate(const glm::vec3& _t);
 
     // ajouter rotateAround si la hiérarchie parent/enfant ne suffit plus    
