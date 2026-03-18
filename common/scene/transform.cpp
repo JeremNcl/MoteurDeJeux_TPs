@@ -158,7 +158,8 @@ void Transform::setRotation(const glm::quat& q) {
 }
 
 void Transform::setRotation(const glm::vec3& eulerAngles) {
-    r = glm::mat3(glm::yawPitchRoll(eulerAngles.x, eulerAngles.y, eulerAngles.z));
+    // Convention classique (x=pitch, y=yaw, z=roll)
+    r = glm::mat3(glm::yawPitchRoll(eulerAngles.y, eulerAngles.x, eulerAngles.z));
     markWorldMatrixDirty();
 }
 
@@ -194,7 +195,8 @@ void Transform::rotate(const glm::quat& q) {
 }
 
 void Transform::rotate(const glm::vec3& eulerAngles) {
-    glm::mat3 rot = glm::mat3(glm::yawPitchRoll(eulerAngles.x, eulerAngles.y, eulerAngles.z));
+    // Convention classique (x=pitch, y=yaw, z=roll)
+    glm::mat3 rot = glm::mat3(glm::yawPitchRoll(eulerAngles.y, eulerAngles.x, eulerAngles.z));
     r = rot * r;
     markWorldMatrixDirty();
 }
