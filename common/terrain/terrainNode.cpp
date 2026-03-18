@@ -28,6 +28,34 @@ void TerrainNode::setHeightParameters(float heightLow, float heightMid, float bl
     this->blend_range = blendRange;
 }
 
+void TerrainNode::bindTextures() {
+    // Binder les textures multi-couches terrain
+    if (texture_low != 0) {
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture_low);
+        GLuint textureLowID = glGetUniformLocation(mesh->shaderProgram, "texture_low");
+        if (textureLowID != (GLuint)-1) {
+            glUniform1i(textureLowID, 0);
+        }
+    }
+    if (texture_mid != 0) {
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture_mid);
+        GLuint textureMidID = glGetUniformLocation(mesh->shaderProgram, "texture_mid");
+        if (textureMidID != (GLuint)-1) {
+            glUniform1i(textureMidID, 1);
+        }
+    }
+    if (texture_high != 0) {
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, texture_high);
+        GLuint textureHighID = glGetUniformLocation(mesh->shaderProgram, "texture_high");
+        if (textureHighID != (GLuint)-1) {
+            glUniform1i(textureHighID, 2);
+        }
+    }
+}
+
 void TerrainNode::draw(const glm::mat4& viewProjection) {
     if (!isActive || !mesh || mesh->indexCount == 0) {
         SceneNode::draw(viewProjection);
@@ -52,33 +80,8 @@ void TerrainNode::draw(const glm::mat4& viewProjection) {
         // glUniformMatrix4fv(modelID, 1, GL_FALSE, &model[0][0]);
     }
     
-    // Binder les textures multi-couches
-    if (texture_low != 0) {
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture_low);
-        GLuint textureLowID = glGetUniformLocation(mesh->shaderProgram, "texture_low");
-        if (textureLowID != (GLuint)-1) {
-            glUniform1i(textureLowID, 0);
-        }
-    }
-    
-    if (texture_mid != 0) {
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, texture_mid);
-        GLuint textureMidID = glGetUniformLocation(mesh->shaderProgram, "texture_mid");
-        if (textureMidID != (GLuint)-1) {
-            glUniform1i(textureMidID, 1);
-        }
-    }
-    
-    if (texture_high != 0) {
-        glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, texture_high);
-        GLuint textureHighID = glGetUniformLocation(mesh->shaderProgram, "texture_high");
-        if (textureHighID != (GLuint)-1) {
-            glUniform1i(textureHighID, 2);
-        }
-    }
+    // Binder les textures multi-couches terrain
+    bindTextures();
     
     // Paramètres de hauteur pour le blending
     GLuint heightLowID = glGetUniformLocation(mesh->shaderProgram, "height_low");

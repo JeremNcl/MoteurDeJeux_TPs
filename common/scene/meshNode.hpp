@@ -21,6 +21,9 @@ public:
     // Surcharge du rendu pour dessiner le mesh
     virtual void draw(const glm::mat4& viewProjection) override;
     
+    // Méthode virtuelle pour binder les textures
+    virtual void bindTextures();
+    
     // Accesseurs du mesh
     void setMesh(std::shared_ptr<Mesh> mesh) { this->mesh = mesh; }
     std::shared_ptr<Mesh> getMesh() const { return mesh; }

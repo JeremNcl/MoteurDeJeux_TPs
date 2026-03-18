@@ -16,6 +16,9 @@ public:
     
     // Surcharge du rendu pour gérer le multi-texturing
     virtual void draw(const glm::mat4& viewProjection) override;
+
+    // Méthode virtuelle pour binder les textures
+    virtual void bindTextures() override;
     
     // Configuration des textures du terrain
     void setTextures(GLuint textureLow, GLuint textureMid, GLuint textureHigh);

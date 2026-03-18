@@ -12,6 +12,18 @@ MeshNode::~MeshNode() {
     // Le mesh est géré par shared_ptr, donc libération automatique
 }
 
+void MeshNode::bindTextures() {
+    // Binder la texture unique (mesh simple)
+    if (texture != 0) {
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        GLuint textureID = glGetUniformLocation(shaderProgram, "textureSampler");
+        if (textureID != (GLuint)-1) {
+            glUniform1i(textureID, 0);
+        }
+    }
+}
+
 void MeshNode::draw(const glm::mat4& viewProjection) {
     if (!isActive || !mesh || mesh->indexCount == 0) {
         // Dessiner quand même les enfants
@@ -46,31 +58,7 @@ void MeshNode::draw(const glm::mat4& viewProjection) {
         // glUniformMatrix4fv(modelID, 1, GL_FALSE, &model[0][0]);
     }
     
-    // Binder la texture si présente
-    if (texture != 0) {
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
-
-        GLuint textureID = glGetUniformLocation(shaderProgram, "textureSampler");
-        if (textureID != (GLuint)-1) {
-            glUniform1i(textureID, 0);
-        }
-
-        GLuint textureLowID = glGetUniformLocation(shaderProgram, "texture_low");
-        if (textureLowID != (GLuint)-1) {
-            glUniform1i(textureLowID, 0);
-        }
-
-        GLuint textureMidID = glGetUniformLocation(shaderProgram, "texture_mid");
-        if (textureMidID != (GLuint)-1) {
-            glUniform1i(textureMidID, 0);
-        }
-
-        GLuint textureHighID = glGetUniformLocation(shaderProgram, "texture_high");
-        if (textureHighID != (GLuint)-1) {
-            glUniform1i(textureHighID, 0);
-        }
-    }
+    bindTextures();
     
     // Vertices
     glEnableVertexAttribArray(0);
