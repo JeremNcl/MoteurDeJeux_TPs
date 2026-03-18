@@ -31,26 +31,67 @@ class Transform {
         const std::vector<Transform*> getAllChildren() const { return children; }
         std::vector<Transform*> getAllChildren() { return children; }
         
-        //Setter
-        
+        /**
+         * @brief Définit le scale local (remplace la valeur).
+         * @param _s Nouveau vecteur de scale.
+         */
         void setScale(const glm::vec3& _s) { s = _s; }
+
+        /**
+         * @brief Définit la rotation locale (remplace la valeur).
+         * @param _r Nouvelle matrice de rotation.
+         */
         void setRotation(const glm::mat3& _r) { r = _r; }
+
+        /**
+         * @brief Définit la translation locale (remplace la valeur).
+         * @param _t Nouveau vecteur de translation.
+         */
         void setTranslation(const glm::vec3& _t) { t = _t; }
 
-        //Other
-
+        /**
+         * @brief Ajoute un enfant à ce Transform.
+         * @param _child Pointeur vers le Transform enfant.
+         */
         void addChild(Transform* _child);
+
+        /**
+         * @brief Retire un enfant de ce Transform.
+         * @param _child Pointeur vers le Transform enfant à retirer.
+         */
         void removeChild(Transform* _child);
+
+        /**
+         * @brief Retire tous les enfants de ce Transform.
+         */
         void removeAllChildren();
+
+        /**
+         * @brief Définit le parent de ce Transform.
+         * @param _parent Pointeur vers le Transform parent.
+         */
         void setParent(Transform* _parent);
 
-        //Modifier 
-
+        /**
+         * @brief Applique un scale multiplicatif local.
+         * @param _s Vecteur de scale à multiplier.
+         */
         void scale(const glm::vec3& _s);
+
+        /**
+         * @brief Applique une rotation locale (composition).
+         * Convention : la nouvelle rotation _r est appliquée avant la rotation actuelle (pré-multiplication).
+         * @param _r Matrice de rotation à composer.
+         */
         void rotate(const glm::mat3& _r);
+
+        /**
+         * @brief Applique une translation locale (addition).
+         * @param _t Vecteur de translation à ajouter.
+         */
         void translate(const glm::vec3& _t);
 
-        void rotateAround(const Transform _transform);
+        // ajouter rotateAround si la hiérarchie parent/enfant ne suffit plus
 
     private:
         
