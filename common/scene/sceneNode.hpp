@@ -17,8 +17,8 @@ public:
     virtual ~SceneNode();
 
     // === Accès au Transform ===
-    Transform& getTransform() { return transform; }
-    const Transform& getTransform() const { return transform; }
+    Transform& getTransform() { return *transform; }
+    const Transform& getTransform() const { return *transform; }
 
     // === Gestion de la hiérarchie ===
     void addChild(std::shared_ptr<SceneNode> child);
@@ -46,7 +46,7 @@ protected:
     bool isActive;
 
     // Transform encapsulé
-    Transform transform;
+    std::shared_ptr<Transform> transform;
 
     // Hiérarchie
     SceneNode* parent;

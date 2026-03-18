@@ -4,9 +4,10 @@
 #include <glm/glm.hpp>
 
 #include <vector>
+#include <memory>
 
 
-class Transform {
+class Transform : public std::enable_shared_from_this<Transform> {
 
     // === Membres privés : état interne et hiérarchie ===
 private:
@@ -14,8 +15,8 @@ private:
     glm::mat3 r{0.f}; // rotation matrix
     glm::vec3 t{0.f}; // translation vector
 
-    Transform* parent;
-    std::vector<Transform*> children;
+    std::weak_ptr<Transform> parent;
+    std::vector<std::shared_ptr<Transform>> children;
     
     mutable glm::mat4 cachedWorldMatrix{1.0f};
     mutable bool worldMatrixDirty{true};
@@ -23,9 +24,9 @@ private:
     // === API publique : interface, gestion hiérarchie, transformations ===
 public: 
     // === Constructeurs et destructeur ===
-    Transform(Transform* parent = nullptr);
-    Transform(const glm::vec3& _s, const glm::mat3& _r, const glm::vec3& _t, Transform* _parent = nullptr);
-    Transform(const Transform& _transform, Transform* _parent = nullptr);
+    Transform(std::weak_ptr<Transform> parent = {});
+    Transform(const glm::vec3& _s, const glm::mat3& _r, const glm::vec3& _t, std::weak_ptr<Transform> _parent = {});
+    Transform(const Transform& _transform, std::weak_ptr<Transform> _parent = {});
     ~Transform();
 
     // === Getters ===
@@ -39,22 +40,19 @@ public:
 
     glm::mat4 getWorldMatrix() const;
 
-    const Transform* getParent() const { return parent; }
-    Transform* getParent() { return parent; }
-    
-    const std::vector<Transform*> getAllChildren() const { return children; }
-    std::vector<Transform*> getAllChildren() { return children; }
-    
+    std::shared_ptr<Transform> getParent() const { return parent.lock(); }
+    std::vector<std::shared_ptr<Transform>> getAllChildren() const { return children; }
+
     // === Setters ===
     void setScale(const glm::vec3& _s) { s = _s; markWorldMatrixDirty(); }
     void setRotation(const glm::mat3& _r) { r = _r; markWorldMatrixDirty(); }
     void setTranslation(const glm::vec3& _t) { t = _t; markWorldMatrixDirty(); }
 
     // === Gestion hiérarchie ===
-    void addChild(Transform* _child);
-    void removeChild(Transform* _child);
+    void addChild(const std::shared_ptr<Transform>& _child);
+    void removeChild(const std::shared_ptr<Transform>& _child);
     void removeAllChildren();
-    void setParent(Transform* _parent);
+    void setParent(const std::shared_ptr<Transform>& _parent);
 
     void markWorldMatrixDirty();
 

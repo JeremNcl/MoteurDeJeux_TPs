@@ -4,24 +4,25 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <algorithm>
+#include <memory>
 
 
 // === Constructeurs et destructeur ===
-Transform::Transform(Transform* _parent)
+Transform::Transform(std::weak_ptr<Transform> _parent)
     : s(glm::vec3(1.0f)),
       r(glm::mat3(1.0f)),
       t(glm::vec3(0.0f)),
       parent(_parent)
 {}
 
-Transform::Transform(const glm::vec3& _s, const glm::mat3& _r, const glm::vec3& _t, Transform* _parent)
+Transform::Transform(const glm::vec3& _s, const glm::mat3& _r, const glm::vec3& _t, std::weak_ptr<Transform> _parent)
     : s(_s),
       r(_r),
       t(_t),
       parent(_parent)
 {}
 
-Transform::Transform(const Transform& _transform, Transform* _parent)
+Transform::Transform(const Transform& _transform, std::weak_ptr<Transform> _parent)
     : s(_transform.s),
       r(_transform.r),
       t(_transform.t),
@@ -29,45 +30,43 @@ Transform::Transform(const Transform& _transform, Transform* _parent)
 {}
 
 Transform::~Transform() {
-    if(parent != nullptr)
-    {
-        auto& pChildren = parent->children;
-        pChildren.erase(std::remove(pChildren.begin(), pChildren.end(), this), pChildren.end());
+    auto p = parent.lock();
+    if(p) {
+        auto& pChildren = p->children;
+        pChildren.erase(std::remove_if(pChildren.begin(), pChildren.end(), [this](const std::shared_ptr<Transform>& c){ return c.get() == this; }), pChildren.end());
     }
-
-    for (Transform* child : children) {
-        if (child != nullptr) {
-            child->parent = nullptr;
+    for (auto& child : children) {
+        if (child) {
+            child->parent.reset();
         }
     }
-
     children.clear();
 }
 
 // === Getters ===
 glm::vec3 Transform::getWorldScale() const {
-    if (parent == nullptr) return s;
-    return parent->getWorldScale() * s;
+    auto p = parent.lock();
+    if (!p) return s;
+
+    return p->getWorldScale() * s;
 }
 
 glm::mat3 Transform::getWorldRotation() const {
-    if (parent == nullptr) return r;
-    return parent->getWorldRotation() * r;
+    auto p = parent.lock();
+    if (!p) return r;
+
+    return p->getWorldRotation() * r;
 }
 
 glm::vec3 Transform::getWorldTranslation() const {
-    if (parent == nullptr) return t;
-    
-    // On récupère la position, rotation et scale du parent dans le monde
-    glm::vec3 parentScale = parent->getWorldScale();
-    glm::mat3 parentRot   = parent->getWorldRotation();
-    glm::vec3 parentPos   = parent->getWorldTranslation();
-    
-    // On ajuste la translation locale de l'enfant en fonction du parent
-    // On applique d'abord le scale, puis la rotation du parent à notre translation locale
+    auto p = parent.lock();
+    if (!p) return t;
+
+    glm::vec3 parentScale = p->getWorldScale();
+    glm::mat3 parentRot   = p->getWorldRotation();
+    glm::vec3 parentPos   = p->getWorldTranslation();
     glm::vec3 combinedTranslation = parentRot * (parentScale * t);
-    
-    // On ajoute le tout à la position du parent
+
     return parentPos + combinedTranslation;
 }
 
@@ -79,10 +78,10 @@ glm::mat4 Transform::getWorldMatrix() const {
     localMatrix = glm::translate(localMatrix, t);
     localMatrix = localMatrix * glm::mat4(r);
     localMatrix = glm::scale(localMatrix, s);
-    
-    // Récursion : si on a un parent, on multiplie par sa World Matrix
-    if (parent != nullptr) {
-        cachedWorldMatrix = parent->getWorldMatrix() * localMatrix;
+
+    auto p = parent.lock();
+    if (p) {
+        cachedWorldMatrix = p->getWorldMatrix() * localMatrix;
     } else {
         cachedWorldMatrix = localMatrix;
     }
@@ -92,74 +91,61 @@ glm::mat4 Transform::getWorldMatrix() const {
 }
 
 // === Gestion hiérarchie ===
-void Transform::addChild(Transform* _child)
+void Transform::addChild(const std::shared_ptr<Transform>& _child)
 {
-    if (_child == nullptr || _child == this) return;
-    
-    // Protection contre les cycles : ne pas ajouter si _child est un ancêtre
-    if (isAncestorOf(_child)) return;
-
-    for (Transform* c : children) {
-      if (c == _child) return;
+    if (!_child || _child.get() == this) return;
+    if (isAncestorOf(_child.get())) return;
+    for (auto& c : children) {
+        if (c == _child) return;
     }
-
     children.push_back(_child);
-
-    // Symétrie parent/enfant
-    if (_child->parent != this) _child->setParent(this);
-
+    if (_child->parent.lock().get() != this) _child->setParent(shared_from_this());
     markWorldMatrixDirty();
 }
 
-void Transform::removeChild(Transform* _child){
+void Transform::removeChild(const std::shared_ptr<Transform>& _child){
     auto it = std::remove(children.begin(), children.end(), _child);
     if (it != children.end()) {
         children.erase(it, children.end());
-        // Symétrie parent/enfant
-        if (_child->parent == this) _child->parent = nullptr;
+        if (_child->parent.lock().get() == this) _child->parent.reset();
     }
-
     markWorldMatrixDirty();
 }
 
 void Transform::removeAllChildren() {
-    for (auto child : children) {
-        if (child != nullptr && child->parent == this) {
-            child->parent = nullptr;
+    for (auto& child : children) {
+        if (child && child->parent.lock().get() == this) {
+            child->parent.reset();
         }
     }
-    
     children.clear();
-
     markWorldMatrixDirty();
 }
 
-void Transform::setParent(Transform* _parent) {
-    // Protection contre les cycles : ne pas ajouter si _parent est un descendant
-    if (_parent == this || (_parent && _parent->isAncestorOf(this))) return;
-
-    if (parent != nullptr) parent->removeChild(this);
+void Transform::setParent(const std::shared_ptr<Transform>& _parent)
+{
+    if (_parent.get() == this || (_parent && _parent->isAncestorOf(this))) return;
+    auto p = parent.lock();
+    if (p) p->removeChild(shared_from_this());
     parent = _parent;
-
-    if (parent != nullptr) parent->addChild(this);
-
+    if (_parent) _parent->addChild(shared_from_this());
     markWorldMatrixDirty();
 }
 
 void Transform::markWorldMatrixDirty() {
     worldMatrixDirty = true;
-    for (Transform* child : children) {
+    for (auto& child : children) {
         if (child) child->markWorldMatrixDirty();
     }
 }
 
 // === Utilitaires ===
 bool Transform::isAncestorOf(const Transform* _other) const {
-    if (_other == nullptr) return false;
-    const Transform* current = _other->parent;
-    while (current != nullptr) {
-        if (current == this) return true;
-        current = current->parent;
+    if (!_other) return false;
+    auto current = _other->parent.lock();
+    while (current) {
+        if (current.get() == this) return true;
+        current = current->parent.lock();
     }
     return false;
 }

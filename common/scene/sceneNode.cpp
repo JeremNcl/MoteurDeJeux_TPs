@@ -5,6 +5,7 @@ SceneNode::SceneNode(const std::string& name)
     : name(name)
     , isActive(true)
     , parent(nullptr)
+    , transform(std::make_shared<Transform>())
 {}
 
 SceneNode::~SceneNode() {
@@ -35,7 +36,7 @@ void SceneNode::addChild(std::shared_ptr<SceneNode> child) {
     child->parent = this;
 
     // Mettre à jour la hiérarchie des transforms
-    child->transform.setParent(&this->transform);
+    child->transform->setParent(transform);
 }
 
 void SceneNode::removeChild(std::shared_ptr<SceneNode> child) {
@@ -45,7 +46,7 @@ void SceneNode::removeChild(std::shared_ptr<SceneNode> child) {
     if (it != children.end()) {
         // Symétrie : on détache le parent côté enfant
         (*it)->parent = nullptr;
-        (*it)->transform.setParent(nullptr);
+        (*it)->transform->setParent(nullptr);
 
         children.erase(it);
     }
