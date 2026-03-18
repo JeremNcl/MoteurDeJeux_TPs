@@ -69,6 +69,9 @@ private:
     void updateFixedCamera();
     void updateFreeCamera(GLFWwindow* window, float deltaTime);
     void updateOrbitCamera(GLFWwindow* window, float deltaTime);
+
+    // Fonction privée pour calculer le ratio d'aspect
+    float computeAspect(GLFWwindow* window) const;
 };
 
 #endif

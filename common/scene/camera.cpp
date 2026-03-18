@@ -30,6 +30,18 @@ Camera::Camera()
     viewMatrix = glm::lookAt(fixedPosition, fixedTarget, fixedUp);
 }
 
+// Fonction privée pour calculer le ratio d'aspect
+float Camera::computeAspect(GLFWwindow* window) const {
+    int width = 1024, height = 768;
+    if (window) {
+        glfwGetFramebufferSize(window, &width, &height);
+    } else {
+        GLFWwindow* ctx = glfwGetCurrentContext();
+        if (ctx) glfwGetFramebufferSize(ctx, &width, &height);
+    }
+    return (height > 0) ? (float)width / (float)height : 4.0f / 3.0f;
+}
+
 void Camera::initialize(glm::vec3 position, glm::vec3 target, glm::vec3 up, float speed) {
     // Initialiser la caméra fixe
     fixedPosition = position;
@@ -103,7 +115,8 @@ void Camera::update(GLFWwindow* window, float deltaTime) {
 
 void Camera::updateFixedCamera() {
     // Projection matrix
-    projectionMatrix = glm::perspective(glm::radians(fieldOfView), 4.0f / 3.0f, 0.1f, 5000.0f);
+    float aspect = computeAspect(nullptr);
+    projectionMatrix = glm::perspective(glm::radians(fieldOfView), aspect, 0.1f, 5000.0f);
     
     // View matrix - utilise les paramètres fixes
     viewMatrix = glm::lookAt(fixedPosition, fixedTarget, fixedUp);
@@ -169,7 +182,8 @@ void Camera::updateFreeCamera(GLFWwindow* window, float deltaTime) {
     }
     
     // Projection matrix
-    projectionMatrix = glm::perspective(glm::radians(fieldOfView), 4.0f / 3.0f, 0.1f, 5000.0f);
+    float aspect = computeAspect(window);
+    projectionMatrix = glm::perspective(glm::radians(fieldOfView), aspect, 0.1f, 5000.0f);
     
     // Camera matrix
     viewMatrix = glm::lookAt(
@@ -190,8 +204,9 @@ void Camera::updateOrbitCamera(GLFWwindow* window, float deltaTime) {
         orbitCenter.z + sin(orbitAngle) * orbitRadius
     );
 
-    // Projection matrix
-    projectionMatrix = glm::perspective(glm::radians(fieldOfView), 4.0f / 3.0f, 0.1f, 5000.0f);
+    // Projetion matrix
+    float aspect = computeAspect(window);
+    projectionMatrix = glm::perspective(glm::radians(fieldOfView), aspect, 0.1f, 5000.0f);
 
     // View matrix
     viewMatrix = glm::lookAt(orbitPosition, orbitCenter, fixedUp);
