@@ -16,6 +16,8 @@ public:
     static std::shared_ptr<Mesh> loadFromOFF(const std::string& filename, bool enableCache = true);
     static void clearMeshCache();
 
+    static std::shared_ptr<Mesh> generateSphere(float radius, int meridianCount, int parallelCount);
+
     void computeNormals();
     void computeUVs();
 
@@ -24,7 +26,7 @@ public:
 
     bool hasGPUData() const;
 
-    std::vector<glm::vec3> positions;
+    std::vector<glm::vec3> vertices;
     std::vector<glm::vec3> normals;
     std::vector<glm::vec2> uvs;
     std::vector<unsigned int> indices;
@@ -40,6 +42,14 @@ public:
 
 private:
     static std::unordered_map<std::string, std::shared_ptr<Mesh>> meshCache;
+
+    // Stockage des paramètres pour objets wrapés
+    int meridianCount = 0;
+    int parallelCount = 0;
+    int getMeridianCount() const { return meridianCount; }
+    int getParallelCount() const { return parallelCount; }
+    void setMeridianCount(int m) { meridianCount = m; }
+    void setParallelCount(int p) { parallelCount = p; }
 };
 
 #endif

@@ -126,19 +126,14 @@ int main( void )
     SceneGraph sceneGraph;
 
     // Charger une texture pour la sphère
-    GLuint grassTexture = loadBMP_custom("textures/grass.bmp");
+    GLuint sunTexture = loadBMP_custom("textures/sun.bmp");
     
     // === SPHÈRE ===
-    auto sphereNode = MeshNode::loadFromOFF("meshes/sphere.off", programID, "Sphere", true);
-    if (sphereNode) {
-        sphereNode->setTexture(grassTexture);
-        // sphereNode->getTransform().setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-        // sphereNode->getTransform().setUniformScale(1.0f);
-        sceneGraph.getRoot()->addChild(sphereNode);
-    } else {
-        printf("ERREUR: Impossible de charger sphere.off\n");
-        return -1;
-    }
+    auto sphereMesh = Mesh::generateSphere(1.0f, 32, 16); // rayon, méridiens, parallèles
+    auto sphereNode = std::make_shared<MeshNode>("Sphere", sphereMesh);
+    sphereNode->setShaderProgram(programID);
+    sphereNode->setTexture(sunTexture);
+    sceneGraph.getRoot()->addChild(sphereNode);
     
     printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
 
@@ -186,7 +181,7 @@ int main( void )
 
     // Cleanup
     MeshNode::clearMeshCache();
-    glDeleteTextures(1, &grassTexture);
+    glDeleteTextures(1, &sunTexture);
     glDeleteProgram(programID);
     glDeleteVertexArrays(1, &VertexArrayID);
 

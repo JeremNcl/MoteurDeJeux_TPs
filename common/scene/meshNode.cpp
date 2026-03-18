@@ -1,4 +1,8 @@
 #include "meshNode.hpp"
+
+#include <glm/glm.hpp>
+
+#include <vector>
 #include <iostream>
 
 MeshNode::MeshNode(const std::string& name, std::shared_ptr<Mesh> mesh)
@@ -100,8 +104,7 @@ std::shared_ptr<MeshNode> MeshNode::loadFromOFF(
     const std::string& filename,
     GLuint shaderProgram,
     const std::string& nodeName,
-    bool enableCache)
-{
+    bool enableCache) {
     auto mesh = Mesh::loadFromOFF(filename, enableCache);
     if (!mesh) {
         return nullptr;
@@ -113,11 +116,11 @@ std::shared_ptr<MeshNode> MeshNode::loadFromOFF(
     if (mesh->uvs.empty()) {
         mesh->computeUVs();
     }
+
     mesh->uploadToGPU();
 
     auto node = std::make_shared<MeshNode>(nodeName, mesh);
     node->setShaderProgram(shaderProgram);
-    
     return node;
 }
 
