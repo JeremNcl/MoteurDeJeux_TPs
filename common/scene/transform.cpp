@@ -167,6 +167,29 @@ void Transform::setTranslation(const glm::vec3& _t) {
     t = _t; markWorldMatrixDirty();
 }
 
+// === Setters pour rotation autour d'un point externe ===
+void Transform::setRotationAround(const glm::mat3& _r, const glm::vec3& center, const glm::vec3& initialPosition) {
+    // 1. Calculer l'offset par rapport au centre à partir de la position initiale
+    glm::vec3 offset = initialPosition - center;
+    // 2. Appliquer la rotation sur l'offset
+    offset = _r * offset;
+    // 3. Recalculer la position
+    t = center + offset;
+    // 4. Définir la rotation locale (remplace l'ancienne)
+    r = _r;
+    markWorldMatrixDirty();
+}
+
+void Transform::setRotationAround(const glm::quat& q, const glm::vec3& center, const glm::vec3& initialPosition) {
+    glm::mat3 r = glm::mat3_cast(q);
+    setRotationAround(r, center, initialPosition);
+}
+
+void Transform::setRotationAround(const glm::vec3& eulerAngles, const glm::vec3& center, const glm::vec3& initialPosition) {
+    glm::quat q = glm::quat(eulerAngles); 
+    setRotationAround(q, center, initialPosition);
+}
+
 // === Utilitaires ===
 bool Transform::isAncestorOf(const Transform* _other) const {
     if (!_other) return false;
@@ -204,4 +227,27 @@ void Transform::rotate(const glm::vec3& eulerAngles) {
 void Transform::translate(const glm::vec3& _t) {
     t += _t;
     markWorldMatrixDirty();
+}
+
+// Rotation autour d'un point externe
+void Transform::rotateAround(const glm::mat3& _r, const glm::vec3& center) {
+    // 1. Translation vers l'origine du centre
+    glm::vec3 offset = t - center;
+    // 2. Appliquer la rotation sur l'offset
+    offset = _r * offset;
+    // 3. Recalculer la position
+    t = center + offset;
+    // 4. Appliquer la rotation locale
+    r = _r * r;
+    markWorldMatrixDirty();
+}
+
+void Transform::rotateAround(const glm::quat& q, const glm::vec3& center) {
+    glm::mat3 r = glm::mat3_cast(q);
+    rotateAround(r, center);
+}
+
+void Transform::rotateAround(const glm::vec3& eulerAngles, const glm::vec3& center) {
+    glm::quat q = glm::quat(eulerAngles);
+    rotateAround(q, center);
 }

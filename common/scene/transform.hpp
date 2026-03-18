@@ -51,6 +51,10 @@ public:
     void setRotation(const glm::quat& q);
     void setRotation(const glm::vec3& eulerAngles);
     void setTranslation(const glm::vec3& _t);
+    // Rotation autour d'un point externe
+    void setRotationAround(const glm::mat3& _r, const glm::vec3& center, const glm::vec3& initialPosition);
+    void setRotationAround(const glm::quat& q, const glm::vec3& center, const glm::vec3& initialPosition);
+    void setRotationAround(const glm::vec3& eulerAngles, const glm::vec3& center, const glm::vec3& initialPosition);
 
     // === Gestion hiérarchie ===
     void addChild(const std::shared_ptr<Transform>& _child);
@@ -70,7 +74,10 @@ public:
     void rotate(const glm::vec3& eulerAngles); // surcharge angles d'Euler (radians)
     void translate(const glm::vec3& _t);
 
-    // ajouter rotateAround si la hiérarchie parent/enfant ne suffit plus    
+    // Rotation autour d'un point externe
+    void rotateAround(const glm::mat3& _r, const glm::vec3& center);
+    void rotateAround(const glm::quat& q, const glm::vec3& center);
+    void rotateAround(const glm::vec3& eulerAngles, const glm::vec3& center);   
 };
 
 #endif
