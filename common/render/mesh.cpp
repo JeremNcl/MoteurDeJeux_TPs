@@ -190,7 +190,7 @@ std::shared_ptr<Mesh> Mesh::generateSphere(float radius, int meridianCount, int 
             float y = radius * std::cos(theta);
             float z = radius * std::sin(theta) * std::sin(phi);
             mesh->vertices.emplace_back(x, y, z);
-            mesh->uvs.emplace_back(u, v);
+            mesh->uvs.emplace_back(u, 1.0f - v); 
             mesh->normals.emplace_back(glm::normalize(glm::vec3(x, y, z)));
         }
     }
