@@ -26,6 +26,7 @@ using namespace glm;
 #include <common/scene/sceneGraph.hpp>
 #include <common/scene/meshNode.hpp>
 
+
 void processInput(GLFWwindow *window, Camera& camera);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
@@ -38,9 +39,22 @@ float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
 // planets parameters
-float sunSpeed = 10.0f; // degrees per second
-float sunAngle = 0.0f; // current angle in degrees
-float sunAngleRad = 0.0f; // current angle in radians
+float sunRotationSpeed = 10.0f; // degrees per second
+float sunRotationAngle = 0.0f; // current angle in degrees
+float sunRotationAngleRad = 0.0f; // current angle in radians
+glm::vec3 sunRotation = glm::vec3(0.0f); // current rotation for sun
+glm::vec3 sunCenter = glm::vec3(0.0f); // center of the sun
+
+glm::vec3 earthInitialPosition;
+float earthOrbitSpeed = 30.0f; // degrees per second
+float earthOrbitAngle = 0.0f; // current orbit angle in degrees
+float earthOrbitAngleRad = 0.0f; // current orbit angle in radians
+glm::vec3 earthOrbitRotation = glm::vec3(0.0f); // current rotation for orbit
+
+float earthRotationSpeed = 60.0f; // degrees per second
+float earthRotationAngle = 0.0f; // current rotation angle in degrees
+float earthRotationAngleRad = 0.0f; // current rotation angle in radians
+glm::vec3 earthRotation = glm::vec3(0.0f); // current rotation for earth
 
 /*******************************************************************************/
 
@@ -127,15 +141,36 @@ int main( void )
     // === CONSTRUCTION DU GRAPHE DE SCÈNE ===
     SceneGraph sceneGraph;
 
-    // Charger une texture pour la sphère
+    // Chargement des textures
     GLuint sunTexture = loadBMP_custom("textures/sun.bmp");
+    GLuint earthTexture = loadBMP_custom("textures/earth.bmp");
     
-    // === SPHÈRE ===
+    // === CONSTRUCTION DES NŒUDS DE LA SCÈNE ===
+    // Soleil
     auto sunMesh = Mesh::generateSphere(1.0f, 32, 16); // rayon, méridiens, parallèles
     auto sunNode = std::make_shared<MeshNode>("Sun", sunMesh);
     sunNode->setShaderProgram(programID);
     sunNode->setTexture(sunTexture);
     sceneGraph.getRoot()->addChild(sunNode);
+
+    // Terre-Lune
+    auto earthMoonNode = std::make_shared<SceneNode>("EarthMoon");
+    sceneGraph.getRoot()->addChild(earthMoonNode);
+
+    // Terre
+    auto earthMesh = Mesh::generateSphere(1.0f, 32, 16); // rayon, méridiens, parallèles
+    auto earthNode = std::make_shared<MeshNode>("Earth", earthMesh);
+    earthNode->setShaderProgram(programID);
+    earthNode->setTexture(earthTexture);
+    earthMoonNode->addChild(earthNode);
+
+    // Initialisation : position sur l'orbite (rayon constant)
+    earthMoonNode->getTransform().setTranslation(glm::vec3(3.0f, 0.0f, 0.0f));
+    earthMoonNode->getTransform().scale(glm::vec3(0.3f));
+    earthInitialPosition = earthNode->getTransform().getWorldTranslation();
+    // Inclinaison de l'axe de rotation de la Terre
+    earthNode->getTransform().rotate(glm::vec3(0.0f, glm::radians(23.5f), 0.0f)); 
+
     
     printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
 
@@ -168,11 +203,26 @@ int main( void )
         // Calculer la matrice View-Projection
         glm::mat4 viewProjection = camera.getProjectionMatrix() * camera.getViewMatrix();
 
-        // Déplacer les objets de la scène
-        sunAngle += deltaTime * sunSpeed;
-        float sunAngleRad = glm::radians(sunAngle);
-        sunNode->getTransform().setRotation(glm::vec3(0.0f, sunAngleRad, 0.0f)); // rotation sur y
+        // === Déplacer les objets de la scène ===
+        // Rotation du soleil
+        sunRotationAngle += deltaTime * sunRotationSpeed;
+        sunRotationAngleRad = glm::radians(sunRotationAngle);
+        sunRotation = glm::vec3(0.0f, sunRotationAngleRad, 0.0f);
+        sunNode->getTransform().setRotation(sunRotation);
         
+        // Orbite de la Terre autour du Soleil
+        earthOrbitAngle += deltaTime * earthOrbitSpeed;
+        earthOrbitAngleRad = glm::radians(earthOrbitAngle);
+        earthOrbitRotation = glm::vec3(0.0f, earthOrbitAngleRad, 0.0f);
+        earthMoonNode->getTransform().setRotationAround(earthOrbitRotation, sunCenter, earthInitialPosition);
+
+        // Rotation de la Terre sur elle-même
+        earthRotationAngle += deltaTime * earthRotationSpeed;
+        earthRotationAngleRad = glm::radians(earthRotationAngle);
+        earthRotation = glm::vec3(0.0f, earthRotationAngleRad, 0.0f);
+        earthNode->getTransform().setRotation(earthRotation);
+        
+
         // Mettre à jour et dessiner toute la scène via le graphe de scène
         sceneGraph.update(deltaTime);
         sceneGraph.draw(viewProjection);
