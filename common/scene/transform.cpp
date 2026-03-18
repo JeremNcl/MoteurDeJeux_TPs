@@ -1,9 +1,13 @@
 #include "transform.hpp"
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <algorithm>
 
 Transform::Transform(Transform* _parent)
-    : parent(_parent)
+    : s(glm::vec3(1.0f)),
+      r(glm::mat3(1.0f)),
+      t(glm::vec3(0.0f)),
+      parent(_parent)
 {}
 
 Transform::Transform(const glm::vec3& _s, const glm::mat3& _r, const glm::vec3& _t, Transform* _parent)
