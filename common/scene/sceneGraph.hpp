@@ -1,8 +1,10 @@
 #ifndef SCENEGRAPH_HPP
 #define SCENEGRAPH_HPP
 
-#include "SceneNode.hpp"
+#include "sceneNode.hpp"
+
 #include <memory>
+
 #include <glm/glm.hpp>
 
 /**

@@ -1,4 +1,4 @@
-#include "MeshNode.hpp"
+#include "meshNode.hpp"
 #include <iostream>
 
 MeshNode::MeshNode(const std::string& name, std::shared_ptr<Mesh> mesh)

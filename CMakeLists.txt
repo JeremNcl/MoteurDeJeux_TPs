@@ -64,22 +64,22 @@ add_executable(TP1
 	common/terrain/terrain.hpp
 	common/io/textureLoader.cpp
 	common/io/textureLoader.hpp
-	common/io/objloader.cpp
-	common/io/objloader.hpp
 	common/vboindexer.cpp
 	common/vboindexer.hpp
-	common/terrain/heightmap_loader.cpp
-	common/terrain/heightmap_loader.hpp
-	common/scene/SceneNode.cpp
-	common/scene/SceneNode.hpp
-	common/render/Mesh.cpp
-	common/render/Mesh.hpp
-	common/scene/MeshNode.cpp
-	common/scene/MeshNode.hpp
-	common/terrain/TerrainNode.cpp
-	common/terrain/TerrainNode.hpp
-	common/scene/SceneGraph.cpp
-	common/scene/SceneGraph.hpp
+	common/io/objectLoader.cpp
+	common/io/objectLoader.hpp
+	common/terrain/heightmapLoader.cpp
+	common/terrain/heightmapLoader.hpp
+	common/scene/sceneNode.cpp
+	common/scene/sceneNode.hpp
+	common/render/mesh.cpp
+	common/render/mesh.hpp
+	common/scene/meshNode.cpp
+	common/scene/meshNode.hpp
+	common/terrain/terrainNode.cpp
+	common/terrain/terrainNode.hpp
+	common/scene/sceneGraph.cpp
+	common/scene/sceneGraph.hpp
 	common/scene/transform.cpp
 	common/scene/transform.hpp
 	

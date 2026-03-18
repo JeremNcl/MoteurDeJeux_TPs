@@ -1,4 +1,4 @@
-#include "TerrainNode.hpp"
+#include "terrainNode.hpp"
 #include <iostream>
 
 TerrainNode::TerrainNode(const std::string& name, Terrain& terrain, std::shared_ptr<Mesh> mesh)

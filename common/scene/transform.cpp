@@ -1,7 +1,10 @@
 #include "transform.hpp"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
 #include <algorithm>
+
 
 Transform::Transform(Transform* _parent)
     : s(glm::vec3(1.0f)),

@@ -1,9 +1,11 @@
-#include "Mesh.hpp"
-#include "../io/objloader.hpp"
+#include "mesh.hpp"
+#include "../io/objectLoader.hpp"
 
 #include <cmath>
 #include <iostream>
+
 #include <glm/gtc/constants.hpp>
+
 
 std::unordered_map<std::string, std::shared_ptr<Mesh>> Mesh::meshCache;
 

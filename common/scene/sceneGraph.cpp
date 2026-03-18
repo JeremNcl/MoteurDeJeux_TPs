@@ -1,4 +1,5 @@
-#include "SceneGraph.hpp"
+#include "sceneGraph.hpp"
+
 
 SceneGraph::SceneGraph() {
     // Créer le nœud racine

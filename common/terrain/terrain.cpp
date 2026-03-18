@@ -1,5 +1,6 @@
 #include "terrain.hpp"
-#include "heightmap_loader.hpp"
+#include "heightmapLoader.hpp"
+
 #include <cmath>
 #include <algorithm>
 #include <cstdio>

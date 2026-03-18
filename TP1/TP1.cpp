@@ -23,8 +23,8 @@ using namespace glm;
 #include <common/render/shader.hpp>
 #include <common/io/textureLoader.hpp>
 #include <common/scene/camera.hpp>
-#include <common/scene/SceneGraph.hpp>
-#include <common/scene/MeshNode.hpp>
+#include <common/scene/sceneGraph.hpp>
+#include <common/scene/meshNode.hpp>
 
 void processInput(GLFWwindow *window, Camera& camera);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

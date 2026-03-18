@@ -1,4 +1,4 @@
-#include "SceneNode.hpp"
+#include "sceneNode.hpp"
 #include <algorithm>
 
 SceneNode::SceneNode(const std::string& name)

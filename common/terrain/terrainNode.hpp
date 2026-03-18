@@ -1,8 +1,9 @@
 #ifndef TERRAINNODE_HPP
 #define TERRAINNODE_HPP
 
-#include "../scene/MeshNode.hpp"
+#include "../scene/meshNode.hpp"
 #include "terrain.hpp"
+
 
 /**
  * Nœud spécialisé pour le rendu du terrain

@@ -1,9 +1,11 @@
 #ifndef MESHNODE_HPP
 #define MESHNODE_HPP
 
-#include "SceneNode.hpp"
-#include "../render/Mesh.hpp"
+#include "sceneNode.hpp"
+#include "../render/mesh.hpp"
+
 #include <GL/glew.h>
+
 #include <memory>
 #include <string>
 
