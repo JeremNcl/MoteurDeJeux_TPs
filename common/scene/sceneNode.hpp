@@ -26,7 +26,7 @@ public:
     SceneNode* getParent() const { return parent; }
     const std::vector<std::shared_ptr<SceneNode>>& getChildren() const { return children; }
 
-    // Utilitaire pour vérifier si ce node est ancêtre d'un autre
+    // === Utilitaire pour vérifier si ce node est ancêtre d'un autre ===
     bool isAncestorOf(const SceneNode* node) const;
 
     // === Mise à jour et rendu (virtuels pour permettre la surcharge) ===
