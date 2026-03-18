@@ -37,9 +37,11 @@ const unsigned int SCR_HEIGHT = 600;
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
-//rotation
-float angle = 0.;
-float zoom = 1.;
+// planets parameters
+float sunSpeed = 10.0f; // degrees per second
+float sunAngle = 0.0f; // current angle in degrees
+float sunAngleRad = 0.0f; // current angle in radians
+
 /*******************************************************************************/
 
 
@@ -129,11 +131,11 @@ int main( void )
     GLuint sunTexture = loadBMP_custom("textures/sun.bmp");
     
     // === SPHÈRE ===
-    auto sphereMesh = Mesh::generateSphere(1.0f, 32, 16); // rayon, méridiens, parallèles
-    auto sphereNode = std::make_shared<MeshNode>("Sphere", sphereMesh);
-    sphereNode->setShaderProgram(programID);
-    sphereNode->setTexture(sunTexture);
-    sceneGraph.getRoot()->addChild(sphereNode);
+    auto sunMesh = Mesh::generateSphere(1.0f, 32, 16); // rayon, méridiens, parallèles
+    auto sunNode = std::make_shared<MeshNode>("Sun", sunMesh);
+    sunNode->setShaderProgram(programID);
+    sunNode->setTexture(sunTexture);
+    sceneGraph.getRoot()->addChild(sunNode);
     
     printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
 
@@ -147,7 +149,6 @@ int main( void )
     int nbFrames = 0;
 
     do{
-
         // Measure speed
         // per-frame time logic
         // --------------------
@@ -166,6 +167,11 @@ int main( void )
         
         // Calculer la matrice View-Projection
         glm::mat4 viewProjection = camera.getProjectionMatrix() * camera.getViewMatrix();
+
+        // Déplacer les objets de la scène
+        sunAngle += deltaTime * sunSpeed;
+        float sunAngleRad = glm::radians(sunAngle);
+        sunNode->getTransform().setRotation(glm::vec3(0.0f, sunAngleRad, 0.0f)); // rotation sur y
         
         // Mettre à jour et dessiner toute la scène via le graphe de scène
         sceneGraph.update(deltaTime);
@@ -193,8 +199,7 @@ int main( void )
 
 
 // Gestion des inputs
-void processInput(GLFWwindow *window, Camera& camera)
-{
+void processInput(GLFWwindow *window, Camera& camera) {
     // Fermer la fenêtre (touche ESC)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
@@ -273,8 +278,7 @@ void processInput(GLFWwindow *window, Camera& camera)
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     // make sure the viewport matches the new window dimensions; note that width and
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
