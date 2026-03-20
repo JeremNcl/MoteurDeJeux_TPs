@@ -75,10 +75,10 @@ glm::vec3 Transform::getWorldTranslation() const {
 glm::mat4 Transform::getWorldMatrix() const {
     if (!worldMatrixDirty) return cachedWorldMatrix;
     
-    // Création de la matrice locale (4x4)
+    // Correction : appliquer la rotation avant la translation
     glm::mat4 localMatrix = glm::mat4(1.0f);
+    localMatrix = glm::mat4(r) * localMatrix;
     localMatrix = glm::translate(localMatrix, t);
-    localMatrix = localMatrix * glm::mat4(r);
     localMatrix = glm::scale(localMatrix, s);
 
     auto p = parent.lock();
@@ -101,7 +101,7 @@ void Transform::addChild(const std::shared_ptr<Transform>& _child)
         if (c == _child) return;
     }
     children.push_back(_child);
-    if (_child->parent.lock().get() != this) _child->setParent(shared_from_this());
+    _child->setParent(shared_from_this());
     markWorldMatrixDirty();
 }
 
@@ -130,7 +130,6 @@ void Transform::setParent(const std::shared_ptr<Transform>& _parent)
     auto p = parent.lock();
     if (p) p->removeChild(shared_from_this());
     parent = _parent;
-    if (_parent) _parent->addChild(shared_from_this());
     markWorldMatrixDirty();
 }
 

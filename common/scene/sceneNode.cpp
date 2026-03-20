@@ -36,7 +36,7 @@ void SceneNode::addChild(std::shared_ptr<SceneNode> child) {
     child->parent = this;
 
     // Mettre à jour la hiérarchie des transforms
-    child->transform->setParent(transform);
+    transform->addChild(child->transform);
 }
 
 void SceneNode::removeChild(std::shared_ptr<SceneNode> child) {
