@@ -39,22 +39,34 @@ float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
 // planets parameters
-float sunRotationSpeed = 10.0f; // degrees per second
+glm::vec3 sunCenter = glm::vec3(0.0f); // center of the sun
+float sunRotationSpeed = 5.0f; // degrees per second
 float sunRotationAngle = 0.0f; // current angle in degrees
 float sunRotationAngleRad = 0.0f; // current angle in radians
 glm::vec3 sunRotation = glm::vec3(0.0f); // current rotation for sun
-glm::vec3 sunCenter = glm::vec3(0.0f); // center of the sun
 
-glm::vec3 earthInitialPosition;
-float earthOrbitSpeed = 30.0f; // degrees per second
+float earthOrbitSpeed = 20.0f; // degrees per second
 float earthOrbitAngle = 0.0f; // current orbit angle in degrees
 float earthOrbitAngleRad = 0.0f; // current orbit angle in radians
 glm::vec3 earthOrbitRotation = glm::vec3(0.0f); // current rotation for orbit
 
-float earthRotationSpeed = 60.0f; // degrees per second
+float earthAxialTilt = glm::radians(23.5f); // axial tilt of the Earth in radians
+float earthRotationSpeed = 40.0f; // degrees per second
 float earthRotationAngle = 0.0f; // current rotation angle in degrees
 float earthRotationAngleRad = 0.0f; // current rotation angle in radians
 glm::vec3 earthRotation = glm::vec3(0.0f); // current rotation for earth
+
+float moonOrbitSpeed = 60.0f; // degrees per second
+float moonOrbitAngle = 0.0f; // current orbit angle in degrees
+float moonOrbitAngleRad = 0.0f; // current orbit angle in radians
+glm::vec3 moonOrbitRotation = glm::vec3(0.0f); // current rotation for orbit
+
+float moonAxialTilt = glm::radians(6.68f); // axial tilt of the Moon in radians
+float moonRotationSpeed = 20.0f; // degrees per second
+float moonRotationAngle = 0.0f; // current rotation angle in degrees
+float moonRotationAngleRad = 0.0f; // current rotation angle in radians
+glm::vec3 moonRotation = glm::vec3(0.0f); // current rotation for moon
+
 
 /*******************************************************************************/
 
@@ -107,7 +119,7 @@ int main( void )
     glfwSetCursorPos(window, 1024/2, 768/2);
 
     // Dark blue background
-    glClearColor(0.8f, 0.8f, 0.8f, 0.0f);
+    glClearColor(0.f, 0.f, 0.05f, 0.0f);
 
     // Enable depth test
     glEnable(GL_DEPTH_TEST);
@@ -131,10 +143,10 @@ int main( void )
     // Configurer la caméra simple
     Camera camera;
     camera.initialize(
-        glm::vec3(0.0f, 2.0f, 4.0f),      // position
-        glm::vec3(0.0f, 0.0f, 0.0f),      // target (regard vers la sphère)
+        glm::vec3(0.0f, 0.0f, 9.0f),      // position
+        glm::vec3(0.0f, 0.0f, 0.0f),      // target (regard vers le centre du soleil)
         glm::vec3(0.0f, 1.0f, 0.0f),      // up
-        5.0f                               // speed
+        5.0f                              // speed
     );
     camera.setMode(FIXED_CAMERA, window);
     
@@ -142,37 +154,50 @@ int main( void )
     SceneGraph sceneGraph;
 
     // Chargement des textures
-    GLuint sunTexture = loadBMP_custom("textures/sun.bmp");
+    GLuint sunTexture = loadBMP_custom("textures/sun8k.bmp");
     GLuint earthTexture = loadBMP_custom("textures/earth.bmp");
+    GLuint moonTexture = loadBMP_custom("textures/moon.bmp");
     
     // === CONSTRUCTION DES NŒUDS DE LA SCÈNE ===
     // Soleil
-    auto sunMesh = Mesh::generateSphere(1.0f, 32, 16); // rayon, méridiens, parallèles
+    auto sunMesh = Mesh::generateSphere(1.0f, 32, 16);
     auto sunNode = std::make_shared<MeshNode>("Sun", sunMesh);
     sunNode->setShaderProgram(programID);
     sunNode->setTexture(sunTexture);
     sceneGraph.getRoot()->addChild(sunNode);
 
-    // Terre-Lune
-    auto earthMoonNode = std::make_shared<SceneNode>("EarthMoon");
-    sceneGraph.getRoot()->addChild(earthMoonNode);
+    // Orbite de la Terre
+    auto earthOrbitNode = std::make_shared<SceneNode>("Earth orbit");
+    sceneGraph.getRoot()->addChild(earthOrbitNode);
 
     // Terre
-    auto earthMesh = Mesh::generateSphere(1.0f, 32, 16); // rayon, méridiens, parallèles
+    auto earthMesh = Mesh::generateSphere(1.0f, 32, 16); 
     auto earthNode = std::make_shared<MeshNode>("Earth", earthMesh);
     earthNode->setShaderProgram(programID);
     earthNode->setTexture(earthTexture);
-    earthMoonNode->addChild(earthNode);
+    earthOrbitNode->addChild(earthNode);
 
-    // Initialisation : position sur l'orbite (rayon constant)
-    earthMoonNode->getTransform().setTranslation(glm::vec3(3.0f, 0.0f, 0.0f));
-    earthMoonNode->getTransform().scale(glm::vec3(0.3f));
-    earthInitialPosition = earthNode->getTransform().getWorldTranslation();
-    // Inclinaison de l'axe de rotation de la Terre
-    earthNode->getTransform().rotate(glm::vec3(0.0f, glm::radians(23.5f), 0.0f)); 
+    // Initialisation de la Terre
+    earthOrbitNode->getTransform().setTranslation(glm::vec3(5.0f, 0.0f, 0.0f));
+    earthOrbitNode->getTransform().scale(glm::vec3(0.3f));
 
-    
+    // Orbite de la Lune
+    auto moonOrbitNode = std::make_shared<SceneNode>("Moon orbit");
+    earthOrbitNode->addChild(moonOrbitNode);
+
+    // Lune
+    auto moonMesh = Mesh::generateSphere(1.0f, 32, 16);
+    auto moonNode = std::make_shared<MeshNode>("Moon", moonMesh);
+    moonNode->setShaderProgram(programID);
+    moonNode->setTexture(moonTexture);
+    moonOrbitNode->addChild(moonNode);
+
+    // Initialisation de la Lune
+    moonOrbitNode->getTransform().scale(glm::vec3(0.3f));
+    moonOrbitNode->getTransform().setTranslation(glm::vec3(2.f, 0.0f, 0.0f));
+
     printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
+
 
     // Get a handle for our "LightPosition" uniform
     glUseProgram(programID);
@@ -214,13 +239,25 @@ int main( void )
         earthOrbitAngle += deltaTime * earthOrbitSpeed;
         earthOrbitAngleRad = glm::radians(earthOrbitAngle);
         earthOrbitRotation = glm::vec3(0.0f, earthOrbitAngleRad, 0.0f);
-        earthMoonNode->getTransform().setRotationAround(earthOrbitRotation, sunCenter, earthInitialPosition);
+        earthOrbitNode->getTransform().setRotation(earthOrbitRotation);
 
         // Rotation de la Terre sur elle-même
         earthRotationAngle += deltaTime * earthRotationSpeed;
         earthRotationAngleRad = glm::radians(earthRotationAngle);
-        earthRotation = glm::vec3(0.0f, earthRotationAngleRad, 0.0f);
+        earthRotation = glm::vec3(earthAxialTilt, earthRotationAngleRad, 0.0f);
         earthNode->getTransform().setRotation(earthRotation);
+
+        // Orbite de la Lune autour de la Terre
+        moonOrbitAngle += deltaTime * moonOrbitSpeed;
+        moonOrbitAngleRad = glm::radians(moonOrbitAngle);
+        moonOrbitRotation = glm::vec3(0.0f, moonOrbitAngleRad, 0.0f);
+        moonOrbitNode->getTransform().setRotation(moonOrbitRotation);
+
+        // Rotation de la Lune sur elle même
+        moonRotationAngle += deltaTime * moonRotationSpeed;
+        moonRotationAngleRad = glm::radians(moonRotationAngle);
+        moonRotation = glm::vec3(moonAxialTilt, moonRotationAngleRad, 0.0f);
+        moonNode->getTransform().setRotation(moonRotation);
         
 
         // Mettre à jour et dessiner toute la scène via le graphe de scène
