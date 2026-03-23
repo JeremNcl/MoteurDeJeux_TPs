@@ -287,32 +287,10 @@ int main( void )
 
 // Gestion des inputs
 void processInput(GLFWwindow *window, Camera& camera) {
+    
     // Fermer la fenêtre (touche ESC)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-
-    // Retour à la caméra fixe (touche F)
-    static bool fKeyWasPressed = false;
-    if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS && !fKeyWasPressed) {
-        fKeyWasPressed = true;
-        camera.setMode(FIXED_CAMERA, window);
-        printf("Mode: FIXED_CAMERA - Vue isométrique fixe\n");
-    }
-    if (glfwGetKey(window, GLFW_KEY_F) == GLFW_RELEASE) {
-        fKeyWasPressed = false;
-    }
-
-    // Ajuster la vitesse de la caméra orbitale (touches UP/DOWN)
-    if (camera.getMode() == ORBIT_CAMERA) {
-        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-            float newSpeed = camera.getOrbitSpeed() + 2.0f * deltaTime;
-            camera.setOrbitSpeed(newSpeed);
-        }
-        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-            float newSpeed = camera.getOrbitSpeed() - 2.0f * deltaTime;
-            camera.setOrbitSpeed(newSpeed);
-        }
-    }
 
     // Changement de mode caméra avec la touche C
     static bool cKeyWasPressed = false;
@@ -322,46 +300,13 @@ void processInput(GLFWwindow *window, Camera& camera) {
             camera.setMode(FREE_CAMERA, window);
             printf("Mode: FREE_CAMERA - Utilisez WASD pour vous déplacer et la souris pour regarder\n");
         } else if (camera.getMode() == FREE_CAMERA) {
-            camera.setMode(ORBIT_CAMERA, window);
-            printf("Mode: ORBIT_CAMERA - Rotation automatique autour du terrain\n");
-        } else if (camera.getMode() == ORBIT_CAMERA) {
-            camera.setMode(FREE_CAMERA, window);
-            printf("Mode: FREE_CAMERA - Utilisez WASD pour vous déplacer et la souris pour regarder\n");
-        }
+            camera.setMode(FIXED_CAMERA, window);
+            printf("Mode: FIXED_CAMERA - Vue isométrique fixe\n");
+        } 
     }
     if (glfwGetKey(window, GLFW_KEY_C) == GLFW_RELEASE) {
         cKeyWasPressed = false;
     }
-    
-    // // Augmenter la résolution (touches + ou KP_ADD)
-    // static bool plusKeyWasPressed = false;
-    // if ((glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_PRESS || 
-    //      glfwGetKey(window, GLFW_KEY_KP_ADD) == GLFW_PRESS) && !plusKeyWasPressed) {
-    //     plusKeyWasPressed = true;
-    //     float currentRes = terrainNode->getTerrain().getResolution();
-    //     float newRes = currentRes / 2.0f;
-    //     terrainNode->getTerrain().setResolution(newRes);
-    //     terrainNode->regenerateMesh();
-    // }
-    // if (glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_RELEASE && 
-    //     glfwGetKey(window, GLFW_KEY_KP_ADD) == GLFW_RELEASE) {
-    //     plusKeyWasPressed = false;
-    // }
-    
-    // // Diminuer la résolution (touches - ou KP_SUBTRACT)
-    // static bool minusKeyWasPressed = false;
-    // if ((glfwGetKey(window, GLFW_KEY_MINUS) == GLFW_PRESS || 
-    //      glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS) && !minusKeyWasPressed) {
-    //     minusKeyWasPressed = true;
-    //     float currentRes = terrainNode->getTerrain().getResolution();
-    //     float newRes = currentRes * 2.0f;
-    //     terrainNode->getTerrain().setResolution(newRes);
-    //     terrainNode->regenerateMesh();
-    // }
-    // if (glfwGetKey(window, GLFW_KEY_MINUS) == GLFW_RELEASE && 
-    //     glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_RELEASE) {
-    //     minusKeyWasPressed = false;
-    // }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
