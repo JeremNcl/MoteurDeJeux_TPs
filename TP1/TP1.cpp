@@ -25,6 +25,7 @@ using namespace glm;
 #include <common/scene/camera.hpp>
 #include <common/scene/sceneGraph.hpp>
 #include <common/scene/meshNode.hpp>
+#include <common/terrain/terrainNode.hpp>
 
 
 void processInput(GLFWwindow *window, Camera& camera);
@@ -37,36 +38,6 @@ const unsigned int SCR_HEIGHT = 600;
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
-
-// planets parameters
-glm::vec3 sunCenter = glm::vec3(0.0f); // center of the sun
-float sunRotationSpeed = 5.0f; // degrees per second
-float sunRotationAngle = 0.0f; // current angle in degrees
-float sunRotationAngleRad = 0.0f; // current angle in radians
-glm::vec3 sunRotation = glm::vec3(0.0f); // current rotation for sun
-
-float earthOrbitSpeed = 20.0f; // degrees per second
-float earthOrbitAngle = 0.0f; // current orbit angle in degrees
-float earthOrbitAngleRad = 0.0f; // current orbit angle in radians
-glm::vec3 earthOrbitRotation = glm::vec3(0.0f); // current rotation for orbit
-
-float earthAxialTilt = glm::radians(23.5f); // axial tilt of the Earth in radians
-float earthRotationSpeed = 40.0f; // degrees per second
-float earthRotationAngle = 0.0f; // current rotation angle in degrees
-float earthRotationAngleRad = 0.0f; // current rotation angle in radians
-glm::vec3 earthRotation = glm::vec3(0.0f); // current rotation for earth
-
-float moonOrbitSpeed = 60.0f; // degrees per second
-float moonOrbitAngle = 0.0f; // current orbit angle in degrees
-float moonOrbitAngleRad = 0.0f; // current orbit angle in radians
-glm::vec3 moonOrbitRotation = glm::vec3(0.0f); // current rotation for orbit
-
-float moonAxialTilt = glm::radians(6.68f); // axial tilt of the Moon in radians
-float moonRotationSpeed = 20.0f; // degrees per second
-float moonRotationAngle = 0.0f; // current rotation angle in degrees
-float moonRotationAngleRad = 0.0f; // current rotation angle in radians
-glm::vec3 moonRotation = glm::vec3(0.0f); // current rotation for moon
-
 
 /*******************************************************************************/
 
@@ -118,8 +89,8 @@ int main( void )
     glfwPollEvents();
     glfwSetCursorPos(window, 1024/2, 768/2);
 
-    // Dark blue background
-    glClearColor(0.f, 0.f, 0.05f, 0.0f);
+    // Light blue background
+    glClearColor(0.39f, 0.65f, 0.85f, 0.85f);
 
     // Enable depth test
     glEnable(GL_DEPTH_TEST);
@@ -134,75 +105,105 @@ int main( void )
     glBindVertexArray(VertexArrayID);
 
     // Create and compile our GLSL program from the shaders
-    GLuint programID = LoadShaders("vertex_shader.glsl", "fragment_shader.glsl");
+    GLuint sunProgramID = LoadShaders("vertex_shader.glsl", "fragment_shader.glsl");
+    GLuint terrainProgramID = LoadShaders("vertex_shader.glsl", "terrain_shader.glsl");
 
     // Handle MVP matrix uniform
-    glUseProgram(programID);
-    GLuint MVP = glGetUniformLocation(programID, "MVP");
-    
+    glUseProgram(sunProgramID);
+    GLuint sunMVP = glGetUniformLocation(sunProgramID, "MVP");
+    glUseProgram(terrainProgramID);
+    GLuint terrainMVP = glGetUniformLocation(terrainProgramID, "MVP");
+
     // Configurer la caméra simple
     Camera camera;
-    camera.initialize(
-        glm::vec3(0.0f, 0.0f, 9.0f),      // position
-        glm::vec3(0.0f, 0.0f, 0.0f),      // target (regard vers le centre du soleil)
-        glm::vec3(0.0f, 1.0f, 0.0f),      // up
-        5.0f                              // speed
-    );
-    camera.setMode(FIXED_CAMERA, window);
+    // camera.initialize(
+    //     glm::vec3(0.0f, 0.0f, 9.0f),      // position
+    //     glm::vec3(0.0f, 0.0f, 0.0f),      // target (regard vers le centre du soleil)
+    //     glm::vec3(0.0f, 1.0f, 0.0f),      // up
+    //     5.0f                              // speed
+    // );
+    // camera.setMode(FIXED_CAMERA, window);
     
     // === CONSTRUCTION DU GRAPHE DE SCÈNE ===
     SceneGraph sceneGraph;
 
     // Chargement des textures
+    GLuint grassTexture = loadBMP_custom("textures/grass.bmp");
+    GLuint rockTexture = loadBMP_custom("textures/rock.bmp");
+    GLuint snowTexture = loadBMP_custom("textures/snowrocks.bmp");
     GLuint sunTexture = loadBMP_custom("textures/sun8k.bmp");
-    GLuint earthTexture = loadBMP_custom("textures/earth.bmp");
-    GLuint moonTexture = loadBMP_custom("textures/moon.bmp");
     
     // === CONSTRUCTION DES NŒUDS DE LA SCÈNE ===
-    // Soleil
+    // Soleil pour être sûr que ça marche
     auto sunMesh = Mesh::generateSphere(1.0f, 32, 16);
     auto sunNode = std::make_shared<MeshNode>("Sun", sunMesh);
-    sunNode->setShaderProgram(programID);
+    sunNode->setShaderProgram(sunProgramID);
     sunNode->setTexture(sunTexture);
+    // Placer le soleil au centre du terrain
+    sunNode->getTransform().setTranslation(glm::vec3(0, 50, 0)); // Y=50 pour qu'il soit au-dessus du terrain
     sceneGraph.getRoot()->addChild(sunNode);
 
-    // Orbite de la Terre
-    auto earthOrbitNode = std::make_shared<SceneNode>("Earth orbit");
-    sceneGraph.getRoot()->addChild(earthOrbitNode);
+    // Génération du terrain
+    Terrain terrain = Terrain();
+    terrain.loadHeightmap("heightmaps/heightmap_mountain.bmp"); 
+    terrain.setResolution(1.0f); 
 
-    // Terre
-    auto earthMesh = Mesh::generateSphere(1.0f, 32, 16); 
-    auto earthNode = std::make_shared<MeshNode>("Earth", earthMesh);
-    earthNode->setShaderProgram(programID);
-    earthNode->setTexture(earthTexture);
-    earthOrbitNode->addChild(earthNode);
+    // === DEBUG TERRAIN ===
+    printf("[DEBUG TERRAIN] Taille du terrain : %d x %d\n", terrain.getWidth(), terrain.getHeight());
+    // Afficher quelques valeurs de la heightmap (coin haut-gauche, centre, coin bas-droit)
+    if (!terrain.heightmap.empty()) {
+        int w = terrain.getWidth();
+        int h = terrain.getHeight();
+        printf("[DEBUG TERRAIN] Coin haut-gauche : %.3f\n", terrain.heightmap[0][0]);
+        printf("[DEBUG TERRAIN] Centre : %.3f\n", terrain.heightmap[h/2][w/2]);
+        printf("[DEBUG TERRAIN] Coin bas-droit : %.3f\n", terrain.heightmap[h-1][w-1]);
+    } else {
+        printf("[DEBUG TERRAIN] Heightmap vide !\n");
+    }
 
-    // Initialisation de la Terre
-    earthOrbitNode->getTransform().setTranslation(glm::vec3(5.0f, 0.0f, 0.0f));
-    earthOrbitNode->getTransform().scale(glm::vec3(0.3f));
+    // Génération du mesh du terrain 
+    auto terrainMesh = std::make_shared<Mesh>();
+    terrain.generateMesh(*terrainMesh);
 
-    // Orbite de la Lune
-    auto moonOrbitNode = std::make_shared<SceneNode>("Moon orbit");
-    earthOrbitNode->addChild(moonOrbitNode);
+    // === DEBUG MESH ===
+    printf("[DEBUG MESH] Nb vertices : %zu\n", terrainMesh->vertices.size());
+    printf("[DEBUG MESH] Nb indices : %zu\n", terrainMesh->indices.size());
+    if (!terrainMesh->vertices.empty()) {
+        auto& v0 = terrainMesh->vertices[0];
+        printf("[DEBUG MESH] Premier vertex : (%.3f, %.3f, %.3f)\n", v0.x, v0.y, v0.z);
+        auto& v1 = terrainMesh->vertices[1];
+        printf("[DEBUG MESH] Deuxième vertex : (%.3f, %.3f, %.3f)\n", v1.x, v1.y, v1.z);
+        auto& v513 = terrainMesh->vertices[513];
+        printf("[DEBUG MESH] 513ème vertex : (%.3f, %.3f, %.3f)\n", v513.x, v513.y, v513.z);
+    }
+    if (!terrainMesh->indices.empty()) {
+        printf("[DEBUG MESH] Premiers indices : %u, %u, %u\n", terrainMesh->indices[0], terrainMesh->indices.size() > 1 ? terrainMesh->indices[1] : 0, terrainMesh->indices.size() > 2 ? terrainMesh->indices[2] : 0);
+    }
+    if (!terrainMesh->uvs.empty()) {
+        auto& uv0 = terrainMesh->uvs[0];
+        printf("[DEBUG MESH] Premier UV : (%.3f, %.3f)\n", uv0.x, uv0.y);
+    }
+    if (!terrainMesh->normals.empty()) {
+        auto& n0 = terrainMesh->normals[0];
+        printf("[DEBUG MESH] Première normale : (%.3f, %.3f, %.3f)\n", n0.x, n0.y, n0.z);
+    }
+    
+    // Créer le nœud de terrain
+    std::shared_ptr<TerrainNode> terrainNode = std::make_shared<TerrainNode>("terrain", terrain, terrainMesh);
+    terrainNode->setShaderProgram(terrainProgramID);
+    terrainNode->setTextures(grassTexture, rockTexture, snowTexture);
+    terrainNode->setHeightParameters(40.0f, 100.0f, 10.0f); 
+    sceneGraph.getRoot()->addChild(terrainNode);
 
-    // Lune
-    auto moonMesh = Mesh::generateSphere(1.0f, 32, 16);
-    auto moonNode = std::make_shared<MeshNode>("Moon", moonMesh);
-    moonNode->setShaderProgram(programID);
-    moonNode->setTexture(moonTexture);
-    moonOrbitNode->addChild(moonNode);
-
-    // Initialisation de la Lune
-    moonOrbitNode->getTransform().scale(glm::vec3(0.3f));
-    moonOrbitNode->getTransform().setTranslation(glm::vec3(2.f, 0.0f, 0.0f));
-
+    // Recentrer le terrain
+    // terrainNode->getTransform().setTranslation(glm::vec3(terrain.getWidth() / -2.0f, 0, terrain.getHeight() / -2.0f));
+    
     printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
 
 
     // Get a handle for our "LightPosition" uniform
-    glUseProgram(programID);
-    GLuint lightID = glGetUniformLocation(programID, "LightPosition_worldspace");
-
+    glUseProgram(terrainProgramID);
+    GLuint lightID = glGetUniformLocation(terrainProgramID, "LightPosition_worldspace");
 
     // For speed computation
     double lastTime = glfwGetTime();
@@ -229,35 +230,7 @@ int main( void )
         glm::mat4 viewProjection = camera.getProjectionMatrix() * camera.getViewMatrix();
 
         // === Déplacer les objets de la scène ===
-        // Rotation du soleil
-        sunRotationAngle += deltaTime * sunRotationSpeed;
-        sunRotationAngleRad = glm::radians(sunRotationAngle);
-        sunRotation = glm::vec3(0.0f, sunRotationAngleRad, 0.0f);
-        sunNode->getTransform().setRotation(sunRotation);
         
-        // Orbite de la Terre autour du Soleil
-        earthOrbitAngle += deltaTime * earthOrbitSpeed;
-        earthOrbitAngleRad = glm::radians(earthOrbitAngle);
-        earthOrbitRotation = glm::vec3(0.0f, earthOrbitAngleRad, 0.0f);
-        earthOrbitNode->getTransform().setRotation(earthOrbitRotation);
-
-        // Rotation de la Terre sur elle-même
-        earthRotationAngle += deltaTime * earthRotationSpeed;
-        earthRotationAngleRad = glm::radians(earthRotationAngle);
-        earthRotation = glm::vec3(earthAxialTilt, earthRotationAngleRad, 0.0f);
-        earthNode->getTransform().setRotation(earthRotation);
-
-        // Orbite de la Lune autour de la Terre
-        moonOrbitAngle += deltaTime * moonOrbitSpeed;
-        moonOrbitAngleRad = glm::radians(moonOrbitAngle);
-        moonOrbitRotation = glm::vec3(0.0f, moonOrbitAngleRad, 0.0f);
-        moonOrbitNode->getTransform().setRotation(moonOrbitRotation);
-
-        // Rotation de la Lune sur elle même
-        moonRotationAngle += deltaTime * moonRotationSpeed;
-        moonRotationAngleRad = glm::radians(moonRotationAngle);
-        moonRotation = glm::vec3(moonAxialTilt, moonRotationAngleRad, 0.0f);
-        moonNode->getTransform().setRotation(moonRotation);
         
 
         // Mettre à jour et dessiner toute la scène via le graphe de scène
@@ -269,13 +242,13 @@ int main( void )
         glfwPollEvents();
 
     } // Check if the ESC key was pressed or the window was closed
-    while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-           glfwWindowShouldClose(window) == 0 );
+    while( (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) && (glfwWindowShouldClose(window) == 0) );
 
     // Cleanup
     MeshNode::clearMeshCache();
-    glDeleteTextures(1, &sunTexture);
-    glDeleteProgram(programID);
+    // delete textures
+    glDeleteProgram(sunProgramID);
+    glDeleteProgram(terrainProgramID);
     glDeleteVertexArrays(1, &VertexArrayID);
 
     // Close OpenGL window and terminate GLFW

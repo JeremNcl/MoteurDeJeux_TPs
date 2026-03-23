@@ -17,9 +17,6 @@ public:
     // Surcharge du rendu pour gérer le multi-texturing
     virtual void draw(const glm::mat4& viewProjection) override;
 
-    // Méthode virtuelle pour binder les textures
-    virtual void bindTextures() override;
-    
     // Configuration des textures du terrain
     void setTextures(GLuint textureLow, GLuint textureMid, GLuint textureHigh);
     void setHeightParameters(float heightLow, float heightMid, float blendRange);
@@ -30,7 +27,7 @@ public:
     
     // Régénération du mesh si le terrain change
     void regenerateMesh();
-    
+
 private:
     Terrain& terrain;
     
@@ -43,6 +40,9 @@ private:
     float height_low;
     float height_mid;
     float blend_range;
+
+    // Méthode virtuelle pour binder les textures 
+    virtual void bindTextures() override;
 };
 
 #endif

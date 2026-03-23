@@ -1,5 +1,6 @@
 #include "terrain.hpp"
 #include "heightmapLoader.hpp"
+#include "../scene/meshNode.hpp"
 
 #include <cmath>
 #include <algorithm>
@@ -120,14 +121,11 @@ void Terrain::setResolution(float step) {
            resolution, effectiveWidth, effectiveHeight);
 }
 
-void Terrain::generateMesh(std::vector<glm::vec3>& vertices, 
-                           std::vector<unsigned int>& indices,
-                           std::vector<glm::vec2>& uvs,
-                           std::vector<glm::vec3>& normals) {
-    vertices.clear();
-    indices.clear();
-    uvs.clear();
-    normals.clear();
+void Terrain::generateMesh(Mesh& mesh) {
+    mesh.vertices.clear();
+    mesh.indices.clear();
+    mesh.uvs.clear();
+    mesh.normals.clear();
 
     // Calcul de la taille effective du mesh
     int actualWidth = (int)std::round((width - 1) / resolution) + 1;
@@ -147,15 +145,15 @@ void Terrain::generateMesh(std::vector<glm::vec3>& vertices,
             v.y = sampleHeightBilinear(heightmap, width, height, x, z) * maxHeight;
             
             v.z = z;
-            vertices.push_back(v);
+            mesh.vertices.push_back(v);
             
             glm::vec2 uv;
             uv.x = x / float(width - 1);
             uv.y = z / float(height - 1);
-            uvs.push_back(uv);
+            mesh.uvs.push_back(uv);
             
             // Initialiser les normales à zéro (seront calculées après)
-            normals.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+            mesh.normals.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
         }
     }
 
@@ -168,22 +166,24 @@ void Terrain::generateMesh(std::vector<glm::vec3>& vertices,
             unsigned int bottomRight = (i + 1) + (j + 1) * actualWidth;
             
             // Triangle 1
-            indices.push_back(topLeft);
-            indices.push_back(bottomLeft);
-            indices.push_back(topRight);
+            mesh.indices.push_back(topLeft);
+            mesh.indices.push_back(bottomLeft);
+            mesh.indices.push_back(topRight);
             
             // Triangle 2
-            indices.push_back(topRight);
-            indices.push_back(bottomLeft);
-            indices.push_back(bottomRight);
+            mesh.indices.push_back(topRight);
+            mesh.indices.push_back(bottomLeft);
+            mesh.indices.push_back(bottomRight);
         }
     }
     
     // Calculer les normales
-    calculateNormals(vertices, indices, normals);
+    calculateNormals(mesh.vertices, mesh.indices, mesh.normals);
+
+    mesh.uploadToGPU();
     
     printf("Mesh generated: %zu vertices, %zu indices (resolution step: %.2f)\n", 
-           vertices.size(), indices.size(), resolution);
+           mesh.vertices.size(), mesh.indices.size(), resolution);
 }
 
 void Terrain::calculateNormals(const std::vector<glm::vec3>& vertices,

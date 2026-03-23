@@ -61,6 +61,15 @@ void TerrainNode::draw(const glm::mat4& viewProjection) {
         SceneNode::draw(viewProjection);
         return;
     }
+
+    if (!mesh->hasGPUData()) {
+        mesh->uploadToGPU();
+    }
+
+    if (shaderProgram == 0) {
+        SceneNode::draw(viewProjection);
+        return;
+    }
     
     // Utiliser le shader du mesh
     glUseProgram(mesh->shaderProgram);
@@ -136,34 +145,5 @@ void TerrainNode::draw(const glm::mat4& viewProjection) {
 void TerrainNode::regenerateMesh() {
     if (!mesh) return;
     
-    std::vector<glm::vec3> vertices;
-    std::vector<unsigned int> indices;
-    std::vector<glm::vec2> uvs;
-    std::vector<glm::vec3> normals;
-    
-    // Regénérer la géométrie du terrain
-    terrain.generateMesh(vertices, indices, uvs, normals);
-    
-    // Mettre à jour le compteur
-    mesh->indexCount = indices.size();
-    
-    // Mettre à jour les buffers OpenGL
-    glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), 
-                 &vertices[0], GL_STATIC_DRAW);
-    
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), 
-                 &indices[0], GL_STATIC_DRAW);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, mesh->uvBuffer);
-    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), 
-                 &uvs[0], GL_STATIC_DRAW);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, mesh->normalBuffer);
-    glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), 
-                 &normals[0], GL_STATIC_DRAW);
-    
-    std::cout << "Terrain mesh regenerated: " << vertices.size() << " vertices, " 
-              << indices.size() / 3 << " triangles" << std::endl;
+    terrain.generateMesh(*mesh);
 }
