@@ -47,10 +47,19 @@ float sampleHeightBilinear(const std::vector<std::vector<float>>& hm, int hmWidt
 }
 }
 
-Terrain::Terrain() 
-    : width(16), height(16), maxHeight(50.0f), resolution(1.0f) {}
 
+// === CONSTRUCTEUR ===
+Terrain::Terrain(): 
+    width(16),
+    height(16),
+    maxHeight(50.0f),
+    resolution(1.0f) 
+{}
+
+
+// === GENERATION DE TERRAIN ===
 bool Terrain::loadHeightmap(const std::string& filepath, float maxHeight) {
+    
     this->maxHeight = maxHeight;
     
     int hmWidth, hmHeight;
@@ -94,31 +103,6 @@ void Terrain::generateFlatPlane(int w, int h) {
     height = h;
     heightmap.clear();
     printf("Generated flat plane: %dx%d\n", width, height);
-}
-
-void Terrain::setResolution(float step) {
-    // Contraindre aux puissances de 2 : 0.25, 0.5, 1, 2, 4, 8, 16, ...
-    float minStep = 0.25f;
-    float maxStep = (width - 1) / 4.0f;  // Au minimum 4 quads par dimension
-    
-    // Snap à la puissance de 2 la plus proche
-    if (step < minStep) step = minStep;
-    if (step > maxStep) step = maxStep;
-    
-    // Trouver la puissance de 2 la plus proche
-    float logStep = std::log2(step);
-    float rounded = std::round(logStep);
-    step = std::pow(2.0f, rounded);
-    
-    // Re-vérifier les bornes après snap
-    if (step < minStep) step = minStep;
-    if (step > maxStep) step = maxStep;
-    
-    resolution = step;
-    int effectiveWidth = (int)std::round((width - 1) / resolution) + 1;
-    int effectiveHeight = (int)std::round((height - 1) / resolution) + 1;
-    printf("Résolution changée: step = %.2f (taille effective: %dx%d)\n", 
-           resolution, effectiveWidth, effectiveHeight);
 }
 
 void Terrain::generateMesh(Mesh& mesh) {
@@ -178,50 +162,48 @@ void Terrain::generateMesh(Mesh& mesh) {
     }
     
     mesh.computeNormals();
-    // Calculer les normales
-    // calculateNormals(mesh.vertices, mesh.indices, mesh.normals);
     
     printf("Mesh generated: %zu vertices, %zu indices (resolution step: %.2f)\n", 
            mesh.vertices.size(), mesh.indices.size(), resolution);
 }
 
-void Terrain::calculateNormals(const std::vector<glm::vec3>& vertices,
-                                const std::vector<unsigned int>& indices,
-                                std::vector<glm::vec3>& normals) {
-    // Pour chaque triangle, calculer la normale et l'ajouter aux normales des sommets
-    for (size_t i = 0; i < indices.size(); i += 3) {
-        unsigned int id0 = indices[i];
-        unsigned int id1 = indices[i + 1];
-        unsigned int id2 = indices[i + 2];
-        
-        glm::vec3 v0 = vertices[id0];
-        glm::vec3 v1 = vertices[id1];
-        glm::vec3 v2 = vertices[id2];
-        
-        // Calculer les vecteurs des arêtes du triangle
-        glm::vec3 edge1 = v1 - v0;
-        glm::vec3 edge2 = v2 - v0;
-        
-        // Normale du triangle (produit vectoriel)
-        glm::vec3 triangleNormal = glm::normalize(glm::cross(edge1, edge2));
-        
-        // Ajouter cette normale aux trois sommets du triangle
-        normals[id0] += triangleNormal;
-        normals[id1] += triangleNormal;
-        normals[id2] += triangleNormal;
-    }
+
+// === GESTION DE LA RÉSOLUTION (LOD) ===
+
+void Terrain::setResolution(float step) {
+    // Contraindre aux puissances de 2 : 0.25, 0.5, 1, 2, 4, 8, 16, ...
+    float minStep = 0.25f;
+    float maxStep = (width - 1) / 4.0f;  // Au minimum 4 quads par dimension
     
-    // Normaliser toutes les normales des sommets
-    for (size_t i = 0; i < normals.size(); i++) {
-        normals[i] = glm::normalize(normals[i]);
-    }
+    // Snap à la puissance de 2 la plus proche
+    if (step < minStep) step = minStep;
+    if (step > maxStep) step = maxStep;
     
-    printf("Normals calculated for %zu vertices\n", normals.size());
+    // Trouver la puissance de 2 la plus proche
+    float logStep = std::log2(step);
+    float rounded = std::round(logStep);
+    step = std::pow(2.0f, rounded);
+    
+    // Re-vérifier les bornes après snap
+    if (step < minStep) step = minStep;
+    if (step > maxStep) step = maxStep;
+    
+    resolution = step;
+    int effectiveWidth = (int)std::round((width - 1) / resolution) + 1;
+    int effectiveHeight = (int)std::round((height - 1) / resolution) + 1;
+    printf("Résolution changée: step = %.2f (taille effective: %dx%d)\n", 
+           resolution, effectiveWidth, effectiveHeight);
 }
 
+
+// === GETTERS ===
+
 glm::vec3 Terrain::getCenterPosition() const {
-    return glm::vec3(width / 2.0f, 0.0f, height / 2.0f);
+    return glm::vec3(width / 2.0f, maxHeight / 2.0f, height / 2.0f);
 }
+
+
+// === CALCUL DE VUE CAMÉRA ===
 
 CameraSetup Terrain::getOptimalIsometricView() const {
     CameraSetup setup;

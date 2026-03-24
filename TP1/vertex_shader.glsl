@@ -17,5 +17,5 @@ void main(){
         // TODO : Output position of the vertex, in clip space : MVP * position
         gl_Position = MVP * vec4(vertices_position_modelspace,1);
         vUV = uv;
-        vHeight = vertices_position_modelspace.y;  // Hauteur du vertex
+        vHeight = vertices_position_modelspace.y; // Hauteur du vertex
 }
