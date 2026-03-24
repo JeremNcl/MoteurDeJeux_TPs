@@ -6,13 +6,16 @@ in vec2 vUV;
 // Ouput data
 out vec3 color;
 
-// Uniforms - Textures pour différentes hauteurs
+// Uniforms
+uniform bool hasTexture;
 uniform sampler2D textureSampler;
 
 
 void main(){
-    vec3 tex = texture(textureSampler, vUV).rgb;
-    
-    // Mélanger les textures en fonction de la hauteur
-    color = tex;
+    if (hasTexture) {
+        vec3 tex = texture(textureSampler, vUV).rgb;
+        color = tex;
+    } else {
+        color = vec3(0.2, 0.4, 0.8);
+    }
 }

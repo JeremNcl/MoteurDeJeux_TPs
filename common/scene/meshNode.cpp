@@ -120,11 +120,23 @@ void MeshNode::deleteBuffers() {
 
 void MeshNode::bindTextures() {
     if (texture != 0) {
+        // Indique au shader qu'il y a une texture
+        GLuint hasTextureID = glGetUniformLocation(shaderProgram, "hasTexture");
+        if (hasTextureID != (GLuint)-1) {
+            glUniform1i(hasTextureID, 1);
+        }
+        // Binder la texture
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
         GLuint textureID = glGetUniformLocation(shaderProgram, "textureSampler");
         if (textureID != (GLuint)-1) {
             glUniform1i(textureID, 0);
+        }
+    } else {
+        // Indique au shader qu'il n'y a pas de texture
+        GLuint hasTextureID = glGetUniformLocation(shaderProgram, "hasTexture");
+        if (hasTextureID != (GLuint)-1) {
+            glUniform1i(hasTextureID, 0);
         }
     }
 }
