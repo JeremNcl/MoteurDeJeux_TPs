@@ -42,16 +42,14 @@ float lastFrame = 0.0f;
 /*******************************************************************************/
 
 
-int main( void )
-{
-    // Initialise GLFW
-    if( !glfwInit() )
-    {
+int main( void ) {
+    
+    // Initialisation de GLFW
+    if( !glfwInit() ) {
         fprintf(stderr, "Failed to initialize GLFW\n");
         getchar();
         return -1;
     }
-
     glfwWindowHint(GLFW_SAMPLES, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -82,8 +80,6 @@ int main( void )
 
     // Ensure we can capture the escape key being pressed below
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
-    // Hide the mouse and enable unlimited mouvement
-    // glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // Set the mouse at the center of the screen
     glfwPollEvents();
@@ -100,110 +96,77 @@ int main( void )
     // Cull triangles which normal is not towards the camera
     // glEnable(GL_CULL_FACE);
 
+    // Create and compile our GLSL program from the shaders
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
 
     // Create and compile our GLSL program from the shaders
-    GLuint sunProgramID = LoadShaders("vertex_shader.glsl", "fragment_shader.glsl");
+    GLuint meshesProgramID = LoadShaders("vertex_shader.glsl", "fragment_shader.glsl");
     GLuint terrainProgramID = LoadShaders("vertex_shader.glsl", "terrain_shader.glsl");
 
     // Handle MVP matrix uniform
-    glUseProgram(sunProgramID);
-    GLuint sunMVP = glGetUniformLocation(sunProgramID, "MVP");
+    glUseProgram(meshesProgramID);
+    GLuint meshesMVP = glGetUniformLocation(meshesProgramID, "MVP");
     glUseProgram(terrainProgramID);
     GLuint terrainMVP = glGetUniformLocation(terrainProgramID, "MVP");
 
-    // Configurer la caméra simple
-    Camera camera;
-    // camera.initialize(
-    //     glm::vec3(0.0f, 0.0f, 9.0f),      // position
-    //     glm::vec3(0.0f, 0.0f, 0.0f),      // target (regard vers le centre du soleil)
-    //     glm::vec3(0.0f, 1.0f, 0.0f),      // up
-    //     5.0f                              // speed
-    // );
-    // camera.setMode(FIXED_CAMERA, window);
     
-    // === CONSTRUCTION DU GRAPHE DE SCÈNE ===
-    SceneGraph sceneGraph;
-
+    // === INITIALISATION DE LA SCÈNE ===
+    
     // Chargement des textures
     GLuint grassTexture = loadBMP_custom("textures/grass.bmp");
     GLuint rockTexture = loadBMP_custom("textures/rock.bmp");
     GLuint snowTexture = loadBMP_custom("textures/snowrocks.bmp");
     GLuint sunTexture = loadBMP_custom("textures/sun8k.bmp");
     
-    // === CONSTRUCTION DES NŒUDS DE LA SCÈNE ===
-    // Soleil pour être sûr que ça marche
-    auto sunMesh = Mesh::generateSphere(1.0f, 32, 16);
-    auto sunNode = std::make_shared<MeshNode>("Sun", sunMesh);
-    sunNode->setShaderProgram(sunProgramID);
-    sunNode->setTexture(sunTexture);
-    // Placer le soleil au centre du terrain
-    sunNode->getTransform().setTranslation(glm::vec3(0, 50, 0)); // Y=50 pour qu'il soit au-dessus du terrain
-    sceneGraph.getRoot()->addChild(sunNode);
+    // Construction du graphe de scène
+    SceneGraph sceneGraph;
 
-    // Génération du terrain
+    // Création du terrain
     Terrain terrain = Terrain();
-    terrain.loadHeightmap("heightmaps/heightmap_mountain.bmp"); 
-    terrain.setResolution(1.0f); 
-
-    // === DEBUG TERRAIN ===
-    printf("[DEBUG TERRAIN] Taille du terrain : %d x %d\n", terrain.getWidth(), terrain.getHeight());
-    // Afficher quelques valeurs de la heightmap (coin haut-gauche, centre, coin bas-droit)
-    if (!terrain.heightmap.empty()) {
-        int w = terrain.getWidth();
-        int h = terrain.getHeight();
-        printf("[DEBUG TERRAIN] Coin haut-gauche : %.3f\n", terrain.heightmap[0][0]);
-        printf("[DEBUG TERRAIN] Centre : %.3f\n", terrain.heightmap[h/2][w/2]);
-        printf("[DEBUG TERRAIN] Coin bas-droit : %.3f\n", terrain.heightmap[h-1][w-1]);
-    } else {
-        printf("[DEBUG TERRAIN] Heightmap vide !\n");
-    }
-
+    terrain.loadHeightmap("heightmaps/heightmap_mountain.bmp", 120.0f);
     // Génération du mesh du terrain 
     auto terrainMesh = std::make_shared<Mesh>();
     terrain.generateMesh(*terrainMesh);
-
-    // === DEBUG MESH ===
-    printf("[DEBUG MESH] Nb vertices : %zu\n", terrainMesh->vertices.size());
-    printf("[DEBUG MESH] Nb indices : %zu\n", terrainMesh->indices.size());
-    if (!terrainMesh->vertices.empty()) {
-        auto& v0 = terrainMesh->vertices[0];
-        printf("[DEBUG MESH] Premier vertex : (%.3f, %.3f, %.3f)\n", v0.x, v0.y, v0.z);
-        auto& v1 = terrainMesh->vertices[1];
-        printf("[DEBUG MESH] Deuxième vertex : (%.3f, %.3f, %.3f)\n", v1.x, v1.y, v1.z);
-        auto& v513 = terrainMesh->vertices[513];
-        printf("[DEBUG MESH] 513ème vertex : (%.3f, %.3f, %.3f)\n", v513.x, v513.y, v513.z);
-    }
-    if (!terrainMesh->indices.empty()) {
-        printf("[DEBUG MESH] Premiers indices : %u, %u, %u\n", terrainMesh->indices[0], terrainMesh->indices.size() > 1 ? terrainMesh->indices[1] : 0, terrainMesh->indices.size() > 2 ? terrainMesh->indices[2] : 0);
-    }
-    if (!terrainMesh->uvs.empty()) {
-        auto& uv0 = terrainMesh->uvs[0];
-        printf("[DEBUG MESH] Premier UV : (%.3f, %.3f)\n", uv0.x, uv0.y);
-    }
-    if (!terrainMesh->normals.empty()) {
-        auto& n0 = terrainMesh->normals[0];
-        printf("[DEBUG MESH] Première normale : (%.3f, %.3f, %.3f)\n", n0.x, n0.y, n0.z);
-    }
-    
-    // Créer le nœud de terrain
+    // Créer du nœud du terrain
     std::shared_ptr<TerrainNode> terrainNode = std::make_shared<TerrainNode>("terrain", terrain, terrainMesh);
     terrainNode->setShaderProgram(terrainProgramID);
     terrainNode->setTextures(grassTexture, rockTexture, snowTexture);
     terrainNode->setHeightParameters(40.0f, 100.0f, 10.0f); 
+    // Ajout au graphe de scène
     sceneGraph.getRoot()->addChild(terrainNode);
 
-    // Recentrer le terrain
-    // terrainNode->getTransform().setTranslation(glm::vec3(terrain.getWidth() / -2.0f, 0, terrain.getHeight() / -2.0f));
-    
+    // Création du mesh du lapin
+    auto bunnyMesh = Mesh::loadFromOFF("meshes/suzan.off");
+    // Création du nœud du lapin
+    auto bunnyNode = std::make_shared<MeshNode>("Bunny", bunnyMesh);
+    bunnyNode->setShaderProgram(meshesProgramID);
+    bunnyNode->setTexture(sunTexture);
+    // Positionner le lapin au centre du terrain
+    glm::vec3 terrainCenter = terrain.getCenterPosition();
+    bunnyNode->getTransform().setTranslation(terrain.getCenterPosition());
+    bunnyNode->getTransform().setScale(glm::vec3(3.0f));
+    // Ajout au graphe de scène
+    sceneGraph.getRoot()->addChild(bunnyNode);
+
     printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
 
+    // Initialisation de la caméra
+    Camera camera;
+    CameraSetup cameraSetup = terrain.getOptimalIsometricView();
+    camera.initialize(
+        cameraSetup.position,
+        cameraSetup.target,
+        cameraSetup.up,
+        cameraSetup.speed// 50.0f
+    );
+    camera.setMode(FIXED_CAMERA, window);
 
-    // Get a handle for our "LightPosition" uniform
-    glUseProgram(terrainProgramID);
-    GLuint lightID = glGetUniformLocation(terrainProgramID, "LightPosition_worldspace");
+
+    // // Get a handle for our "LightPosition" uniform
+    // glUseProgram(terrainProgramID);
+    // GLuint lightID = glGetUniformLocation(terrainProgramID, "LightPosition_worldspace");
 
     // For speed computation
     double lastTime = glfwGetTime();
@@ -212,7 +175,6 @@ int main( void )
     do{
         // Measure speed
         // per-frame time logic
-        // --------------------
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
@@ -247,9 +209,8 @@ int main( void )
     // Cleanup
     MeshNode::clearMeshCache();
     // delete textures
-    glDeleteProgram(sunProgramID);
+    glDeleteProgram(meshesProgramID);
     glDeleteProgram(terrainProgramID);
-    glDeleteVertexArrays(1, &VertexArrayID);
 
     // Close OpenGL window and terminate GLFW
     glfwTerminate();
