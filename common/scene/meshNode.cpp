@@ -5,19 +5,120 @@
 #include <vector>
 #include <iostream>
 
-MeshNode::MeshNode(const std::string& name, std::shared_ptr<Mesh> mesh)
-    : SceneNode(name)
-    , mesh(mesh)
-    , shaderProgram(0)
-    , texture(0)
+
+// === CONSTRUCTEURS ===
+
+MeshNode::MeshNode(const std::string& name, std::shared_ptr<Mesh> mesh):
+    SceneNode(name),
+    mesh(mesh), 
+    vertexBuffer(0),
+    indexBuffer(0),
+    uvBuffer(0),
+    normalBuffer(0),
+    indexCount(0),
+    texture(0),
+    shaderProgram(0)
 {}
 
-MeshNode::~MeshNode() {
-    // Le mesh est géré par shared_ptr, donc libération automatique
+// Chargement depuis fichier OFF
+std::shared_ptr<MeshNode> MeshNode::loadFromOFF(const std::string& filename, GLuint shaderProgram, const std::string& nodeName, bool enableCache)
+{
+    // Chargement du mesh
+    auto mesh = Mesh::loadFromOFF(filename, enableCache);
+    // Vérification
+    if (!mesh) {
+        return nullptr;
+    }
+
+    // Calcul des normales et UVs si absents
+    if (mesh->normals.empty()) {
+        mesh->computeNormals();
+    }
+    if (mesh->uvs.empty()) {
+        mesh->computeUVs();
+    }
+
+    // Création du nœud
+    auto node = std::make_shared<MeshNode>(nodeName, mesh);
+    node->setShaderProgram(shaderProgram);
+    node->bindBuffers();
+
+    return node;
 }
 
+
+// === DESTRUCTEUR ===
+
+MeshNode::~MeshNode() {
+    deleteBuffers();
+}
+
+
+// === GESTION DES BUFFERS ET TEXTURES ===
+
+bool MeshNode::hasBindedBuffers() const {
+    return vertexBuffer != 0 && indexBuffer != 0 && indexCount > 0;
+}
+
+void MeshNode::bindBuffers()
+{
+    if (mesh->vertices.empty() || mesh->indices.empty()) {
+        return;
+    }
+
+    if (vertexBuffer == 0) {
+        glGenBuffers(1, &vertexBuffer);
+    }
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, mesh->vertices.size() * sizeof(glm::vec3), mesh->vertices.data(), GL_STATIC_DRAW);
+
+    if (indexBuffer == 0) {
+        glGenBuffers(1, &indexBuffer);
+    }
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->indices.size() * sizeof(unsigned int), mesh->indices.data(), GL_STATIC_DRAW);
+
+    if (!mesh->uvs.empty()) {
+        if (uvBuffer == 0) {
+            glGenBuffers(1, &uvBuffer);
+        }
+        glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+        glBufferData(GL_ARRAY_BUFFER, mesh->uvs.size() * sizeof(glm::vec2), mesh->uvs.data(), GL_STATIC_DRAW);
+    }
+
+    if (!mesh->normals.empty()) {
+        if (normalBuffer == 0) {
+            glGenBuffers(1, &normalBuffer);
+        }
+        glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
+        glBufferData(GL_ARRAY_BUFFER, mesh->normals.size() * sizeof(glm::vec3), mesh->normals.data(), GL_STATIC_DRAW);
+    }
+
+    indexCount = mesh->indices.size();
+}
+
+void MeshNode::deleteBuffers() {
+    
+    if (vertexBuffer != 0) {
+        glDeleteBuffers(1, &vertexBuffer);
+        vertexBuffer = 0;
+    }
+    if (indexBuffer != 0) {
+        glDeleteBuffers(1, &indexBuffer);
+        indexBuffer = 0;
+    }
+    if (uvBuffer != 0) {
+        glDeleteBuffers(1, &uvBuffer);
+        uvBuffer = 0;
+    }
+    if (normalBuffer != 0) {
+        glDeleteBuffers(1, &normalBuffer);
+        normalBuffer = 0;
+    }
+}
+
+
 void MeshNode::bindTextures() {
-    // Binder la texture unique (mesh simple)
     if (texture != 0) {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
@@ -28,17 +129,22 @@ void MeshNode::bindTextures() {
     }
 }
 
+
+// === RENDU ===
+
 void MeshNode::draw(const glm::mat4& viewProjection) {
-    if (!isActive || !mesh || mesh->indexCount == 0) {
+    
+    // Vérification du mesh
+    if (!isActive || !mesh || mesh->indices.size() == 0) {
         // Dessiner quand même les enfants
         SceneNode::draw(viewProjection);
         return;
     }
-
-    if (!mesh->hasGPUData()) {
-        mesh->uploadToGPU();
+    // Vérification des buffers
+    if (!hasBindedBuffers()) {
+        bindBuffers();
     }
-
+    // Vérification du shader
     if (shaderProgram == 0) {
         SceneNode::draw(viewProjection);
         return;
@@ -47,84 +153,62 @@ void MeshNode::draw(const glm::mat4& viewProjection) {
     // Utiliser le shader du mesh
     glUseProgram(shaderProgram);
     
-    // Calculer la matrice MVP
+    // Calcul des matrices
     glm::mat4 model = transform->getWorldMatrix();
     glm::mat4 MVP = viewProjection * model;
     
-    // Envoyer la matrice MVP au shader
+    // Envoi de la matrice MVP au shader
     GLuint mvpID = glGetUniformLocation(shaderProgram, "MVP");
     if (mvpID != (GLuint)-1) {
         glUniformMatrix4fv(mvpID, 1, GL_FALSE, &MVP[0][0]);
     }
     
-    // Envoyer la matrice Model au shader (pour l'éclairage)
+    // Envoi de la matrice Model au shader
     GLuint modelID = glGetUniformLocation(shaderProgram, "M");
     if (modelID != (GLuint)-1) {
         glUniformMatrix4fv(modelID, 1, GL_FALSE, &model[0][0]);
     }
     
+    // Binder les textures
     bindTextures();
     
     // Vertices
     glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     
     // UVs (si présents)
-    if (mesh->uvBuffer != 0) {
+    if (uvBuffer != 0) {
         glEnableVertexAttribArray(1);
-        glBindBuffer(GL_ARRAY_BUFFER, mesh->uvBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
     }
     
     // Normals (si présents)
-    if (mesh->normalBuffer != 0) {
+    if (normalBuffer != 0) {
         glEnableVertexAttribArray(2);
-        glBindBuffer(GL_ARRAY_BUFFER, mesh->normalBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
         glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     }
     
     // Index buffer
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->indexBuffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
     
     // Dessiner
-    glDrawElements(GL_TRIANGLES, mesh->indexCount, GL_UNSIGNED_INT, (void*)0);
+    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, (void*)0);
     
     // Désactiver les attributs
     glDisableVertexAttribArray(0);
-    if (mesh->uvBuffer != 0) glDisableVertexAttribArray(1);
-    if (mesh->normalBuffer != 0) glDisableVertexAttribArray(2);
+    if (uvBuffer != 0) glDisableVertexAttribArray(1);
+    if (normalBuffer != 0) glDisableVertexAttribArray(2);
     
     // Dessiner les enfants
     SceneNode::draw(viewProjection);
 }
 
-// === Chargement optimisé depuis fichier OFF ===
-std::shared_ptr<MeshNode> MeshNode::loadFromOFF(
-    const std::string& filename,
-    GLuint shaderProgram,
-    const std::string& nodeName,
-    bool enableCache) {
-    auto mesh = Mesh::loadFromOFF(filename, enableCache);
-    if (!mesh) {
-        return nullptr;
-    }
 
-    if (mesh->normals.empty()) {
-        mesh->computeNormals();
-    }
-    if (mesh->uvs.empty()) {
-        mesh->computeUVs();
-    }
+// === GESTION DU CACHE DE MESHES ===
 
-    mesh->uploadToGPU();
-
-    auto node = std::make_shared<MeshNode>(nodeName, mesh);
-    node->setShaderProgram(shaderProgram);
-    return node;
-}
-
-void MeshNode::clearMeshCache()
-{
+void MeshNode::clearMeshCache() {
     Mesh::clearMeshCache();
 }

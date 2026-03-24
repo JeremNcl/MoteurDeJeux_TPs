@@ -7,24 +7,59 @@
 #include <glm/gtc/constants.hpp>
 
 
+// === CACHE DE MESHES ===
 std::unordered_map<std::string, std::shared_ptr<Mesh>> Mesh::meshCache;
 
-Mesh::Mesh(): 
-    vertexBuffer(0),
-    indexBuffer(0),
-    uvBuffer(0),
-    normalBuffer(0),
-    indexCount(0),
-    texture(0)
-{}
 
-Mesh::~Mesh()
-{
-    releaseGPU();
+// === CONSTRUCTEURS ===
+
+Mesh::Mesh(){}
+
+std::shared_ptr<Mesh> Mesh::generateSphere(float radius, int meridianCount, int parallelCount) {
+    
+    auto mesh = std::make_shared<Mesh>();
+    mesh->vertices.clear();
+    mesh->uvs.clear();
+    mesh->indices.clear();
+    mesh->normals.clear();
+
+    for (int j = 0; j <= parallelCount; ++j) {
+        float v = float(j) / float(parallelCount);
+        float theta = v * glm::pi<float>();
+        for (int i = 0; i <= meridianCount; ++i) {
+            float u = float(i) / float(meridianCount);
+            float phi = u * 2.0f * glm::pi<float>();
+            float x = radius * std::sin(theta) * std::cos(phi);
+            float y = radius * std::cos(theta);
+            float z = radius * std::sin(theta) * std::sin(phi);
+            mesh->vertices.emplace_back(x, y, z);
+            mesh->uvs.emplace_back(u, 1.0f - v); 
+            mesh->normals.emplace_back(glm::normalize(glm::vec3(x, y, z)));
+        }
+    }
+
+    for (int j = 0; j < parallelCount; ++j) {
+        for (int i = 0; i < meridianCount; ++i) {
+            int curr = j * (meridianCount + 1) + i;
+            int next = (j + 1) * (meridianCount + 1) + i;
+            mesh->indices.push_back(curr);
+            mesh->indices.push_back(next);
+            mesh->indices.push_back(curr + 1);
+
+            mesh->indices.push_back(curr + 1);
+            mesh->indices.push_back(next);
+            mesh->indices.push_back(next + 1);
+        }
+    }
+
+    mesh->setMeridianCount(meridianCount);
+    mesh->setParallelCount(parallelCount);
+    return mesh;
 }
 
-std::shared_ptr<Mesh> Mesh::loadFromOFF(const std::string& filename, bool enableCache)
-{
+// Chargement depuis fichier OFF (avec cache optionnel)
+std::shared_ptr<Mesh> Mesh::loadFromOFF(const std::string& filename, bool enableCache) {
+    
     if (enableCache) {
         auto it = meshCache.find(filename);
         if (it != meshCache.end()) {
@@ -41,8 +76,6 @@ std::shared_ptr<Mesh> Mesh::loadFromOFF(const std::string& filename, bool enable
         return nullptr;
     }
 
-    mesh->indexCount = mesh->indices.size();
-
     if (enableCache) {
         meshCache[filename] = mesh;
     }
@@ -54,11 +87,13 @@ std::shared_ptr<Mesh> Mesh::loadFromOFF(const std::string& filename, bool enable
     return mesh;
 }
 
-void Mesh::clearMeshCache()
-{
-    std::cout << "Vidage du cache de meshes (" << meshCache.size() << " entrées)" << std::endl;
-    meshCache.clear();
-}
+
+// === DESTRUCTEUR ===
+
+Mesh::~Mesh(){}
+
+
+// === CALCUL DES NORMALES ET UVs ===
 
 void Mesh::computeNormals()
 {
@@ -110,108 +145,10 @@ void Mesh::computeUVs()
     }
 }
 
-void Mesh::uploadToGPU()
-{
-    if (vertices.empty() || indices.empty()) {
-        return;
-    }
 
-    if (vertexBuffer == 0) {
-        glGenBuffers(1, &vertexBuffer);
-    }
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
+// === GESTION DU CACHE DE MESHES ===
 
-    if (indexBuffer == 0) {
-        glGenBuffers(1, &indexBuffer);
-    }
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
-
-    if (!uvs.empty()) {
-        if (uvBuffer == 0) {
-            glGenBuffers(1, &uvBuffer);
-        }
-        glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
-        glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), uvs.data(), GL_STATIC_DRAW);
-    }
-
-    if (!normals.empty()) {
-        if (normalBuffer == 0) {
-            glGenBuffers(1, &normalBuffer);
-        }
-        glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
-        glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), normals.data(), GL_STATIC_DRAW);
-    }
-
-    indexCount = indices.size();
-}
-
-void Mesh::releaseGPU()
-{
-    if (vertexBuffer != 0) {
-        glDeleteBuffers(1, &vertexBuffer);
-        vertexBuffer = 0;
-    }
-    if (indexBuffer != 0) {
-        glDeleteBuffers(1, &indexBuffer);
-        indexBuffer = 0;
-    }
-    if (uvBuffer != 0) {
-        glDeleteBuffers(1, &uvBuffer);
-        uvBuffer = 0;
-    }
-    if (normalBuffer != 0) {
-        glDeleteBuffers(1, &normalBuffer);
-        normalBuffer = 0;
-    }
-}
-
-bool Mesh::hasGPUData() const
-{
-    return vertexBuffer != 0 && indexBuffer != 0 && indexCount > 0;
-}
-
-std::shared_ptr<Mesh> Mesh::generateSphere(float radius, int meridianCount, int parallelCount)
-{
-    auto mesh = std::make_shared<Mesh>();
-    mesh->vertices.clear();
-    mesh->uvs.clear();
-    mesh->indices.clear();
-    mesh->normals.clear();
-
-    for (int j = 0; j <= parallelCount; ++j) {
-        float v = float(j) / float(parallelCount);
-        float theta = v * glm::pi<float>();
-        for (int i = 0; i <= meridianCount; ++i) {
-            float u = float(i) / float(meridianCount);
-            float phi = u * 2.0f * glm::pi<float>();
-            float x = radius * std::sin(theta) * std::cos(phi);
-            float y = radius * std::cos(theta);
-            float z = radius * std::sin(theta) * std::sin(phi);
-            mesh->vertices.emplace_back(x, y, z);
-            mesh->uvs.emplace_back(u, 1.0f - v); 
-            mesh->normals.emplace_back(glm::normalize(glm::vec3(x, y, z)));
-        }
-    }
-
-    for (int j = 0; j < parallelCount; ++j) {
-        for (int i = 0; i < meridianCount; ++i) {
-            int curr = j * (meridianCount + 1) + i;
-            int next = (j + 1) * (meridianCount + 1) + i;
-            mesh->indices.push_back(curr);
-            mesh->indices.push_back(next);
-            mesh->indices.push_back(curr + 1);
-
-            mesh->indices.push_back(curr + 1);
-            mesh->indices.push_back(next);
-            mesh->indices.push_back(next + 1);
-        }
-    }
-
-    mesh->indexCount = mesh->indices.size();
-    mesh->setMeridianCount(meridianCount);
-    mesh->setParallelCount(parallelCount);
-    mesh->uploadToGPU();
-    return mesh;
+void Mesh::clearMeshCache() {
+    std::cout << "Vidage du cache de meshes (" << meshCache.size() << " entrées)" << std::endl;
+    meshCache.clear();
 }

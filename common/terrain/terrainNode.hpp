@@ -11,37 +11,40 @@
  */
 class TerrainNode : public MeshNode {
 public:
+    // === CONSTRUCTEUR ===
     TerrainNode(const std::string& name, Terrain& terrain, std::shared_ptr<Mesh> mesh = nullptr);
-    virtual ~TerrainNode();
     
-    // Surcharge du rendu pour gérer le multi-texturing
-    virtual void draw(const glm::mat4& viewProjection) override;
+    // === DESTRUCTEUR ===
+    virtual ~TerrainNode();
 
-    // Configuration des textures du terrain
+    // === SETTERS ===
     void setTextures(GLuint textureLow, GLuint textureMid, GLuint textureHigh);
     void setHeightParameters(float heightLow, float heightMid, float blendRange);
     
-    // Accès au terrain pour modification
+    // === GETTERS ===
     Terrain& getTerrain() { return terrain; }
     const Terrain& getTerrain() const { return terrain; }
+
+    // === RENDU ===
+    virtual void draw(const glm::mat4& viewProjection) override;
     
-    // Régénération du mesh si le terrain change
+    // === GESTION DU MESH ===
     void regenerateMesh();
 
 private:
+    // === TERRAIN ===
     Terrain& terrain;
     
-    // Textures multi-couches
+    // === TEXTURES ===
     GLuint texture_low;
     GLuint texture_mid;
     GLuint texture_high;
-    
     // Paramètres de blending des textures
     float height_low;
     float height_mid;
     float blend_range;
 
-    // Méthode virtuelle pour binder les textures 
+    // === GESTION DES TEXTURES ===
     virtual void bindTextures() override;
 };
 

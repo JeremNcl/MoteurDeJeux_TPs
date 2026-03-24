@@ -10,46 +10,41 @@
 
 class Mesh {
 public:
-    Mesh();
-    ~Mesh();
-
-    static std::shared_ptr<Mesh> loadFromOFF(const std::string& filename, bool enableCache = true);
-    static void clearMeshCache();
-
-    static std::shared_ptr<Mesh> generateSphere(float radius, int meridianCount, int parallelCount);
-
-    void computeNormals();
-    void computeUVs();
-
-    void uploadToGPU();
-    void releaseGPU();
-
-    bool hasGPUData() const;
-
+    // === ATTRIBUTS ===
     std::vector<glm::vec3> vertices;
     std::vector<glm::vec3> normals;
     std::vector<glm::vec2> uvs;
     std::vector<unsigned int> indices;
 
-    GLuint vertexBuffer;
-    GLuint indexBuffer;
-    GLuint uvBuffer;
-    GLuint normalBuffer;
-    size_t indexCount;
+    // === CONSTRUCTEUR ===
+    Mesh();
+    static std::shared_ptr<Mesh> generateSphere(float radius, int meridianCount, int parallelCount);
+    // Chargement depuis fichier OFF (avec cache optionnel)
+    static std::shared_ptr<Mesh> loadFromOFF(const std::string& filename, bool enableCache = true);
+    
+    // === DESTRUCTEUR ===
+    ~Mesh();
 
-    GLuint texture;
-    GLuint shaderProgram;
+    // === CALCUL DES NORMALES ET UVs ===
+    void computeNormals();
+    void computeUVs();
+
+    // === GESTION DU CACHE DE MESHES ===
+    static void clearMeshCache();
 
 private:
-    static std::unordered_map<std::string, std::shared_ptr<Mesh>> meshCache;
-
-    // Stockage des paramètres pour objets wrapés
+    // === PARAMETRES SPHERIQUES ===
     int meridianCount = 0;
     int parallelCount = 0;
+    // Getters
     int getMeridianCount() const { return meridianCount; }
     int getParallelCount() const { return parallelCount; }
+    // Setters
     void setMeridianCount(int m) { meridianCount = m; }
     void setParallelCount(int p) { parallelCount = p; }
+
+    // === CACHE DE MESHES ===
+    static std::unordered_map<std::string, std::shared_ptr<Mesh>> meshCache;
 };
 
 #endif

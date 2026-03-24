@@ -177,10 +177,9 @@ void Terrain::generateMesh(Mesh& mesh) {
         }
     }
     
+    mesh.computeNormals();
     // Calculer les normales
-    calculateNormals(mesh.vertices, mesh.indices, mesh.normals);
-
-    mesh.uploadToGPU();
+    // calculateNormals(mesh.vertices, mesh.indices, mesh.normals);
     
     printf("Mesh generated: %zu vertices, %zu indices (resolution step: %.2f)\n", 
            mesh.vertices.size(), mesh.indices.size(), resolution);

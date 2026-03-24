@@ -15,50 +15,48 @@
  */
 class MeshNode : public SceneNode {
 public:
+    // === CONSTRUCTEUR ===
     MeshNode(const std::string& name, std::shared_ptr<Mesh> mesh = nullptr);
+    // Constructeur de nœud à partir d'un fichier OFF (avec cache optionnel)
+    static std::shared_ptr<MeshNode> loadFromOFF(const std::string& filename, GLuint shaderProgram, const std::string& nodeName = "Mesh", bool enableCache = true);
+    
+    // === DESTRUCTEUR ===
     virtual ~MeshNode();
     
-    // Surcharge du rendu pour dessiner le mesh
+    // === SETTERS ===
+    void setMesh(std::shared_ptr<Mesh> mesh) { this->mesh = mesh; }
+    void setShaderProgram(GLuint shaderProgram) { this->shaderProgram = shaderProgram; }
+    void setTexture(GLuint texture) { this->texture = texture; }
+
+    // === GETTERS ===
+    std::shared_ptr<Mesh> getMesh() const { return mesh; }
+    GLuint getShaderProgram() const { return shaderProgram; }
+    GLuint getTexture() const { return texture; }
+
+    // === GESTION DES BUFFERS ET TEXTURES ===
+    bool hasBindedBuffers() const;
+    void bindBuffers();
+    void deleteBuffers();
+    virtual void bindTextures();
+
+    // === RENDU ===
     virtual void draw(const glm::mat4& viewProjection) override;
     
-    // Méthode virtuelle pour binder les textures
-    virtual void bindTextures();
-    
-    // Accesseurs du mesh
-    void setMesh(std::shared_ptr<Mesh> mesh) { this->mesh = mesh; }
-    std::shared_ptr<Mesh> getMesh() const { return mesh; }
-
-    void setShaderProgram(GLuint shaderProgram) { this->shaderProgram = shaderProgram; }
-    GLuint getShaderProgram() const { return shaderProgram; }
-
-    void setTexture(GLuint texture) { this->texture = texture; }
-    GLuint getTexture() const { return texture; }
-    
-    /**
-     * Charge un mesh depuis un fichier OFF (optimisé)
-     * @param filename Chemin du fichier OFF
-     * @param shaderProgram ID du program OpenGL à utiliser
-     * @param nodeName Nom du nœud
-     * @param enableCache Si true, le mesh sera mis en cache pour éviter les rechargements
-     * @return Pointeur partagé vers le MeshNode créé, nullptr en cas d'erreur
-     */
-    static std::shared_ptr<MeshNode> loadFromOFF(
-        const std::string& filename,
-        GLuint shaderProgram,
-        const std::string& nodeName = "Mesh",
-        bool enableCache = true
-    );
-    
-    /**
-     * Vide le cache des meshes chargés
-     * À appeler lors de la fermeture de l'application
-     */
+    // === GESTION DU CACHE DE MESHES ===
     static void clearMeshCache();
     
 protected:
+    // Mesh
     std::shared_ptr<Mesh> mesh;
-    GLuint shaderProgram;
+    // Buffers
+    GLuint vertexBuffer;
+    GLuint indexBuffer;
+    GLuint uvBuffer;
+    GLuint normalBuffer;
+    size_t indexCount;
+    // Texture et shader
     GLuint texture;
+    GLuint shaderProgram;
 };
 
 #endif
