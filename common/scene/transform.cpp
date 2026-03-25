@@ -10,25 +10,25 @@
 
 
 // === Constructeurs et destructeur ===
-Transform::Transform(std::weak_ptr<Transform> _parent)
-    : s(glm::vec3(1.0f)),
-      r(glm::mat3(1.0f)),
-      t(glm::vec3(0.0f)),
-      parent(_parent)
+Transform::Transform(std::weak_ptr<Transform> _parent): 
+    scaleVec(glm::vec3(1.0f)),
+    rotationMat(glm::mat4(1.0f)),
+    translationVec(glm::vec3(0.0f)),
+    parent(_parent)
 {}
 
-Transform::Transform(const glm::vec3& _s, const glm::mat3& _r, const glm::vec3& _t, std::weak_ptr<Transform> _parent)
-    : s(_s),
-      r(_r),
-      t(_t),
-      parent(_parent)
+Transform::Transform(const glm::vec3& _s, const glm::mat4& _r, const glm::vec3& _t, std::weak_ptr<Transform> _parent):
+    scaleVec(_s),
+    rotationMat(_r),
+    translationVec(_t),
+    parent(_parent)
 {}
 
-Transform::Transform(const Transform& _transform, std::weak_ptr<Transform> _parent)
-    : s(_transform.s),
-      r(_transform.r),
-      t(_transform.t),
-      parent(_parent)
+Transform::Transform(const Transform& _transform, std::weak_ptr<Transform> _parent):
+    scaleVec(_transform.scaleVec),
+    rotationMat(_transform.rotationMat),
+    translationVec(_transform.translationVec),
+    parent(_parent)
 {}
 
 Transform::~Transform() {
@@ -45,41 +45,18 @@ Transform::~Transform() {
     children.clear();
 }
 
+
 // === Getters ===
-glm::vec3 Transform::getWorldScale() const {
-    auto p = parent.lock();
-    if (!p) return s;
-
-    return p->getWorldScale() * s;
-}
-
-glm::mat3 Transform::getWorldRotation() const {
-    auto p = parent.lock();
-    if (!p) return r;
-
-    return p->getWorldRotation() * r;
-}
-
-glm::vec3 Transform::getWorldTranslation() const {
-    auto p = parent.lock();
-    if (!p) return t;
-
-    glm::vec3 parentScale = p->getWorldScale();
-    glm::mat3 parentRot   = p->getWorldRotation();
-    glm::vec3 parentPos   = p->getWorldTranslation();
-    glm::vec3 combinedTranslation = parentRot * (parentScale * t);
-
-    return parentPos + combinedTranslation;
+glm::mat4 Transform::getLocalMatrix() const {
+    glm::mat4 translationMat = glm::translate(glm::mat4(1.0f), translationVec);
+    glm::mat4 scaleMat = glm::scale(glm::mat4(1.0f), scaleVec);
+    return translationMat * rotationMat * scaleMat;
 }
 
 glm::mat4 Transform::getWorldMatrix() const {
     if (!worldMatrixDirty) return cachedWorldMatrix;
     
-    // Correction : appliquer la rotation avant la translation
-    glm::mat4 localMatrix = glm::mat4(1.0f);
-    localMatrix = glm::mat4(r) * localMatrix;
-    localMatrix = glm::translate(localMatrix, t);
-    localMatrix = glm::scale(localMatrix, s);
+    glm::mat4 localMatrix = getLocalMatrix();
 
     auto p = parent.lock();
     if (p) {
@@ -142,28 +119,29 @@ void Transform::markWorldMatrixDirty() {
 
 // === Setters ===
 void Transform::setScale(const glm::vec3& _s) { 
-    s = _s;
+    scaleVec = _s;
     markWorldMatrixDirty();
 }
 
-void Transform::setRotation(const glm::mat3& _r) {
-    r = _r;
+void Transform::setRotation(const glm::mat4& _r) {
+    rotationMat = _r;
     markWorldMatrixDirty();
 }
 
 void Transform::setRotation(const glm::quat& q) {
-    r = glm::mat3_cast(q);
+    rotationMat = glm::mat4_cast(q);
     markWorldMatrixDirty();
 }
 
 void Transform::setRotation(const glm::vec3& eulerAngles) {
     // Convention classique (x=pitch, y=yaw, z=roll)
-    r = glm::mat3(glm::yawPitchRoll(eulerAngles.y, eulerAngles.x, eulerAngles.z));
+    rotationMat = glm::mat4(glm::yawPitchRoll(eulerAngles.y, eulerAngles.x, eulerAngles.z));
     markWorldMatrixDirty();
 }
 
 void Transform::setTranslation(const glm::vec3& _t) {
-    t = _t; markWorldMatrixDirty();
+    translationVec = _t; 
+    markWorldMatrixDirty();
 }
 
 // === Utilitaires ===
@@ -179,28 +157,28 @@ bool Transform::isAncestorOf(const Transform* _other) const {
 
 // === Transformations locales ===
 void Transform::scale(const glm::vec3& _s) {
-    s *= _s;
+    scaleVec *= _s;
     markWorldMatrixDirty();
 }
 
-void Transform::rotate(const glm::mat3& _r) {
-    r = _r * r;
+void Transform::rotate(const glm::mat4& _r) {
+    rotationMat = _r * rotationMat;
     markWorldMatrixDirty();
 }
 
 void Transform::rotate(const glm::quat& q) {
-    r = glm::mat3_cast(q) * r;
+    rotationMat = glm::mat4_cast(q) * rotationMat;
     markWorldMatrixDirty();
 }
 
 void Transform::rotate(const glm::vec3& eulerAngles) {
     // Convention classique (x=pitch, y=yaw, z=roll)
-    glm::mat3 rot = glm::mat3(glm::yawPitchRoll(eulerAngles.y, eulerAngles.x, eulerAngles.z));
-    r = rot * r;
+    glm::mat4 rot = glm::mat4(glm::yawPitchRoll(eulerAngles.y, eulerAngles.x, eulerAngles.z));
+    rotationMat = rot * rotationMat;
     markWorldMatrixDirty();
 }
 
 void Transform::translate(const glm::vec3& _t) {
-    t += _t;
+    translationVec += _t;
     markWorldMatrixDirty();
 }
