@@ -138,15 +138,20 @@ int main( void ) {
     sceneGraph.getRoot()->addChild(terrainNode);
 
     // Création du mesh du lapin
-    auto bunnyMesh = Mesh::loadFromOFF("meshes/suzan.off");
+    auto bunnyMesh = Mesh::loadFromOFF("meshes/bunny/bunny2.off");
     // Création du nœud du lapin
     auto bunnyNode = std::make_shared<MeshNode>("Bunny", bunnyMesh);
     bunnyNode->setShaderProgram(meshesProgramID);
     bunnyNode->setTexture(sunTexture);
     // Positionner le lapin au centre du terrain
     glm::vec3 terrainCenter = terrain.getCenterPosition();
-    bunnyNode->getTransform().setTranslation(terrain.getCenterPosition());
-    bunnyNode->getTransform().setScale(glm::vec3(3.0f));
+    float angle = radians(-90.0f);
+    
+    bunnyNode->getTransform().translate(glm::vec3(256.0f, 75.0f, 256.0f)); 
+    bunnyNode->getTransform().setRotation(glm::vec3(angle, 0.0f, 0.0f)); 
+    bunnyNode->getTransform().setScale(glm::vec3(200.0f));
+    // bunnyNode->getTransform().setTranslation(terrain.getCenterPosition());
+    // bunnyNode->getTransform().translate(glm::vec3(0.0f, 50.0f, 0.0f)); 
     // Ajout au graphe de scène
     sceneGraph.getRoot()->addChild(bunnyNode);
 
