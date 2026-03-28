@@ -20,6 +20,12 @@ public:
     // Getters pour les matrices
     glm::mat4 getViewMatrix() const { return viewMatrix; }
     glm::mat4 getProjectionMatrix() const { return projectionMatrix; }
+
+    // Getters position (position correspondant au mode de la camera)
+    glm::vec3 getPosition() const {
+        return currentMode == FIXED_CAMERA ? fixedPosition : 
+            (currentMode == FREE_CAMERA ? freePosition : orbitCenter);
+    };
     
     // Gestion des modes
     void setMode(CameraMode mode, GLFWwindow* window);

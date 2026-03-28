@@ -138,15 +138,22 @@ int main( void ) {
     sceneGraph.getRoot()->addChild(terrainNode);
 
     // Création du mesh du lapin
-    auto bunnyMesh = Mesh::loadFromOFF("meshes/bunny/bunny2.off");
+    //AJOUT LUCAS
+    //auto bunnyMesh = Mesh::loadFromOFF("meshes/bunny/bunny2.off");
+    std::vector<std::shared_ptr<Mesh>> bunnyLOD(4);  
+    bunnyLOD[0] = Mesh::loadFromOFF("meshes/bunny/bunny0.off");
+    bunnyLOD[1] = Mesh::loadFromOFF("meshes/bunny/bunny1.off");
+    bunnyLOD[2] = Mesh::loadFromOFF("meshes/bunny/bunny2.off");
+    bunnyLOD[3] = Mesh::loadFromOFF("meshes/bunny/bunny3.off");
     // Création du nœud du lapin
-    auto bunnyNode = std::make_shared<MeshNode>("Bunny", bunnyMesh);
+
+    auto bunnyNode = std::make_shared<MeshNode>("Bunny", bunnyLOD[0]);
     bunnyNode->setShaderProgram(meshesProgramID);
     bunnyNode->setTexture(sunTexture);
     // Positionner le lapin au centre du terrain
     glm::vec3 terrainCenter = terrain.getCenterPosition();
     float angle = radians(-90.0f);
-    
+
     bunnyNode->getTransform().translate(glm::vec3(256.0f, 75.0f, 256.0f)); 
     bunnyNode->getTransform().setRotation(glm::vec3(angle, 0.0f, 0.0f)); 
     bunnyNode->getTransform().setScale(glm::vec3(200.0f));
@@ -197,8 +204,27 @@ int main( void ) {
         glm::mat4 viewProjection = camera.getProjectionMatrix() * camera.getViewMatrix();
 
         // === Déplacer les objets de la scène ===
-        
-        
+        //AJOUT LUCAS
+        float distance = glm::distance(
+            camera.getPosition(),
+            glm::vec3(bunnyNode->getTransform().getWorldMatrix()[3])    
+        );
+        if (nbFrames % 100 == 0) { // Affiche toutes les 100 frames pour ne pas flood la console
+            glm::vec3 cP = camera.getPosition();
+            glm::vec3 bP = glm::vec3(bunnyNode->getTransform().getWorldMatrix()[3]);
+            printf("Dist: %f | Cam: %.1f %.1f %.1f | Bunny: %.1f %.1f %.1f\n", 
+                    distance, cP.x, cP.y, cP.z, bP.x, bP.y, bP.z);
+        }
+
+        if (distance < 200.f){
+            bunnyNode->setMesh(bunnyLOD[0]);
+        } else if (distance < 500.f) {
+            bunnyNode->setMesh(bunnyLOD[1]);
+        } else if (distance < 800.f) {
+            bunnyNode->setMesh(bunnyLOD[2]);
+        } else {
+            bunnyNode->setMesh(bunnyLOD[3]);
+        }
 
         // Mettre à jour et dessiner toute la scène via le graphe de scène
         sceneGraph.update(deltaTime);

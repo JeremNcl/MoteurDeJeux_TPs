@@ -24,7 +24,7 @@ public:
     virtual ~MeshNode();
     
     // === SETTERS ===
-    void setMesh(std::shared_ptr<Mesh> mesh) { this->mesh = mesh; }
+    void setMesh(std::shared_ptr<Mesh> mesh) { this->mesh = mesh; bindBuffers(); }
     void setShaderProgram(GLuint shaderProgram) { this->shaderProgram = shaderProgram; }
     void setTexture(GLuint texture) { this->texture = texture; }
 
