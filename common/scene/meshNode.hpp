@@ -45,7 +45,27 @@ public:
     // === GESTION DU CACHE DE MESHES ===
     static void clearMeshCache();
     
+    // == GESTION DES LODS ===
+    void addLOD(std::shared_ptr<Mesh> lodMesh, float distance);
+
+    void updateLOD(float distance);
+
 protected:
+    // Structure pour LOD
+    // Ce n'est pas très "orienté objet" mais c'est
+    // la version la plus pratique pour le passage à l'ECS
+    // il n'y aura qu'a déplacer ça dans un component
+    // de plus on évite la gestion par d'autre fonction de LOD
+    // impliquant moins de changement au passage à l'ECS
+    struct LOD {
+        std::shared_ptr<Mesh> mesh;
+        float distanceMax;
+    };
+
+    // LODs
+    std::shared_ptr<std::vector<LOD>> lods;
+    int currentLODIndex = -1; // -1 signifie qu'il faut utiliser le mesh de base (mesh unique)
+
     // Mesh
     std::shared_ptr<Mesh> mesh;
     // Buffers

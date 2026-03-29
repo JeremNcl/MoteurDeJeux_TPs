@@ -14,7 +14,7 @@ Camera::Camera()
       freeHorizontalAngle(3.14f),
       freeVerticalAngle(-0.3f),
       freeSpeed(10.0f),
-      freeMouseSpeed(0.0002f),
+      freeMouseSpeed(0.0005f),
       fixedPosition(glm::vec3(0, 0, 5)),
       fixedTarget(glm::vec3(0, 0, 0)),
       fixedUp(glm::vec3(0, 1, 0)),

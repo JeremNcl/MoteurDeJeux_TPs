@@ -137,22 +137,22 @@ int main( void ) {
     // Ajout au graphe de scène
     sceneGraph.getRoot()->addChild(terrainNode);
 
-    // Création du mesh du lapin
-    //AJOUT LUCAS
-    //auto bunnyMesh = Mesh::loadFromOFF("meshes/bunny/bunny2.off");
-    std::vector<std::shared_ptr<Mesh>> bunnyLOD(4);  
-    bunnyLOD[0] = Mesh::loadFromOFF("meshes/bunny/bunny0.off");
-    bunnyLOD[1] = Mesh::loadFromOFF("meshes/bunny/bunny1.off");
-    bunnyLOD[2] = Mesh::loadFromOFF("meshes/bunny/bunny2.off");
-    bunnyLOD[3] = Mesh::loadFromOFF("meshes/bunny/bunny3.off");
     // Création du nœud du lapin
 
-    auto bunnyNode = std::make_shared<MeshNode>("Bunny", bunnyLOD[0]);
+    auto bunnyNode = std::make_shared<MeshNode>("Bunny");
     bunnyNode->setShaderProgram(meshesProgramID);
     bunnyNode->setTexture(sunTexture);
     // Positionner le lapin au centre du terrain
     glm::vec3 terrainCenter = terrain.getCenterPosition();
     float angle = radians(-90.0f);
+
+    //AJOUT LUCAS
+    //AJOUT des lodsMesh au bunny
+    bunnyNode->addLOD(Mesh::loadFromOFF("meshes/bunny/bunny0.off"), 200.f);
+    bunnyNode->addLOD(Mesh::loadFromOFF("meshes/bunny/bunny1.off"), 500.f);
+    bunnyNode->addLOD(Mesh::loadFromOFF("meshes/bunny/bunny2.off"), 800.f);
+    bunnyNode->addLOD(Mesh::loadFromOFF("meshes/bunny/bunny3.off"), 1500.f);
+    // Fin AJOUT LUCAS
 
     bunnyNode->getTransform().translate(glm::vec3(256.0f, 75.0f, 256.0f)); 
     bunnyNode->getTransform().setRotation(glm::vec3(angle, 0.0f, 0.0f)); 
@@ -160,7 +160,7 @@ int main( void ) {
     // bunnyNode->getTransform().setTranslation(terrain.getCenterPosition());
     // bunnyNode->getTransform().translate(glm::vec3(0.0f, 50.0f, 0.0f)); 
     // Ajout au graphe de scène
-    sceneGraph.getRoot()->addChild(bunnyNode);
+    sceneGraph.getRoot()->addChild(bunnyNode); 
 
     printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
 
@@ -203,28 +203,26 @@ int main( void ) {
         // Calculer la matrice View-Projection
         glm::mat4 viewProjection = camera.getProjectionMatrix() * camera.getViewMatrix();
 
-        // === Déplacer les objets de la scène ===
         //AJOUT LUCAS
+        // === Déplacer les objets de la scène ===
+
+        // === Mise à jour des LODs
         float distance = glm::distance(
             camera.getPosition(),
             glm::vec3(bunnyNode->getTransform().getWorldMatrix()[3])    
         );
-        if (nbFrames % 100 == 0) { // Affiche toutes les 100 frames pour ne pas flood la console
-            glm::vec3 cP = camera.getPosition();
-            glm::vec3 bP = glm::vec3(bunnyNode->getTransform().getWorldMatrix()[3]);
-            printf("Dist: %f | Cam: %.1f %.1f %.1f | Bunny: %.1f %.1f %.1f\n", 
-                    distance, cP.x, cP.y, cP.z, bP.x, bP.y, bP.z);
-        }
 
-        if (distance < 200.f){
-            bunnyNode->setMesh(bunnyLOD[0]);
-        } else if (distance < 500.f) {
-            bunnyNode->setMesh(bunnyLOD[1]);
-        } else if (distance < 800.f) {
-            bunnyNode->setMesh(bunnyLOD[2]);
-        } else {
-            bunnyNode->setMesh(bunnyLOD[3]);
-        }
+        // WARNING SA MERE
+        // C'est degueulasse comme manière de faire
+        // j'aurais aimé tous passer en surchargeant update de sceneNode
+        // problème il me faut la distance, donc soit passer la cam et ajouter
+        // un arg à la fonction update, soit mettre en variable global la pos
+        // (y'a ptet d'autre solution mais j'ai pas trouvé)
+        // je n'arrive pas à me décider sur qu'elle manière de faire est la plus
+        // propre, donc on reste sur une autre fonction pour le moment
+        // (de toute façon quelque chose me dit que ça va sauter avec l'ECS)
+        bunnyNode->updateLOD(distance);
+        //FIN AJOUT LUCAS
 
         // Mettre à jour et dessiner toute la scène via le graphe de scène
         sceneGraph.update(deltaTime);

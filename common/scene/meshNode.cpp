@@ -224,3 +224,47 @@ void MeshNode::draw(const glm::mat4& viewProjection) {
 void MeshNode::clearMeshCache() {
     Mesh::clearMeshCache();
 }
+
+// === GESTION DES LODS ===
+void MeshNode::addLOD(std::shared_ptr<Mesh> lodMesh, float distance) {
+    LOD newLod = {lodMesh, distance};
+    
+    if (!lods) {
+        lods = std::make_shared<std::vector<LOD>>();
+        lods->push_back(newLod);
+        return;
+    }
+
+    std::vector<LOD>::iterator it = lods->begin();
+    while (it != lods->end() && it->distanceMax < distance)
+    {
+        ++it;
+    }
+    
+    lods->insert(it, newLod);
+}
+
+void MeshNode::updateLOD(float distance){
+    if(!lods || lods->empty()) return;
+
+    int correctLODIndex = 0;
+    for(size_t i = 0; i < lods->size(); ++i){
+        correctLODIndex = i;
+        if(distance < (*lods)[i].distanceMax){
+            break;
+        }
+    }
+
+    if (correctLODIndex != currentLODIndex){
+        currentLODIndex = correctLODIndex;
+
+        //A CHANGER AVEC LE PRINCIPE DE BUFFER VAO/VBO
+        // en gros au lieu de passer le mesh à chaque foit au shader,
+        // on envois à la création des lods tout les lods au GPU,
+        // puis on aura plus qu'a envoyer à chaque update l'index à utiliser
+        mesh = (*lods)[currentLODIndex].mesh;
+        bindBuffers();
+
+        std::cout << "Switching to LOD " << currentLODIndex << " (Dist: " << distance << ")" << std::endl;
+    }
+} 
