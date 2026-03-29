@@ -36,11 +36,16 @@ public:
     // === GETTERS ===
     int getWidth() const { return width; }
     int getHeight() const { return height; }
+    float getMaxHeight() const { return maxHeight; }
     glm::vec3 getCenterPosition() const;
+    std::vector<std::vector<float>> getHeightmap() const { return heightmap; }
     
     // === CALCUL DE VUE CAMÉRA ===
     CameraSetup getOptimalIsometricView() const;
     
+    // A CHANGER MDR
+    float getHeightAt(float x, float z) const;
+
 private:
     // === ATTRIBUTS ===
     int width;

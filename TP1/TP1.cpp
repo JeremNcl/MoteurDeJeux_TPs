@@ -27,6 +27,9 @@ using namespace glm;
 #include <common/scene/meshNode.hpp>
 #include <common/terrain/terrainNode.hpp>
 
+// Include Helper Temporaire
+#include <common/scene/meshNodeUtils.hpp>
+
 
 void processInput(GLFWwindow *window, Camera& camera);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -156,7 +159,7 @@ int main( void ) {
 
     bunnyNode->getTransform().translate(glm::vec3(256.0f, 75.0f, 256.0f)); 
     bunnyNode->getTransform().setRotation(glm::vec3(angle, 0.0f, 0.0f)); 
-    bunnyNode->getTransform().setScale(glm::vec3(200.0f));
+    bunnyNode->getTransform().setScale(glm::vec3(50.0f));
     // bunnyNode->getTransform().setTranslation(terrain.getCenterPosition());
     // bunnyNode->getTransform().translate(glm::vec3(0.0f, 50.0f, 0.0f)); 
     // Ajout au graphe de scène
@@ -205,7 +208,8 @@ int main( void ) {
 
         //AJOUT LUCAS
         // === Déplacer les objets de la scène ===
-
+        MeshNodeUtils::handleBunnyMovement(window, bunnyNode, terrainNode->getTerrain(), deltaTime);
+        
         // === Mise à jour des LODs
         float distance = glm::distance(
             camera.getPosition(),
