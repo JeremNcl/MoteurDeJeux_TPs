@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
+#include <sstream>
 
 #include <glm/glm.hpp>
 
@@ -228,5 +229,118 @@ bool loadOFF( const std::string & filename ,
     }
 
     myfile.close();
+    return true;
+}
+
+bool loadOBJ(const std::string& filename,
+             std::vector<glm::vec3>& vertices,
+             std::vector<glm::vec2>& uvs,
+             std::vector<glm::vec3>& normals,
+             std::vector<unsigned int>& indices)
+{
+    std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
+    std::vector<glm::vec3> temp_vertices;
+    std::vector<glm::vec2> temp_uvs;
+    std::vector<glm::vec3> temp_normals;
+
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Impossible d'ouvrir le fichier OBJ : " << filename << std::endl;
+        return false;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string header;
+        ss >> header;
+
+        if (header == "v") {
+            glm::vec3 vertex;
+            ss >> vertex.x >> vertex.y >> vertex.z;
+            temp_vertices.push_back(vertex);
+        } else if (header == "vt") {
+            glm::vec2 uv;
+            ss >> uv.x >> uv.y;
+            temp_uvs.push_back(uv);
+        } else if (header == "vn") {
+            glm::vec3 normal;
+            ss >> normal.x >> normal.y >> normal.z;
+            temp_normals.push_back(normal);
+        } else if (header == "f") {
+            std::string vertexStr;
+            
+            // Stockage temporaire pour les indices de cette face spécifique
+            std::vector<unsigned int> f_vIndices, f_uvIndices, f_nIndices;
+
+            while (ss >> vertexStr) {
+                unsigned int vIdx = 0, vtIdx = 0, vnIdx = 0;
+                
+                // Format v/vt/vn
+                if (sscanf(vertexStr.c_str(), "%u/%u/%u", &vIdx, &vtIdx, &vnIdx) == 3) {
+                    f_vIndices.push_back(vIdx);
+                    f_uvIndices.push_back(vtIdx);
+                    f_nIndices.push_back(vnIdx);
+                } 
+                // Format v//vn
+                else if (sscanf(vertexStr.c_str(), "%u//%u", &vIdx, &vnIdx) == 2) {
+                    f_vIndices.push_back(vIdx);
+                    f_nIndices.push_back(vnIdx);
+                }
+                // Format v/vt
+                else if (sscanf(vertexStr.c_str(), "%u/%u", &vIdx, &vtIdx) == 2) {
+                    f_vIndices.push_back(vIdx);
+                    f_uvIndices.push_back(vtIdx);
+                }
+                // Format v
+                else if (sscanf(vertexStr.c_str(), "%u", &vIdx) == 1) {
+                    f_vIndices.push_back(vIdx);
+                }
+            }
+
+            // Triangulation basique (Triangle Fan) pour gérer les Quads et n-gons
+            if (f_vIndices.size() >= 3) {
+                for (size_t i = 1; i < f_vIndices.size() - 1; ++i) {
+                    vertexIndices.push_back(f_vIndices[0]);
+                    vertexIndices.push_back(f_vIndices[i]);
+                    vertexIndices.push_back(f_vIndices[i + 1]);
+
+                    if (!f_uvIndices.empty() && f_uvIndices.size() == f_vIndices.size()) {
+                        uvIndices.push_back(f_uvIndices[0]);
+                        uvIndices.push_back(f_uvIndices[i]);
+                        uvIndices.push_back(f_uvIndices[i + 1]);
+                    }
+
+                    if (!f_nIndices.empty() && f_nIndices.size() == f_vIndices.size()) {
+                        normalIndices.push_back(f_nIndices[0]);
+                        normalIndices.push_back(f_nIndices[i]);
+                        normalIndices.push_back(f_nIndices[i + 1]);
+                    }
+                }
+            }
+        }
+    }
+
+    // Déroulage des données pour OpenGL (Indexation unique)
+    for (unsigned int i = 0; i < vertexIndices.size(); i++) {
+        unsigned int vIdx = vertexIndices[i];
+        
+        // Attention : OBJ est indexé à partir de 1, d'où le "-1"
+        vertices.push_back(temp_vertices[vIdx - 1]);
+        
+        // Vérification stricte via la taille au lieu de .empty()
+        if (i < uvIndices.size()) {
+            unsigned int vtIdx = uvIndices[i];
+            uvs.push_back(temp_uvs[vtIdx - 1]);
+        }
+        
+        if (i < normalIndices.size()) {
+            unsigned int vnIdx = normalIndices[i];
+            normals.push_back(temp_normals[vnIdx - 1]);
+        }
+        
+        indices.push_back(i);
+    }
+
     return true;
 }

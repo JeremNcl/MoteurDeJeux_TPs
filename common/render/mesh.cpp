@@ -87,6 +87,40 @@ std::shared_ptr<Mesh> Mesh::loadFromOFF(const std::string& filename, bool enable
     return mesh;
 }
 
+// Chargement depuis un ficher OBJ
+std::shared_ptr<Mesh> Mesh::loadFromOBJ(const std::string& filename, bool enableCache) {
+    if (enableCache) {
+        auto it = meshCache.find(filename);
+        if (it != meshCache.end()) {
+            std::cout << "Cache hit (OBJ): " << filename << std::endl;
+            return it->second;
+        }
+    }
+
+    auto mesh = std::make_shared<Mesh>();
+
+    if (!loadOBJ(filename, mesh->vertices, mesh->uvs, mesh->normals, mesh->indices)) {
+        std::cerr << "ERREUR: Impossible de charger " << filename << std::endl;
+        return nullptr;
+    }
+
+    // Si le fichier OBJ n'avait pas de normales ou d'UVs, on peut les calculer
+    if (mesh->normals.empty()) {
+        mesh->computeNormals();
+    }
+    if (mesh->uvs.empty()) {
+        mesh->computeUVs();
+    }
+
+    if (enableCache) {
+        meshCache[filename] = mesh;
+    }
+
+    std::cout << "Mesh OBJ chargé: " << filename
+              << " (" << mesh->vertices.size() << " vertices)" << std::endl;
+
+    return mesh;
+}
 
 // === DESTRUCTEUR ===
 

@@ -29,6 +29,7 @@ using namespace glm;
 
 // Include Helper Temporaire
 #include <common/scene/meshNodeUtils.hpp>
+#include <common/scene/nodeControllerUtils.hpp>
 
 
 void processInput(GLFWwindow *window, Camera& camera);
@@ -111,8 +112,8 @@ int main( void ) {
     // Handle MVP matrix uniform
     glUseProgram(meshesProgramID);
     GLuint meshesMVP = glGetUniformLocation(meshesProgramID, "MVP");
-    glUseProgram(terrainProgramID);
-    GLuint terrainMVP = glGetUniformLocation(terrainProgramID, "MVP");
+    /* glUseProgram(terrainProgramID);
+    GLuint terrainMVP = glGetUniformLocation(terrainProgramID, "MVP"); */
 
     
     // === INITIALISATION DE LA SCÈNE ===
@@ -127,7 +128,7 @@ int main( void ) {
     SceneGraph sceneGraph;
 
     // Création du terrain
-    Terrain terrain = Terrain();
+    /* Terrain terrain = Terrain();
     terrain.loadHeightmap("heightmaps/heightmap_mountain.bmp", 120.0f);
     // Génération du mesh du terrain 
     auto terrainMesh = std::make_shared<Mesh>();
@@ -138,7 +139,7 @@ int main( void ) {
     terrainNode->setTextures(grassTexture, rockTexture, snowTexture);
     terrainNode->setHeightParameters(40.0f, 100.0f, 10.0f); 
     // Ajout au graphe de scène
-    sceneGraph.getRoot()->addChild(terrainNode);
+    sceneGraph.getRoot()->addChild(terrainNode); */
 
     // Création du nœud du lapin
 
@@ -146,7 +147,7 @@ int main( void ) {
     bunnyNode->setShaderProgram(meshesProgramID);
     bunnyNode->setTexture(sunTexture);
     // Positionner le lapin au centre du terrain
-    glm::vec3 terrainCenter = terrain.getCenterPosition();
+    //glm::vec3 terrainCenter = terrain.getCenterPosition();
     float angle = radians(-90.0f);
 
     //AJOUT LUCAS
@@ -157,7 +158,7 @@ int main( void ) {
     bunnyNode->addLOD(Mesh::loadFromOFF("meshes/bunny/bunny3.off"), 1500.f);
     // Fin AJOUT LUCAS
 
-    bunnyNode->getTransform().translate(glm::vec3(256.0f, 75.0f, 256.0f)); 
+    bunnyNode->getTransform().translate(glm::vec3(300.f, 0.f, 0.f)); 
     bunnyNode->getTransform().setRotation(glm::vec3(angle, 0.0f, 0.0f)); 
     bunnyNode->getTransform().setScale(glm::vec3(200.0f));
     // bunnyNode->getTransform().setTranslation(terrain.getCenterPosition());
@@ -167,17 +168,38 @@ int main( void ) {
 
     printf("Graphe de scène initialisé avec %d nœud(s)\n", sceneGraph.getNodeCount());
 
+    // Ajout cylindre
+    auto cylinderMesh = Mesh::loadFromOBJ("meshes/superbecylindre.obj");
+
+    auto cylinderNode = std::make_shared<MeshNode>("Cylinder", cylinderMesh);
+    cylinderNode->setShaderProgram(meshesProgramID);
+    cylinderNode->setTexture(sunTexture);
+    
+    cylinderNode->getTransform().translate(glm::vec3(10.f,10.f,10.f));
+    cylinderNode->getTransform().setRotation(glm::vec3(0.f, 0.f, 0.f));
+    cylinderNode->getTransform().setScale(glm::vec3(10.f));
+
+    sceneGraph.getRoot()->addChild(cylinderNode);
+
+
     // Initialisation de la caméra
     Camera camera;
-    CameraSetup cameraSetup = terrain.getOptimalIsometricView();
+    /* CameraSetup cameraSetup = terrain.getOptimalIsometricView();
     camera.initialize(
         cameraSetup.position,
         cameraSetup.target,
         cameraSetup.up,
         cameraSetup.speed// 50.0f
-    );
-    camera.setMode(FIXED_CAMERA, window);
+    ); */
 
+    camera.initialize(
+        glm::vec3(500,500,250),
+        glm::vec3(0,0,0),
+        glm::vec3(0,1,0),
+        50.f
+    );
+
+    camera.setMode(FIXED_CAMERA, window);
 
     // // Get a handle for our "LightPosition" uniform
     // glUseProgram(terrainProgramID);
@@ -208,7 +230,7 @@ int main( void ) {
 
         //AJOUT LUCAS
         // === Déplacer les objets de la scène ===
-        MeshNodeUtils::handleBunnyMovement(window, bunnyNode, terrainNode->getTerrain(), deltaTime);
+        //MeshNodeUtils::handleBunnyMovement(window, bunnyNode, terrainNode->getTerrain(), deltaTime);
         
         // === Mise à jour des LODs
         float distance = glm::distance(
@@ -227,6 +249,10 @@ int main( void ) {
         // (de toute façon quelque chose me dit que ça va sauter avec l'ECS)
         bunnyNode->updateLOD(distance);
         //FIN AJOUT LUCAS
+
+        // Déplacement cylindre
+        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+            NodeControllerUtils::nodeDeplacement(cylinderNode, glm::vec3(1.f,0.f,0.f), 30, deltaTime);
 
         // Mettre à jour et dessiner toute la scène via le graphe de scène
         sceneGraph.update(deltaTime);

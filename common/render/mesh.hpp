@@ -21,6 +21,8 @@ public:
     static std::shared_ptr<Mesh> generateSphere(float radius, int meridianCount, int parallelCount);
     // Chargement depuis fichier OFF (avec cache optionnel)
     static std::shared_ptr<Mesh> loadFromOFF(const std::string& filename, bool enableCache = true);
+    // Chargement depuis un fichier OBJ
+    static std::shared_ptr<Mesh> loadFromOBJ(const std::string& filename, bool enableCache = true);
     
     // === DESTRUCTEUR ===
     ~Mesh();
