@@ -42,9 +42,6 @@ public:
     
     // === CALCUL DE VUE CAMÉRA ===
     CameraSetup getOptimalIsometricView() const;
-    
-    // A CHANGER MDR
-    float getHeightAt(float x, float z) const;
 
 private:
     // === ATTRIBUTS ===
